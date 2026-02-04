@@ -5,7 +5,8 @@ CC_FLAGS = -Wall -Wextra -Werror -pthread
 SRCS = \
 	philo.c \
 	error.c \
-	parser.c
+	parser.c \
+	logs.c
 
 OBJS = $(SRCS:.c=.o)
 

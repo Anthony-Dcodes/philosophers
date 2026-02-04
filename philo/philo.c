@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/04 21:53:12 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/04 22:22:52 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,5 +18,6 @@ int	main(int argc, char *argv[])
 
 	if (parser_args(argc, argv, &simulation))
 		return (1);
-	
+	printf("Parser done\n");
+	log_pickup_fork(5);
 }

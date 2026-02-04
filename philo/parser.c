@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:55:13 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/04 21:57:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/04 22:18:02 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	parser_args(int argc, char *argv[], t_simulation *simulation)
 	int	i;
 
 	i = 1;
-	if (argc != 5 || argc != 6)
+	if (argc < 5 || argc > 6)
 	{
 		wrong_number_of_args();
 		return (1);

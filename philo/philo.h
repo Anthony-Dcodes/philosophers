@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/04 21:57:10 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/04 22:32:10 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,12 @@ int	is_int(char *str);
 int	ft_isdigit(int c);
 int	ft_atoi(const char *nptr);
 int	is_more_then_int_max(char *nptr);
+
+// Logs
+void	log_pickup_fork(int philosopher);
+void	log_eating(int philosopher);
+void	log_sleeping(int philosopher);
+void	log_thinking(int philosopher);
+void	log_death(int philosopher);
 
 #endif
