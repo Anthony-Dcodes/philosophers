@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/04 18:36:52 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/04 21:44:15 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <string.h> // memset
 # include <unistd.h> // write, usleep,
 # include <sys/time.h> // gettimeofday
+# include <limits.h>
 
 /*
 pthread_create - create new thread
@@ -48,5 +49,6 @@ int	parser_args(int argc, char *argv[], t_simulation *t_simulation);
 int	is_int(char *str);
 int	ft_isdigit(int c);
 int	ft_atoi(const char *nptr);
+int	is_more_then_int_max(char *nptr);
 
 #endif
