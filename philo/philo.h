@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/04 21:44:15 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/04 21:57:10 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,11 @@ pthread_mutex_unlock - unlock a mutex (release the fork), allows other threads t
 typedef struct s_simulation
 {
 	int	n_philosophers;
+	int	n_forks;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
+	int	n_times_must_eat;
 } t_simulation;
 
 // Error functions

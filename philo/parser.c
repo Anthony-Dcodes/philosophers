@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:55:13 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/04 21:50:48 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/04 21:57:56 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	parser_args(int argc, char *argv[], t_simulation *simulation)
 	int	i;
 
 	i = 1;
-	if (argc != 5)
+	if (argc != 5 || argc != 6)
 	{
 		wrong_number_of_args();
 		return (1);
@@ -30,9 +30,11 @@ int	parser_args(int argc, char *argv[], t_simulation *simulation)
 		++i;
 	}
 	simulation->n_philosophers = ft_atoi(argv[1]);
+	simulation->n_forks = ft_atoi(argv[1]);
 	simulation->time_to_die = ft_atoi(argv[2]);
 	simulation->time_to_eat = ft_atoi(argv[3]);
 	simulation->time_to_sleep = ft_atoi(argv[4]);
+	simulation->n_times_must_eat = ft_atoi(argv[5]);
 	return (0);
 }
 

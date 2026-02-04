@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:12:31 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/04 21:50:06 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/04 21:56:24 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	not_an_int(void)
 
 int	wrong_number_of_args(void)
 {
-	printf("Wrong number of argumens, 4 needed!\n");
+	printf("Wrong number of argumens, 4 needed, 5 optionally!\n");
 	printf("number_of_philosophers, time_to_die, time_to_eat, time_to_sleep\n");
+	printf("Optional argument: number_of_times_each_philosopher_must_eat\n");
 	return (0);
 }
