@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/08 09:53:18 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/08 10:12:18 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,28 @@ int	main(int argc, char *argv[])
 {
 	t_simulation	simulation;
 	int				i;
-	pthread_t		thread;
+	pthread_t		*threads;
 
-	i = 1;
+	i = 0;
 	if (parser_args(argc, argv, &simulation))
 		return (1);
 	printf("Parser done\n");
-	while (i <= simulation.n_philosophers)
+	threads = malloc(sizeof(pthread_t) * simulation.n_philosophers);
+	if (!threads)
+		return (1);
+	while (i < simulation.n_philosophers)
 	{
-		pthread_create(&thread, NULL, philo_loop, &simulation);
+		pthread_create(&threads[i], NULL, philo_loop, &simulation);
+		++i;
+	}
+	i = 0;
+	while (i < simulation.n_philosophers)
+	{
+		pthread_join(threads[i], NULL);
 		++i;
 	}
 	log_pickup_fork(5);
+	free(threads);
 	return (0);
 }
 
