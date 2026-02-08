@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/04 22:32:10 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/08 09:43:06 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,8 @@ void	log_eating(int philosopher);
 void	log_sleeping(int philosopher);
 void	log_thinking(int philosopher);
 void	log_death(int philosopher);
+
+// Philosophers main loop / helpers
+void	*philo_loop(void *arg);
 
 #endif
