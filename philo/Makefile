@@ -6,7 +6,8 @@ SRCS = \
 	philo.c \
 	error.c \
 	parser.c \
-	logs.c
+	logs.c \
+	mutex_init.c
 
 OBJS = $(SRCS:.c=.o)
 

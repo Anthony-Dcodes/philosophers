@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/08 10:12:18 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:36:09 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	main(int argc, char *argv[])
 	if (parser_args(argc, argv, &simulation))
 		return (1);
 	printf("Parser done\n");
+	if (mutex_init(&simulation))
+		return (1);
 	threads = malloc(sizeof(pthread_t) * simulation.n_philosophers);
 	if (!threads)
 		return (1);
@@ -36,16 +38,20 @@ int	main(int argc, char *argv[])
 		pthread_join(threads[i], NULL);
 		++i;
 	}
-	log_pickup_fork(5);
 	free(threads);
 	return (0);
 }
 
 void	*philo_loop(void *arg)
 {
-	t_simulation	*simul_args;
+	t_simulation	*simulation;
 
-	simul_args = (t_simulation*)arg;
-	log_sleeping(simul_args->n_philosophers);
+	simulation = (t_simulation*)arg;
+	usleep(simulation->time_to_sleep);
+	log_general(simulation, EAT);
+	log_general(simulation, SLEEP);
+	log_general(simulation, THINK);
+	log_general(simulation, DIED);
+	log_general(simulation, FORK);
 	return (NULL);
 }

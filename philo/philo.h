@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/08 09:43:06 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/09 19:39:07 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,13 @@ pthread_mutex_unlock - unlock a mutex (release the fork), allows other threads t
 */
 # include <pthread.h>
 
+#define FORK "has taken a fork"
+#define EAT "is eating"
+#define SLEEP "is sleeping"
+#define THINK "is thinking"
+#define DIED "died"
+
+
 typedef struct s_simulation
 {
 	int	n_philosophers;
@@ -39,6 +46,7 @@ typedef struct s_simulation
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	n_times_must_eat;
+	pthread_mutex_t	print_mutex;
 } t_simulation;
 
 // Error functions
@@ -54,13 +62,12 @@ int	ft_atoi(const char *nptr);
 int	is_more_then_int_max(char *nptr);
 
 // Logs
-void	log_pickup_fork(int philosopher);
-void	log_eating(int philosopher);
-void	log_sleeping(int philosopher);
-void	log_thinking(int philosopher);
-void	log_death(int philosopher);
+void	log_general(t_simulation *simulation, const char *message);
 
 // Philosophers main loop / helpers
 void	*philo_loop(void *arg);
+
+// Mutex
+int	mutex_init(t_simulation *simulation);
 
 #endif

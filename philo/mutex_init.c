@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   logs.c                                             :+:      :+:    :+:   */
+/*   mutex_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/09 19:38:57 by advorace         ###   ########.fr       */
+/*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
+/*   Updated: 2026/02/09 19:16:50 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	log_general(t_simulation *simulation, const char *message)
+int	mutex_init(t_simulation *simulation)
 {
-	struct timeval	tp;
-	long			timestamp_ms;
-	int				philosopher;
-	
-	pthread_mutex_lock(&simulation->print_mutex);
-	philosopher = simulation->n_philosophers; // Later to fix
-	gettimeofday(&tp, NULL);
-	timestamp_ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-	printf("%ld %d %s\n", timestamp_ms, philosopher, message);
-	pthread_mutex_unlock(&simulation->print_mutex);
+	if (pthread_mutex_init(&simulation->print_mutex, NULL) != 0)
+		return (1);
+	return (0);
 }
