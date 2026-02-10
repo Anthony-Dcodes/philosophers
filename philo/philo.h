@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/09 19:39:07 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/10 23:37:24 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,27 @@ pthread_mutex_unlock - unlock a mutex (release the fork), allows other threads t
 typedef struct s_simulation
 {
 	int	n_philosophers;
-	int	n_forks;
 	int	time_to_die;
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	n_times_must_eat;
+	int	death;
 	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	death_mutex;
 } t_simulation;
+
+typedef struct s_fork
+{
+	pthread_mutex_t	fork;
+} t_fork;
+
+typedef struct s_philosopher
+{
+	int	id;
+	t_fork	*left_fork;
+	t_fork	*right_fork;
+	pthread_t	thread;
+} t_philosopher;
 
 // Error functions
 int	wrong_number_format(void);

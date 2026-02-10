@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:55:13 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/08 09:56:49 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/10 23:37:52 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	parser_args(int argc, char *argv[], t_simulation *simulation)
 		++i;
 	}
 	simulation->n_philosophers = ft_atoi(argv[1]);
-	simulation->n_forks = ft_atoi(argv[1]);
 	simulation->time_to_die = ft_atoi(argv[2]);
 	simulation->time_to_eat = ft_atoi(argv[3]);
 	simulation->time_to_sleep = ft_atoi(argv[4]);
