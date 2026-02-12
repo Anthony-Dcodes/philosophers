@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 19:59:28 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/12 20:21:01 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ int	main(int argc, char *argv[])
 	{
 		philosophers[i].id = i + 1;
 		philosophers[i].right_fork = &forks[i];
-		philosophers[i].left_fork = &forks[i + 1];
+		if (i == simulation.n_philosophers - 1)
+			philosophers[i].left_fork = &forks[0];
+		else
+			philosophers[i].left_fork = &forks[i + 1];
 		philosophers[i].sim = &simulation;
 		pthread_create(&philosophers[i].thread, NULL, philo_loop, &philosophers[i]);
 		++i;
