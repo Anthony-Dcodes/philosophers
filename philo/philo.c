@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 19:20:36 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/12 19:59:28 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	main(int argc, char *argv[])
 	while (i < simulation.n_philosophers)
 	{
 		fork_mutex_init(&forks[i]);
+		++i;
 	}
 	i = 0;
 	while (i < simulation.n_philosophers)
@@ -39,7 +40,7 @@ int	main(int argc, char *argv[])
 		philosophers[i].right_fork = &forks[i];
 		philosophers[i].left_fork = &forks[i + 1];
 		philosophers[i].sim = &simulation;
-		pthread_create(&philosophers->thread[i], NULL, philo_loop, &philosophers[i]);
+		pthread_create(&philosophers[i].thread, NULL, philo_loop, &philosophers[i]);
 		++i;
 	}
 	i = 0;
@@ -58,11 +59,8 @@ void	*philo_loop(void *arg)
 	t_philosopher	*philosopher;
 
 	philosopher = (t_philosopher*)arg;
-	usleep(simulation->time_to_sleep);
-	log_general(simulation, EAT);
-	log_general(simulation, SLEEP);
-	log_general(simulation, THINK);
-	log_general(simulation, DIED);
-	log_general(simulation, FORK);
+	thinking(philosopher);
+	eating(philosopher);
+	sleeping(philosopher);
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 19:52:53 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/12 20:02:54 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_atoi(const char *nptr);
 int	is_more_then_int_max(char *nptr);
 
 // Logs
-void	log_general(t_simulation *simulation, const char *message);
+void	log_general(t_philosopher *philosopher, const char *message);
 
 // Philosophers main loop / helpers
 void	*philo_loop(void *arg);
