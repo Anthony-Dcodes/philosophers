@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 20:21:01 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/12 20:34:10 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	*philo_loop(void *arg)
 	t_philosopher	*philosopher;
 
 	philosopher = (t_philosopher*)arg;
+	set_last_meal_time(philosopher);
 	thinking(philosopher);
 	eating(philosopher);
 	sleeping(philosopher);

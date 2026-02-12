@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 20:02:54 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/12 20:33:09 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ typedef struct s_philosopher
 	t_fork	*right_fork;
 	pthread_t	thread;
 	t_simulation	*sim;
+	long	last_meal;
+	int		meals_eaten;
 } t_philosopher;
 
 // Error functions
@@ -90,5 +92,8 @@ int	fork_mutex_init(t_fork *fork);
 void	eating(t_philosopher *philosopher);
 void	sleeping(t_philosopher *philosopher);
 void	thinking(t_philosopher *philosopher);
+
+// Philospher setup
+void	set_last_meal_time(t_philosopher *philosopher);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 20:03:36 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/12 20:33:33 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	eating(t_philosopher *philosopher)
 	pick_up_forks(philosopher);
 	log_general(philosopher, EAT);
 	usleep(philosopher->sim->time_to_eat * 1000);
+	set_last_meal_time(philosopher);
 	put_down_forks(philosopher);
 }
 
