@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 19:15:46 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/12 19:52:53 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,10 @@ void	*philo_loop(void *arg);
 // Mutex
 int	simulation_mutex_init(t_simulation *simulation);
 int	fork_mutex_init(t_fork *fork);
+
+// Philosophers states
+void	eating(t_philosopher *philosopher);
+void	sleeping(t_philosopher *philosopher);
+void	thinking(t_philosopher *philosopher);
 
 #endif
