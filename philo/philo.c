@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/09 19:36:09 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/12 19:20:36 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,37 +16,48 @@ int	main(int argc, char *argv[])
 {
 	t_simulation	simulation;
 	int				i;
-	pthread_t		*threads;
+	t_philosopher	*philosophers;
+	t_fork			*forks;
 
 	i = 0;
 	if (parser_args(argc, argv, &simulation))
 		return (1);
 	printf("Parser done\n");
-	if (mutex_init(&simulation))
+	if (simulation_mutex_init(&simulation))
 		return (1);
-	threads = malloc(sizeof(pthread_t) * simulation.n_philosophers);
-	if (!threads)
-		return (1);
+	philosophers = malloc(sizeof(t_philosopher) * simulation.n_philosophers);
+	forks = malloc(sizeof(t_fork) * simulation.n_philosophers);
+	// Handle malloc errors
 	while (i < simulation.n_philosophers)
 	{
-		pthread_create(&threads[i], NULL, philo_loop, &simulation);
+		fork_mutex_init(&forks[i]);
+	}
+	i = 0;
+	while (i < simulation.n_philosophers)
+	{
+		philosophers[i].id = i + 1;
+		philosophers[i].right_fork = &forks[i];
+		philosophers[i].left_fork = &forks[i + 1];
+		philosophers[i].sim = &simulation;
+		pthread_create(&philosophers->thread[i], NULL, philo_loop, &philosophers[i]);
 		++i;
 	}
 	i = 0;
 	while (i < simulation.n_philosophers)
 	{
-		pthread_join(threads[i], NULL);
+		pthread_join(&philosophers->thread[i], NULL);
 		++i;
 	}
-	free(threads);
+	free(philosophers);
+	free(forks);
 	return (0);
 }
 
 void	*philo_loop(void *arg)
 {
-	t_simulation	*simulation;
+	t_philosopher	*philosopher;
 
-	simulation = (t_simulation*)arg;
+	philosopher = (t_philosopher*)arg;
 	usleep(simulation->time_to_sleep);
 	log_general(simulation, EAT);
 	log_general(simulation, SLEEP);

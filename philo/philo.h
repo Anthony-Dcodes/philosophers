@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/10 23:37:24 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/12 19:15:46 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_simulation
 
 typedef struct s_fork
 {
-	pthread_mutex_t	fork;
+	pthread_mutex_t	mutex;
 } t_fork;
 
 typedef struct s_philosopher
@@ -61,6 +61,7 @@ typedef struct s_philosopher
 	t_fork	*left_fork;
 	t_fork	*right_fork;
 	pthread_t	thread;
+	t_simulation	*sim;
 } t_philosopher;
 
 // Error functions
@@ -82,6 +83,7 @@ void	log_general(t_simulation *simulation, const char *message);
 void	*philo_loop(void *arg);
 
 // Mutex
-int	mutex_init(t_simulation *simulation);
+int	simulation_mutex_init(t_simulation *simulation);
+int	fork_mutex_init(t_fork *fork);
 
 #endif
