@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 20:02:41 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/12 20:17:51 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ void	log_general(t_philosopher *philosopher, const char *message)
 	long			timestamp_ms;
 	int				philosopher_n;
 
+	pthread_mutex_lock(&philosopher->sim->death_mutex);
+	if (philosopher->sim->death)
+		return ;
+	else
+		pthread_mutex_unlock(&philosopher->sim->death_mutex);
 	pthread_mutex_lock(&philosopher->sim->print_mutex);
 	philosopher_n = philosopher->id;
 	gettimeofday(&tp, NULL);
