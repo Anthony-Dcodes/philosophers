@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 20:34:10 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/14 23:37:49 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,19 @@ int	main(int argc, char *argv[])
 	i = 0;
 	if (parser_args(argc, argv, &simulation))
 		return (1);
-	printf("Parser done\n");
 	if (simulation_mutex_init(&simulation))
 		return (1);
 	philosophers = malloc(sizeof(t_philosopher) * simulation.n_philosophers);
+	if (!philosophers)
+		return (clean_up(philosophers, forks));
 	forks = malloc(sizeof(t_fork) * simulation.n_philosophers);
+	if (!forks)
+		return (clean_up(philosophers, forks));
 	// Handle malloc errors
 	while (i < simulation.n_philosophers)
 	{
-		fork_mutex_init(&forks[i]);
+		if (fork_mutex_init(&forks[i]))
+			return (clean_up(philosophers, forks));
 		++i;
 	}
 	i = 0;
@@ -43,17 +47,17 @@ int	main(int argc, char *argv[])
 		else
 			philosophers[i].left_fork = &forks[i + 1];
 		philosophers[i].sim = &simulation;
-		pthread_create(&philosophers[i].thread, NULL, philo_loop, &philosophers[i]);
+		if (pthread_create(&philosophers[i].thread, NULL, philo_loop, &philosophers[i]))
+			return (clean_up(philosophers, forks));
 		++i;
 	}
 	i = 0;
 	while (i < simulation.n_philosophers)
 	{
-		pthread_join(&philosophers->thread[i], NULL);
+		if (pthread_join(&philosophers->thread[i], NULL))
+			return (clean_up(philosophers, forks));
 		++i;
 	}
-	free(philosophers);
-	free(forks);
 	return (0);
 }
 

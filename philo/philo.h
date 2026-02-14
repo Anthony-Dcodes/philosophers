@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 20:33:09 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/14 23:31:40 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_philosopher
 int	wrong_number_format(void);
 int	not_an_int(void);
 int	wrong_number_of_args(void);
+int	clean_up(t_philosopher *philosophers, t_fork *forks);
 
 // Parsing
 int	parser_args(int argc, char *argv[], t_simulation *t_simulation);

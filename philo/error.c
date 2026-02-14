@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:12:31 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/04 21:56:24 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/14 23:30:24 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,24 @@ int	wrong_number_of_args(void)
 	printf("number_of_philosophers, time_to_die, time_to_eat, time_to_sleep\n");
 	printf("Optional argument: number_of_times_each_philosopher_must_eat\n");
 	return (0);
+}
+
+int	clean_up(t_philosopher *philosophers, t_fork *forks)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = philosophers->sim->n_philosophers;
+	while (i < count)
+	{
+		pthread_join(philosophers[i].thread, NULL);
+		pthread_mutex_destroy(&forks[i].mutex);
+		pthread_mutex_destroy(&philosophers[i].sim->death_mutex);
+		pthread_mutex_destroy(&philosophers[i].sim->print_mutex);
+		++i;
+	}
+	free(forks);
+	free(philosophers);
+	return (1);
 }
