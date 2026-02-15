@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 23:19:06 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 23:33:32 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,16 +93,18 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 	int				i;
 	long			current_time_ms;
 
-	usleep(100);
+	usleep(1000);
 	i = 0;
 	while (i < sim->n_philosophers)
 	{
 		current_time_ms = get_timestamp_ms();
+		//printf("Monitor philosopher: %d, time: %ld\n", i + 1, current_time_ms);
 		if (current_time_ms - philosophers[i].last_meal >= sim->time_to_die)
 		{
 			pthread_mutex_lock(&sim->death_mutex);
 			sim->death = philosophers[i].id;
 			pthread_mutex_unlock(&sim->death_mutex);
+			printf("Death detected: philosophre: %d, current time: %ld, last meal: %ld\n", i + 1, current_time_ms, philosophers[i].last_meal);
 			return ;
 		}
 		++i;

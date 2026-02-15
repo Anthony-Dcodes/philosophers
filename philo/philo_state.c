@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/12 20:33:33 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 23:40:01 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,16 @@ void static	pick_up_forks(t_philosopher *philosopher)
 	if (philosopher->id % 2)
 	{
 		pthread_mutex_lock(&philosopher->left_fork->mutex);
+		log_general(philosopher, FORK);
 		pthread_mutex_lock(&philosopher->right_fork->mutex);
+		log_general(philosopher, FORK);
 	}
 	else
 	{
 		pthread_mutex_lock(&philosopher->right_fork->mutex);
+		log_general(philosopher, FORK);
 		pthread_mutex_lock(&philosopher->left_fork->mutex);
+		log_general(philosopher, FORK);
 	}
 	return ;
 }
@@ -38,6 +42,7 @@ void	eating(t_philosopher *philosopher)
 {
 	pick_up_forks(philosopher);
 	log_general(philosopher, EAT);
+	set_last_meal_time(philosopher);
 	usleep(philosopher->sim->time_to_eat * 1000);
 	set_last_meal_time(philosopher);
 	put_down_forks(philosopher);
