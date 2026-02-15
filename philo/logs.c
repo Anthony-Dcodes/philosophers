@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 16:16:57 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 23:07:23 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,20 @@ void	log_general(t_philosopher *philosopher, const char *message)
 
 	pthread_mutex_lock(&philosopher->sim->death_mutex);
 	if (philosopher->sim->death)
-		return ;
-	else
+	{
 		pthread_mutex_unlock(&philosopher->sim->death_mutex);
-	pthread_mutex_lock(&philosopher->sim->print_mutex);
-	philosopher_n = philosopher->id;
-	gettimeofday(&tp, NULL);
-	timestamp_ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-	printf("%ld %d %s\n", timestamp_ms, philosopher_n, message);
-	pthread_mutex_unlock(&philosopher->sim->print_mutex);
+		return ;
+	}
+	else
+	{
+		pthread_mutex_unlock(&philosopher->sim->death_mutex);
+		pthread_mutex_lock(&philosopher->sim->print_mutex);
+		philosopher_n = philosopher->id;
+		gettimeofday(&tp, NULL);
+		timestamp_ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+		printf("%ld %d %s\n", timestamp_ms, philosopher_n, message);
+		pthread_mutex_unlock(&philosopher->sim->print_mutex);
+	}
 }
 
 void	log_death(int philosopher_id)

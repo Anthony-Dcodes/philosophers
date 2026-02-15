@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 16:54:22 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 23:05:27 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ int	main(int argc, char *argv[])
 			return (clean_up(philosophers, forks));
 		++i;
 	}
+	printf("Start death monitoring:\n");
 	while (!simulation.death)
 		death_monitoring(philosophers, &simulation);
 	log_death(simulation.death);
-	printf("Cleanup next:");
+	printf("Cleanup next:\n");
 	clean_up(philosophers, forks);
 	return (0);
 }
@@ -82,6 +83,7 @@ void	*philo_loop(void *arg)
 			thinking(philosopher);
 			eating(philosopher);
 			sleeping(philosopher);
+			++i;
 		}
 	return (NULL);
 }
@@ -94,12 +96,17 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 
 	usleep(100);
 	i = 0;
-	gettimeofday(&tp, NULL);
-	current_time_ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
 	while (i < sim->n_philosophers)
 	{
+		gettimeofday(&tp, NULL);
+		current_time_ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
 		if (current_time_ms - philosophers[i].last_meal >= sim->time_to_die)
+		{
+			pthread_mutex_lock(&sim->death_mutex);
 			sim->death = philosophers[i].id;
+			pthread_mutex_unlock(&sim->death_mutex);
+			return ;
+		}
 		++i;
 	}
 }
