@@ -9,8 +9,8 @@ SRCS = \
 	logs.c \
 	mutex_init.c \
 	philo_state.c \
-	set_last_meal.c \
-	clean_up.c
+	clean_up.c \
+	utils.c
 
 OBJS = $(SRCS:.c=.o)
 
