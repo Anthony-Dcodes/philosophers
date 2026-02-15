@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 16:20:20 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:45:40 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	philosophers = malloc(sizeof(t_philosopher) * simulation.n_philosophers);
 	if (!philosophers)
-		return (clean_up(philosophers, forks));
+		return (1);
 	forks = malloc(sizeof(t_fork) * simulation.n_philosophers);
 	if (!forks)
 		return (clean_up(philosophers, forks));
@@ -61,12 +61,27 @@ int	main(int argc, char *argv[])
 void	*philo_loop(void *arg)
 {
 	t_philosopher	*philosopher;
+	int				i;
 
+	i = 0;
 	philosopher = (t_philosopher*)arg;
-	set_last_meal_time(philosopher);
-	thinking(philosopher);
-	eating(philosopher);
-	sleeping(philosopher);
+	if (philosopher->sim->n_times_must_eat)
+		while (i < philosopher->sim->n_times_must_eat)
+		{
+			set_last_meal_time(philosopher);
+			thinking(philosopher);
+			eating(philosopher);
+			sleeping(philosopher);
+			++i;
+		}
+	else
+		while (!philosopher->sim->death)
+		{
+			set_last_meal_time(philosopher);
+			thinking(philosopher);
+			eating(philosopher);
+			sleeping(philosopher);
+		}
 	return (NULL);
 }
 
