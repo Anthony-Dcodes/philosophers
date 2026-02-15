@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 16:45:40 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:54:22 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ int	main(int argc, char *argv[])
 		++i;
 	}
 	while (!simulation.death)
-		death_monitoring(philosophers, simulation);
+		death_monitoring(philosophers, &simulation);
 	log_death(simulation.death);
+	printf("Cleanup next:");
 	clean_up(philosophers, forks);
 	return (0);
 }
@@ -85,7 +86,7 @@ void	*philo_loop(void *arg)
 	return (NULL);
 }
 
-void	death_monitoring(t_philosopher *philosophers, t_simulation sim)
+void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 {
 	int				i;
 	struct timeval	tp;
@@ -95,10 +96,10 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation sim)
 	i = 0;
 	gettimeofday(&tp, NULL);
 	current_time_ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
-	while (i < sim.n_philosophers)
+	while (i < sim->n_philosophers)
 	{
-		if (current_time_ms - philosophers[i].last_meal >= sim.time_to_die)
-			sim.death = philosophers[i].id;
+		if (current_time_ms - philosophers[i].last_meal >= sim->time_to_die)
+			sim->death = philosophers[i].id;
 		++i;
 	}
 }

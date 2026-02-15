@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 16:17:18 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:52:30 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,6 @@ void	thinking(t_philosopher *philosopher);
 void	set_last_meal_time(t_philosopher *philosopher);
 
 // Philosphers monitoring
-void	death_monitoring(t_philosopher *philosophers, t_simulation sim);
+void	death_monitoring(t_philosopher *philosophers, t_simulation *sim);
 
 #endif
