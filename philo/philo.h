@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/14 23:31:40 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:17:18 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ int	is_more_then_int_max(char *nptr);
 
 // Logs
 void	log_general(t_philosopher *philosopher, const char *message);
+void	log_death(int philosopher_id);
 
 // Philosophers main loop / helpers
 void	*philo_loop(void *arg);
@@ -96,5 +97,8 @@ void	thinking(t_philosopher *philosopher);
 
 // Philospher setup
 void	set_last_meal_time(t_philosopher *philosopher);
+
+// Philosphers monitoring
+void	death_monitoring(t_philosopher *philosophers, t_simulation sim);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/14 23:37:49 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:18:10 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,9 @@ int	main(int argc, char *argv[])
 			return (clean_up(philosophers, forks));
 		++i;
 	}
-	i = 0;
+	while (!simulation.death)
+		death_monitoring(philosophers, simulation);
+	log_death(simulation.death);
 	while (i < simulation.n_philosophers)
 	{
 		if (pthread_join(&philosophers->thread[i], NULL))
@@ -71,4 +73,22 @@ void	*philo_loop(void *arg)
 	eating(philosopher);
 	sleeping(philosopher);
 	return (NULL);
+}
+
+void	death_monitoring(t_philosopher *philosophers, t_simulation sim)
+{
+	int				i;
+	struct timeval	tp;
+	long			current_time_ms;
+
+	usleep(100);
+	i = 0;
+	gettimeofday(&tp, NULL);
+	current_time_ms = tp.tv_sec * 1000 + tp.tv_usec / 1000;
+	while (i < sim.n_philosophers)
+	{
+		if (current_time_ms - philosophers[i].last_meal >= sim.time_to_die)
+			sim.death = philosophers[i].id;
+		++i;
+	}
 }
