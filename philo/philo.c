@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 16:18:10 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 16:20:20 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,7 @@ int	main(int argc, char *argv[])
 	while (!simulation.death)
 		death_monitoring(philosophers, simulation);
 	log_death(simulation.death);
-	while (i < simulation.n_philosophers)
-	{
-		if (pthread_join(&philosophers->thread[i], NULL))
-			return (clean_up(philosophers, forks));
-		++i;
-	}
+	clean_up(philosophers, forks);
 	return (0);
 }
 
