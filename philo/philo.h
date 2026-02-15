@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 23:17:58 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/15 23:47:56 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ pthread_mutex_unlock - unlock a mutex (release the fork), allows other threads t
 # include <pthread.h>
 
 #define FORK "has taken a fork"
+#define LEFT_FORK "has taken a left fork"
+#define RIGHT_FORK "has taken a right fork"
 #define EAT "is eating"
 #define SLEEP "is sleeping"
 #define THINK "is thinking"

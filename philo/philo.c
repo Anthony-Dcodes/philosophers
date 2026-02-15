@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 23:33:32 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/16 00:02:20 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	main(int argc, char *argv[])
 	t_fork			*forks;
 
 	i = 0;
+	printf("PID: %d\n", (int)getpid());
+	sleep(10);
 	if (parser_args(argc, argv, &simulation))
 		return (1);
 	if (simulation_mutex_init(&simulation))
