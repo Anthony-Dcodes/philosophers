@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 23:47:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:54:10 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	is_more_then_int_max(char *nptr);
 
 // Logs
 void	log_general(t_philosopher *philosopher, const char *message);
-void	log_death(int philosopher_id);
+void	log_death(t_simulation *sim);
 
 // Philosophers main loop / helpers
 void	*philo_loop(void *arg);

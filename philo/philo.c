@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/16 00:02:20 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/16 18:54:38 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	main(int argc, char *argv[])
 	t_fork			*forks;
 
 	i = 0;
-	printf("PID: %d\n", (int)getpid());
-	sleep(10);
 	if (parser_args(argc, argv, &simulation))
 		return (1);
 	if (simulation_mutex_init(&simulation))
@@ -56,7 +54,7 @@ int	main(int argc, char *argv[])
 	printf("Start death monitoring:\n");
 	while (!simulation.death)
 		death_monitoring(philosophers, &simulation);
-	log_death(simulation.death);
+	log_death(&simulation);
 	printf("Cleanup next:\n");
 	clean_up(philosophers, forks);
 	return (0);
