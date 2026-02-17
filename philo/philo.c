@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/16 18:54:38 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/17 22:12:26 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ int	main(int argc, char *argv[])
 		return (1);
 	forks = malloc(sizeof(t_fork) * simulation.n_philosophers);
 	if (!forks)
-		return (clean_up(philosophers, forks));
-	// Handle malloc errors
+		return (clean_up(philosophers, forks, &simulation));
 	while (i < simulation.n_philosophers)
 	{
 		if (fork_mutex_init(&forks[i]))
-			return (clean_up(philosophers, forks));
+			return (clean_up(philosophers, forks, &simulation));
+		++simulation.n_forks_created;
 		++i;
 	}
 	i = 0;
@@ -48,7 +48,8 @@ int	main(int argc, char *argv[])
 			philosophers[i].left_fork = &forks[i + 1];
 		philosophers[i].sim = &simulation;
 		if (pthread_create(&philosophers[i].thread, NULL, philo_loop, &philosophers[i]))
-			return (clean_up(philosophers, forks));
+			return (clean_up(philosophers, forks, &simulation));
+		++simulation.n_threads_created;
 		++i;
 	}
 	printf("Start death monitoring:\n");
@@ -56,7 +57,7 @@ int	main(int argc, char *argv[])
 		death_monitoring(philosophers, &simulation);
 	log_death(&simulation);
 	printf("Cleanup next:\n");
-	clean_up(philosophers, forks);
+	clean_up(philosophers, forks, &simulation);
 	return (0);
 }
 

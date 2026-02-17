@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/16 18:54:10 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/17 22:10:56 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ typedef struct s_simulation
 	int	death;
 	pthread_mutex_t	print_mutex;
 	pthread_mutex_t	death_mutex;
+	int	n_threads_created;
+	int	n_forks_created;
 } t_simulation;
 
 typedef struct s_fork
@@ -72,7 +74,7 @@ typedef struct s_philosopher
 int	wrong_number_format(void);
 int	not_an_int(void);
 int	wrong_number_of_args(void);
-int	clean_up(t_philosopher *philosophers, t_fork *forks);
+int	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim);
 
 // Parsing
 int	parser_args(int argc, char *argv[], t_simulation *t_simulation);

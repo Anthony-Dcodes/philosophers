@@ -6,15 +6,17 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/14 23:37:04 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/17 22:12:49 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void static	mutex_var_init(t_simulation *simulation)
+static void	var_init(t_simulation *simulation)
 {
 	simulation->death = 0;
+	simulation->n_forks_created = 0;
+	simulation->n_threads_created = 0;
 }
 
 int	simulation_mutex_init(t_simulation *simulation)
@@ -26,7 +28,7 @@ int	simulation_mutex_init(t_simulation *simulation)
 		pthread_mutex_destroy(&simulation->print_mutex);
 		return (1);
 	}
-	mutex_var_init(simulation);
+	var_init(simulation);
 	return (0);
 }
 

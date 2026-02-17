@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philo_state.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/15 23:48:20 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/17 21:28:53 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void static	pick_up_forks(t_philosopher *philosopher)
+static void	pick_up_forks(t_philosopher *philosopher)
 {
 	if (philosopher->id % 2)
 	{
@@ -31,7 +31,7 @@ void static	pick_up_forks(t_philosopher *philosopher)
 	return ;
 }
 
-void static	put_down_forks(t_philosopher *philosopher)
+static void	put_down_forks(t_philosopher *philosopher)
 {
 	pthread_mutex_unlock(&philosopher->left_fork->mutex);
 	pthread_mutex_unlock(&philosopher->right_fork->mutex);
