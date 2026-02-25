@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/17 22:10:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/25 22:52:24 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,14 @@ pthread_mutex_unlock - unlock a mutex (release the fork), allows other threads t
 #define THINK "is thinking"
 #define DIED "died"
 
+typedef struct s_flags
+{
+	int	death;
+	int	print_mutex_created;
+	int	death_mutex_created;
+	int	n_threads_created;
+	int	n_forks_created;
+} t_flags;
 
 typedef struct s_simulation
 {
@@ -47,11 +55,7 @@ typedef struct s_simulation
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	n_times_must_eat;
-	int	death;
-	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	death_mutex;
-	int	n_threads_created;
-	int	n_forks_created;
+	t_flags	flags;
 } t_simulation;
 
 typedef struct s_fork
