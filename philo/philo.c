@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/25 22:43:50 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/25 23:17:44 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 int	main(int argc, char *argv[])
 {
 	t_simulation	simulation;
-	int				i;
 	t_philosopher	*philosophers;
 	t_fork			*forks;
+	int				i;
 
 	i = 0;
+	init_flags(&simulation.flags);
 	if (parser_args(argc, argv, &simulation))
-		return (1);
+		return (ERR_PARSE);
 	if (simulation_mutex_init(&simulation))
 		return (1);
 	philosophers = malloc(sizeof(t_philosopher) * simulation.n_philosophers);

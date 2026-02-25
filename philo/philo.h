@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/25 22:52:24 by advorace         ###   ########.fr       */
+/*   Updated: 2026/02/25 23:28:57 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ pthread_mutex_unlock - unlock a mutex (release the fork), allows other threads t
 #define THINK "is thinking"
 #define DIED "died"
 
+// ERROR CODES
+#define ERR_PARSE 1
+#define ERR_MEMORY 2
+#define ERR_MUTEX 3
+
 typedef struct s_flags
 {
 	int	death;
@@ -55,6 +60,8 @@ typedef struct s_simulation
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	n_times_must_eat;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	death_mutex;
 	t_flags	flags;
 } t_simulation;
 
@@ -109,5 +116,8 @@ void	set_last_meal_time(t_philosopher *philosopher);
 
 // Philosphers monitoring
 void	death_monitoring(t_philosopher *philosophers, t_simulation *sim);
+
+// Init functions
+void	init_flags(t_flags *flags);
 
 #endif

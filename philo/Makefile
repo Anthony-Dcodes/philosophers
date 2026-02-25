@@ -10,7 +10,8 @@ SRCS = \
 	mutex_init.c \
 	philo_state.c \
 	clean_up.c \
-	utils.c
+	utils.c \
+	init.c
 
 OBJS = $(SRCS:.c=.o)
 
