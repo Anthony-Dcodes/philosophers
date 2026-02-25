@@ -76,7 +76,7 @@ int	ft_atoi(const char *nptr)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		result = result * 10 + (nptr[i] - '0');
-		i++;
+		++i;
 	}
 	return (result);
 }
@@ -91,7 +91,7 @@ int	is_more_then_int_max(char *nptr)
 	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
 		result = result * 10 + (nptr[i] - '0');
-		i++;
+		++i;
 	}
 	if (result > INT_MAX)
 		return (1);
