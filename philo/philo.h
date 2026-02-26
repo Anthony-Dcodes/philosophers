@@ -85,7 +85,7 @@ typedef struct s_philosopher
 int	wrong_number_format(void);
 int	not_an_int(void);
 int	wrong_number_of_args(void);
-int	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim);
+void	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim);
 
 // Parsing
 int	parser_args(int argc, char *argv[], t_simulation *t_simulation);

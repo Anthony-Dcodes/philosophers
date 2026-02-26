@@ -12,21 +12,25 @@
 
 #include "philo.h"
 
-int	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim)
+void	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim)
 {
 	int	i;
 
 	i = 0;
 	printf("Cleaninging up\n");
-	while (i < sim->n_threads_created)
+	if (philosophers)
 	{
-		pthread_join(philosophers[i].thread, NULL);
-		++i;
+		while (i < sim->flags.n_threads_created)
+		{
+			pthread_join(philosophers[i].thread, NULL);
+			++i;
+		}
+		free(philosophers);
 	}
 	i = 0;
 	if (forks)
 	{
-		while (i < sim->n_forks_created)
+		while (i < sim->flags.n_forks_created)
 		{
 			pthread_mutex_destroy(&forks[i].mutex);
 			++i;
@@ -35,6 +39,4 @@ int	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim)
 	}
 	pthread_mutex_destroy(&sim->death_mutex);
 	pthread_mutex_destroy(&sim->print_mutex);
-	free(philosophers);
-	return (1);
 }
