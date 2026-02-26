@@ -18,7 +18,7 @@
 # include <string.h> // memset
 # include <unistd.h> // write, usleep,
 # include <sys/time.h> // gettimeofday
-# include <limits.h>
+# include <limits.h> // INT_MAX
 
 /*
 pthread_create - create new thread

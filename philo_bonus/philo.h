@@ -14,20 +14,26 @@
 # define PHILO_H
 
 # include <stdio.h> // printf
-# include <stdlib.h> // malloc, free
+# include <stdlib.h> // malloc, free, exit
 # include <string.h> // memset
-# include <unistd.h> // write, usleep,
+# include <unistd.h> // write, usleep, fork
 # include <sys/time.h> // gettimeofday
-# include <limits.h>
+# include <limits.h> // INT_MAX
+# include <signal.h> // kill
+# include <sys/wait.h> // waitpid
 
+/*
+sem_open - initialize and open a named semaphore
+sem_close - close a named semaphore
+sem_post - increments semaphore by one
+sem_wait - decrements semaphore by one
+sem_unlink - removes named semaphore, removed immediately, desctoryed once all other processes close it
+*/
+# include <semaphore.h>
 /*
 pthread_create - create new thread
 pthread_detach - detach a thread (alternative to pthread_join)
 pthread_join - wait for a thread to finish
-pthread_mutex_init - initialize mutex (lock, each fork will be a mutex)
-pthread_mutex_destroy - destroy / cleanup a mutex
-pthread_mutex_lock - lock a mutex (acquire the fork, block if already locked by another thread)
-pthread_mutex_unlock - unlock a mutex (release the fork), allows other threads to acquire it
 */
 # include <pthread.h>
 
