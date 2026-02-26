@@ -63,9 +63,12 @@ int	main(int argc, char *argv[])
 		++i;
 	}
 	printf("Start death monitoring:\n");
-	while (!simulation.flags.death)
+	while (!simulation.flags.death && !simulation.flags.all_philosophers_full)
 		death_monitoring(philosophers, &simulation);
-	log_death(&simulation);
+	if (simulation.flags.death)
+		log_death(&simulation);
+	else if (simulation.flags.all_philosophers_full)
+		log_all_philosophers_ate(&simulation);
 	printf("Cleanup next:\n");
 	clean_up(philosophers, forks, &simulation);
 	return (0);
@@ -85,15 +88,17 @@ void	*philo_loop(void *arg)
 			thinking(philosopher);
 			eating(philosopher);
 			sleeping(philosopher);
+			++philosopher->meals_eaten;
 			++i;
 		}
 	else
-		while (!philosopher->sim->death)
+		while (!philosopher->sim->flags.death)
 		{
 			set_last_meal_time(philosopher);
 			thinking(philosopher);
 			eating(philosopher);
 			sleeping(philosopher);
+			++philosopher->meals_eaten;
 			++i;
 		}
 	return (NULL);
@@ -103,11 +108,15 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 {
 	int				i;
 	long			current_time_ms;
+	int				all_philosophers_full;
 
 	usleep(1000);
 	i = 0;
+	all_philosophers_full = 1;
 	while (i < sim->n_philosophers)
 	{
+		if (sim->n_times_must_eat && philosophers[i].meals_eaten < sim->n_times_must_eat)
+			all_philosophers_full = 0;
 		current_time_ms = get_timestamp_ms();
 		//printf("Monitor philosopher: %d, time: %ld\n", i + 1, current_time_ms);
 		if (current_time_ms - philosophers[i].last_meal >= sim->time_to_die)
@@ -120,4 +129,6 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 		}
 		++i;
 	}
+	if (all_philosophers_full)
+		sim->flags.all_philosophers_full = 1;
 }

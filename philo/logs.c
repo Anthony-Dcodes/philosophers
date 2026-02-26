@@ -45,3 +45,15 @@ void	log_death(t_simulation *sim)
 	printf("%ld %d %s\n", timestamp_ms, philosopher_id, DIED);
 	pthread_mutex_unlock(&sim->print_mutex);
 }
+
+void	log_all_philosophers_ate(t_simulation *sim)
+{
+	long			timestamp_ms;
+	int				ate_n_times;
+
+	ate_n_times = sim->n_times_must_eat;
+	pthread_mutex_lock(&sim->print_mutex);
+	timestamp_ms = get_timestamp_ms();
+	printf("%ld %s %d %s\n", timestamp_ms, "all philosophers ate", ate_n_times, "times");
+	pthread_mutex_unlock(&sim->print_mutex);
+}

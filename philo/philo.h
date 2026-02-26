@@ -52,6 +52,7 @@ typedef struct s_flags
 	int	death_mutex_created;
 	int	n_threads_created;
 	int	n_forks_created;
+	int all_philosophers_full;
 } t_flags;
 
 typedef struct s_simulation
@@ -98,6 +99,7 @@ int	is_more_then_int_max(char *nptr);
 // Logs
 void	log_general(t_philosopher *philosopher, const char *message);
 void	log_death(t_simulation *sim);
+void	log_all_philosophers_ate(t_simulation *sim);
 
 // Philosophers main loop / helpers
 void	*philo_loop(void *arg);
