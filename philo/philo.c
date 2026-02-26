@@ -24,18 +24,24 @@ int	main(int argc, char *argv[])
 	if (parser_args(argc, argv, &simulation))
 		return (ERR_PARSE);
 	if (simulation_mutex_init(&simulation))
-		return (1);
+		return (ERR_MUTEX);
 	philosophers = malloc(sizeof(t_philosopher) * simulation.n_philosophers);
 	if (!philosophers)
-		return (1);
+		return (ERR_MEMORY);
 	forks = malloc(sizeof(t_fork) * simulation.n_philosophers);
 	if (!forks)
-		return (clean_up(philosophers, forks, &simulation));
+	{
+		clean_up(philosophers, NULL, &simulation);
+		return (ERR_MEMORY);
+	}
 	while (i < simulation.n_philosophers)
 	{
 		if (fork_mutex_init(&forks[i]))
-			return (clean_up(philosophers, forks, &simulation));
-		++simulation.n_forks_created;
+		{
+			clean_up(philosophers, forks, &simulation);
+			return (ERR_MUTEX);
+		}
+		++simulation.flags.n_forks_created;
 		++i;
 	}
 	i = 0;
@@ -49,12 +55,15 @@ int	main(int argc, char *argv[])
 			philosophers[i].left_fork = &forks[i + 1];
 		philosophers[i].sim = &simulation;
 		if (pthread_create(&philosophers[i].thread, NULL, philo_loop, &philosophers[i]))
-			return (clean_up(philosophers, forks, &simulation));
-		++simulation.n_threads_created;
+		{
+			clean_up(philosophers, forks, &simulation);
+			return (ERR_THREAD);
+		}
+		++simulation.flags.n_threads_created;
 		++i;
 	}
 	printf("Start death monitoring:\n");
-	while (!simulation.death)
+	while (!simulation.flags.death)
 		death_monitoring(philosophers, &simulation);
 	log_death(&simulation);
 	printf("Cleanup next:\n");

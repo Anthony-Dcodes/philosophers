@@ -43,6 +43,7 @@ pthread_mutex_unlock - unlock a mutex (release the fork), allows other threads t
 #define ERR_PARSE 1
 #define ERR_MEMORY 2
 #define ERR_MUTEX 3
+#define ERR_THREAD 4
 
 typedef struct s_flags
 {
