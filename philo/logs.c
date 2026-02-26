@@ -18,7 +18,7 @@ void	log_general(t_philosopher *philosopher, const char *message)
 	int				philosopher_n;
 
 	pthread_mutex_lock(&philosopher->sim->death_mutex);
-	if (philosopher->sim->death)
+	if (philosopher->sim->flags.death)
 	{
 		pthread_mutex_unlock(&philosopher->sim->death_mutex);
 		return ;
@@ -39,7 +39,7 @@ void	log_death(t_simulation *sim)
 	long			timestamp_ms;
 	int				philosopher_id;
 
-	philosopher_id = sim->death;
+	philosopher_id = sim->flags.death;
 	pthread_mutex_lock(&sim->print_mutex);	
 	timestamp_ms = get_timestamp_ms();
 	printf("%ld %d %s\n", timestamp_ms, philosopher_id, DIED);

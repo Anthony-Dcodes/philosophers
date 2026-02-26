@@ -113,7 +113,7 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 		if (current_time_ms - philosophers[i].last_meal >= sim->time_to_die)
 		{
 			pthread_mutex_lock(&sim->death_mutex);
-			sim->death = philosophers[i].id;
+			sim->flags.death = philosophers[i].id;
 			pthread_mutex_unlock(&sim->death_mutex);
 			printf("Death detected: philosophre: %d, current time: %ld, last meal: %ld\n", i + 1, current_time_ms, philosophers[i].last_meal);
 			return ;
