@@ -119,6 +119,7 @@ void	set_last_meal_time(t_philosopher *philosopher);
 
 // Philosphers monitoring
 void	death_monitoring(t_philosopher *philosophers, t_simulation *sim);
+void	all_philosophers_full_monitoring(t_philosopher *philosophers, t_simulation *sim);
 
 // Init functions
 void	init_flags(t_flags *flags);

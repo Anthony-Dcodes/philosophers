@@ -64,7 +64,11 @@ int	main(int argc, char *argv[])
 	}
 	printf("Start death monitoring:\n");
 	while (!simulation.flags.death && !simulation.flags.all_philosophers_full)
+	{
+		usleep(1000);
 		death_monitoring(philosophers, &simulation);
+		all_philosophers_full_monitoring(philosophers, &simulation);
+	}
 	if (simulation.flags.death)
 		log_death(&simulation);
 	else if (simulation.flags.all_philosophers_full)
@@ -81,10 +85,10 @@ void	*philo_loop(void *arg)
 
 	i = 0;
 	philosopher = (t_philosopher*)arg;
+	set_last_meal_time(philosopher);
 	if (philosopher->sim->n_times_must_eat)
-		while (i < philosopher->sim->n_times_must_eat)
+		while (i < philosopher->sim->n_times_must_eat && !philosopher->sim->flags.death)
 		{
-			set_last_meal_time(philosopher);
 			thinking(philosopher);
 			eating(philosopher);
 			sleeping(philosopher);
@@ -94,7 +98,6 @@ void	*philo_loop(void *arg)
 	else
 		while (!philosopher->sim->flags.death)
 		{
-			set_last_meal_time(philosopher);
 			thinking(philosopher);
 			eating(philosopher);
 			sleeping(philosopher);
@@ -108,15 +111,10 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 {
 	int				i;
 	long			current_time_ms;
-	int				all_philosophers_full;
 
-	usleep(1000);
 	i = 0;
-	all_philosophers_full = 1;
 	while (i < sim->n_philosophers)
 	{
-		if (sim->n_times_must_eat && philosophers[i].meals_eaten < sim->n_times_must_eat)
-			all_philosophers_full = 0;
 		current_time_ms = get_timestamp_ms();
 		//printf("Monitor philosopher: %d, time: %ld\n", i + 1, current_time_ms);
 		if (current_time_ms - philosophers[i].last_meal >= sim->time_to_die)
@@ -129,6 +127,32 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 		}
 		++i;
 	}
-	if (all_philosophers_full)
-		sim->flags.all_philosophers_full = 1;
+}
+
+void	all_philosophers_full_monitoring(t_philosopher *philosophers, t_simulation *sim)
+{
+	int				i;
+	int				all_philosophers_full;
+	int				meals_eaten;
+	int				n_times_muse_eat;
+
+	i = 0;
+	all_philosophers_full = 1;
+	n_times_muse_eat = sim->n_times_must_eat;
+	if (n_times_muse_eat)
+	{
+		while (i < sim->n_philosophers)
+		{
+			meals_eaten = philosophers[i].meals_eaten;
+			if (meals_eaten < n_times_muse_eat)
+				all_philosophers_full = 0;
+			++i;
+		}
+		if (all_philosophers_full)
+		{
+			sim->flags.all_philosophers_full = 1;
+			return ;
+		}
+	}
+	return ;
 }

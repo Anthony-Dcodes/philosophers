@@ -44,7 +44,6 @@ void	eating(t_philosopher *philosopher)
 	log_general(philosopher, EAT);
 	set_last_meal_time(philosopher);
 	usleep(philosopher->sim->time_to_eat * 1000);
-	set_last_meal_time(philosopher);
 	put_down_forks(philosopher);
 }
 
