@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_up.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/17 22:10:14 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/02 11:44:17 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim)
 		}
 		free(forks);
 	}
-	pthread_mutex_destroy(&sim->death_mutex);
-	pthread_mutex_destroy(&sim->print_mutex);
+	if (sim->flags.death_mutex_created)
+		pthread_mutex_destroy(&sim->death_mutex);
+	if (sim->flags.print_mutex_created)
+		pthread_mutex_destroy(&sim->print_mutex);
 }
