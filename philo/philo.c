@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 13:03:23 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/02 13:08:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,10 +102,10 @@ void	*philo_loop(void *arg)
 	if (philosopher->sim->n_philosophers == 1)
 	{
 		thinking(philosopher);
-		pthread_mutex_lock(philosopher->left_fork);
+		pthread_mutex_lock(&philosopher->left_fork->mutex);
 		log_general(philosopher, FORK);
 		usleep(philosopher->sim->time_to_die * 1000);
-		pthread_mutex_unlock(philosopher->left_fork);
+		pthread_mutex_unlock(&philosopher->left_fork->mutex);
 		return (NULL);
 	}
 	else if (philosopher->sim->n_times_must_eat)
