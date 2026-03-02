@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 15:41:16 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/02 16:06:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,24 +60,9 @@ int	main(int argc, char *argv[])
 		++i;
 	}
 	i = 0;
-	while (i < simulation.n_philosophers)
-	{
-		philosophers[i].id = i + 1;
-		philosophers[i].right_fork = &forks[i];
-		if (i == simulation.n_philosophers - 1)
-			philosophers[i].left_fork = &forks[0];
-		else
-			philosophers[i].left_fork = &forks[i + 1];
-		philosophers[i].sim = &simulation;
-		ret = pthread_create(&philosophers[i].thread, NULL, philo_loop, &philosophers[i]);
-		if (ret != ERR_OK)
-		{
-			ret = ERR_THREAD;
-			goto cleanup;
-		}
-		++simulation.flags.n_threads_created;
-		++i;
-	}
+	ret = initialize_philosophers_threads(philosophers, &simulation, forks);
+	if (ret != ERR_OK)
+		goto cleanup;
 	printf("Start death monitoring:\n");
 	while (!simulation.flags.death && !simulation.flags.all_philosophers_full)
 	// figure out data daces between full / death, check mutexes
