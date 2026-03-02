@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 11:53:50 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/02 15:39:34 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	*philo_loop(void *arg);
 // Mutex
 int	simulation_mutex_init(t_simulation *simulation);
 int	fork_mutex_init(t_fork *fork);
+int	meal_mutex_init(t_philosopher *philosopher);
 
 // Philosophers states
 void	eating(t_philosopher *philosopher);

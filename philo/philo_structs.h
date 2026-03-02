@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/02 08:58:50 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/02 15:37:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_flags
 	int	n_threads_created;
 	int	n_forks_created;
 	int all_philosophers_full;
+	int	n_meal_mutex_created;
 } t_flags;
 
 typedef struct s_simulation
@@ -60,6 +61,7 @@ typedef struct s_philosopher
 	t_simulation	*sim;
 	long	last_meal;
 	int		meals_eaten;
+	pthread_mutex_t	meal_mutex;
 } t_philosopher;
 
 #endif

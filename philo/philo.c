@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 13:08:02 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/02 15:41:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,16 @@ int	main(int argc, char *argv[])
 			goto cleanup;
 		}
 		++simulation.flags.n_forks_created;
+		ret = meal_mutex_init(&philosophers[i]);
+		if (ret != ERR_OK)
+		{
+			ret = ERR_MUTEX;
+			goto cleanup;
+		}
+		++simulation.flags.n_meal_mutex_created;
 		++i;
 	}
 	i = 0;
-	// Add handling for single philosopher
 	while (i < simulation.n_philosophers)
 	{
 		philosophers[i].id = i + 1;
