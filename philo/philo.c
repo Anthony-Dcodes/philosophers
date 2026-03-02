@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 16:06:22 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/02 16:22:05 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,49 +17,16 @@ int	main(int argc, char *argv[])
 	t_simulation	simulation;
 	t_philosopher	*philosophers;
 	t_fork			*forks;
-	int				i;
 	int				ret;
 
-	i = 0;
 	ret = ERR_OK;
 	init_flags(&simulation.flags);
 	ret = parser_args(argc, argv, &simulation);
 	if (ret != ERR_OK)
 		return (ret);
-	ret = simulation_mutex_init(&simulation);
+	ret = perfom_mallocs_initialize_mutexes(&simulation, &philosophers, &forks);
 	if (ret != ERR_OK)
 		goto cleanup;
-	philosophers = malloc(sizeof(t_philosopher) * simulation.n_philosophers);
-	if (!philosophers)
-	{
-		ret = ERR_MEMORY;
-		goto cleanup;
-	}
-	forks = malloc(sizeof(t_fork) * simulation.n_philosophers);
-	if (!forks)
-	{
-		ret = ERR_MEMORY;
-		goto cleanup;
-	}
-	while (i < simulation.n_philosophers)
-	{
-		ret = fork_mutex_init(&forks[i]);
-		if (ret != ERR_OK)
-		{
-			ret = ERR_MUTEX;
-			goto cleanup;
-		}
-		++simulation.flags.n_forks_created;
-		ret = meal_mutex_init(&philosophers[i]);
-		if (ret != ERR_OK)
-		{
-			ret = ERR_MUTEX;
-			goto cleanup;
-		}
-		++simulation.flags.n_meal_mutex_created;
-		++i;
-	}
-	i = 0;
 	ret = initialize_philosophers_threads(philosophers, &simulation, forks);
 	if (ret != ERR_OK)
 		goto cleanup;

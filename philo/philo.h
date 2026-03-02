@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 16:06:27 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/02 16:22:24 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ void	philosophers_full_monitoring(t_philosopher *philosophers, t_simulation *sim
 // Init functions
 void	init_flags(t_flags *flags);
 int     initialize_philosophers_threads(t_philosopher *philosophers, t_simulation *simulation, t_fork *forks);
+int	    perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks);
 
 #endif
