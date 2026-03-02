@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/25 23:17:44 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/02 10:13:50 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@ int	main(int argc, char *argv[])
 	t_philosopher	*philosophers;
 	t_fork			*forks;
 	int				i;
+	int				ret;
 
 	i = 0;
+	ret = 0;
 	init_flags(&simulation.flags);
-	if (parser_args(argc, argv, &simulation))
-		return (ERR_PARSE);
+	ret = parser_args(argc, argv, &simulation);
+	if (ret != 0)
+		goto cleanup;
 	if (simulation_mutex_init(&simulation))
 		return (ERR_MUTEX);
 	philosophers = malloc(sizeof(t_philosopher) * simulation.n_philosophers);
@@ -74,8 +77,9 @@ int	main(int argc, char *argv[])
 	else if (simulation.flags.all_philosophers_full)
 		log_all_philosophers_ate(&simulation);
 	printf("Cleanup next:\n");
-	clean_up(philosophers, forks, &simulation);
-	return (0);
+	cleanup:
+		clean_up(philosophers, forks, &simulation);
+		return (ret);
 }
 
 void	*philo_loop(void *arg)
