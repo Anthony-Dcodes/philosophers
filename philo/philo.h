@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 08:59:28 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/02 11:53:50 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	set_last_meal_time(t_philosopher *philosopher);
 
 // Philosphers monitoring
 void	death_monitoring(t_philosopher *philosophers, t_simulation *sim);
-void	all_philosophers_full_monitoring(t_philosopher *philosophers, t_simulation *sim);
+void	philosophers_full_monitoring(t_philosopher *philosophers, t_simulation *sim);
 
 // Init functions
 void	init_flags(t_flags *flags);

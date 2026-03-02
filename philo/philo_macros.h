@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/02 08:57:00 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/02 11:40:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,12 @@
 #define DIED "died"
 
 // ERROR CODES
-#define ERR_PARSE 1
-#define ERR_MEMORY 2
-#define ERR_MUTEX 3
-#define ERR_THREAD 4
+typedef enum e_error {
+    ERR_OK = 0,
+    ERR_PARSE,
+    ERR_MEMORY,
+    ERR_MUTEX,
+    ERR_THREAD
+} t_error;
 
 #endif

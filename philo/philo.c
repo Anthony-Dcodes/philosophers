@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 10:13:50 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/02 11:55:35 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,33 +21,39 @@ int	main(int argc, char *argv[])
 	int				ret;
 
 	i = 0;
-	ret = 0;
+	ret = ERR_OK;
 	init_flags(&simulation.flags);
 	ret = parser_args(argc, argv, &simulation);
-	if (ret != 0)
+	if (ret != ERR_OK)
+		return (ret);
+	ret = simulation_mutex_init(&simulation);
+	if (ret != ERR_OK)
 		goto cleanup;
-	if (simulation_mutex_init(&simulation))
-		return (ERR_MUTEX);
 	philosophers = malloc(sizeof(t_philosopher) * simulation.n_philosophers);
 	if (!philosophers)
-		return (ERR_MEMORY);
+	{
+		ret = ERR_MEMORY;
+		goto cleanup;
+	}
 	forks = malloc(sizeof(t_fork) * simulation.n_philosophers);
 	if (!forks)
 	{
-		clean_up(philosophers, NULL, &simulation);
-		return (ERR_MEMORY);
+		ret = ERR_MEMORY;
+		goto cleanup;
 	}
 	while (i < simulation.n_philosophers)
 	{
-		if (fork_mutex_init(&forks[i]))
+		ret = fork_mutex_init(&forks[i]);
+		if (ret != ERR_OK)
 		{
-			clean_up(philosophers, forks, &simulation);
-			return (ERR_MUTEX);
+			ret = ERR_MUTEX;
+			goto cleanup;
 		}
 		++simulation.flags.n_forks_created;
 		++i;
 	}
 	i = 0;
+	// Add handling for single philosopher
 	while (i < simulation.n_philosophers)
 	{
 		philosophers[i].id = i + 1;
@@ -57,10 +63,11 @@ int	main(int argc, char *argv[])
 		else
 			philosophers[i].left_fork = &forks[i + 1];
 		philosophers[i].sim = &simulation;
-		if (pthread_create(&philosophers[i].thread, NULL, philo_loop, &philosophers[i]))
+		ret = pthread_create(&philosophers[i].thread, NULL, philo_loop, &philosophers[i]);
+		if (ret != ERR_OK)
 		{
-			clean_up(philosophers, forks, &simulation);
-			return (ERR_THREAD);
+			ret = ERR_THREAD;
+			goto cleanup;
 		}
 		++simulation.flags.n_threads_created;
 		++i;
@@ -70,7 +77,7 @@ int	main(int argc, char *argv[])
 	{
 		usleep(1000);
 		death_monitoring(philosophers, &simulation);
-		all_philosophers_full_monitoring(philosophers, &simulation);
+		philosophers_full_monitoring(philosophers, &simulation);
 	}
 	if (simulation.flags.death)
 		log_death(&simulation);
@@ -133,7 +140,7 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 	}
 }
 
-void	all_philosophers_full_monitoring(t_philosopher *philosophers, t_simulation *sim)
+void	philosophers_full_monitoring(t_philosopher *philosophers, t_simulation *sim)
 {
 	int				i;
 	int				all_philosophers_full;
