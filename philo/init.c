@@ -6,11 +6,11 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 16:21:52 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/03 15:27:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosopher.h"
 
 void	init_flags(t_flags *flags)
 {
@@ -55,19 +55,19 @@ int	perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **
 	ret = simulation_mutex_init(simulation);
 	if (ret != ERR_OK)
 		return (ret);
-	philosophers = malloc(sizeof(t_philosopher) * simulation->n_philosophers);
+	*philosophers = malloc(sizeof(t_philosopher) * simulation->n_philosophers);
 	if (!philosophers)
 		return (ERR_MEMORY);
-	forks = malloc(sizeof(t_fork) * simulation->n_philosophers);
+	*forks = malloc(sizeof(t_fork) * simulation->n_philosophers);
 	if (!forks)
 		return (ERR_MEMORY);
 	while (i < simulation->n_philosophers)
 	{
-		ret = fork_mutex_init(&forks[i]);
+		ret = fork_mutex_init(&(*forks)[i]);
 		if (ret != ERR_OK)
 			return (ERR_MUTEX);
 		++simulation->flags.n_forks_created;
-		ret = meal_mutex_init(&philosophers[i]);
+		ret = meal_mutex_init(&(*philosophers)[i]);
 		if (ret != ERR_OK)
 			return (ERR_MUTEX);
 		++simulation->flags.n_meal_mutex_created;

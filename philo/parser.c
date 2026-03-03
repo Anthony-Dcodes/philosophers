@@ -6,11 +6,11 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:55:13 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 10:12:19 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/03 15:27:45 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosopher.h"
 
 // If success - 0, else 1
 int	parser_args(int argc, char *argv[], t_simulation *simulation)

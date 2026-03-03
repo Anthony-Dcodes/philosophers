@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/02 16:22:24 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/03 15:27:01 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <sys/time.h> // gettimeofday
 # include <limits.h> // INT_MAX
 
-# include "philo_macros.h"
-# include "philo_structs.h"
+# include "macros.h"
+# include "structs.h"
 
 // Error functions
 int	wrong_number_format(void);
