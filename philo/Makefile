@@ -11,7 +11,8 @@ SRCS = \
 	philosopher_actions.c \
 	cleanup.c \
 	utils.c \
-	init.c
+	init.c \
+	monitoring.c
 
 OBJS = $(SRCS:.c=.o)
 
