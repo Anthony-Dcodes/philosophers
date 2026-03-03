@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 15:59:00 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/03 16:37:46 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,40 +35,4 @@ int	main(int argc, char *argv[])
 	cleanup:
 		clean_up(philosophers, forks, &simulation);
 		return (ret);
-}
-
-void	*philo_loop(void *arg)
-{
-	t_philosopher	*philosopher;
-	int				i;
-
-	i = 0;
-	philosopher = (t_philosopher*)arg;
-	set_last_meal_time(philosopher);
-	if (philosopher->sim->n_philosophers == 1)
-	{
-		thinking(philosopher);
-		pthread_mutex_lock(&philosopher->left_fork->mutex);
-		log_general(philosopher, FORK);
-		usleep(philosopher->sim->time_to_die * 1000);
-		pthread_mutex_unlock(&philosopher->left_fork->mutex);
-		return (NULL);
-	}
-	else if (philosopher->sim->n_times_must_eat)
-		while (i < philosopher->sim->n_times_must_eat && !philosopher->sim->flags.death)
-		{
-			thinking(philosopher);
-			eating(philosopher);
-			sleeping(philosopher);
-			++philosopher->meals_eaten;
-			++i;
-		}
-	else
-		while (!philosopher->sim->flags.death)
-		{
-			thinking(philosopher);
-			eating(philosopher);
-			sleeping(philosopher);
-		}
-	return (NULL);
 }

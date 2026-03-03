@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 16:25:35 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/03 16:39:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,8 @@ void	log_all_philosophers_ate(t_simulation *sim);
 void	log_end_of_simulation(t_simulation *simulation);
 
 // Philosophers main loop / helpers
-void	*philo_loop(void *arg);
+void	*philosopher_loop(void *arg);
+void    handle_single_philosopher(t_philosopher *philosopher);
 
 // Mutex
 int	simulation_mutex_init(t_simulation *simulation);

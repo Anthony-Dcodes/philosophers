@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 16:27:16 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/03 16:40:11 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,14 @@ int	initialize_philosophers_threads(t_philosopher *philosophers, t_simulation *s
 	while (i < simulation->n_philosophers)
 	{
 		philosophers[i].id = i + 1;
+		philosophers[i].meals_eaten = 0;
 		philosophers[i].right_fork = &forks[i];
 		if (i == simulation->n_philosophers - 1)
 			philosophers[i].left_fork = &forks[0];
 		else
 			philosophers[i].left_fork = &forks[i + 1];
 		philosophers[i].sim = simulation;
-		ret = pthread_create(&philosophers[i].thread, NULL, philo_loop, &philosophers[i]);
+		ret = pthread_create(&philosophers[i].thread, NULL, philosopher_loop, &philosophers[i]);
 		if (ret != ERR_OK)
 		{
 			ret = ERR_THREAD;
