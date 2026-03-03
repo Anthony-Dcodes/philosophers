@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 15:27:01 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/03 15:43:12 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ int	ft_isdigit(int c);
 int	ft_atoi(const char *nptr);
 int	is_more_then_int_max(char *nptr);
 
-// Logs
+// Logger
 void	log_general(t_philosopher *philosopher, const char *message);
 void	log_death(t_simulation *sim);
 void	log_all_philosophers_ate(t_simulation *sim);
+void	log_end_of_simulation(t_simulation *simulation);
 
 // Philosophers main loop / helpers
 void	*philo_loop(void *arg);

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 15:26:17 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/03 15:52:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,13 @@ int	main(int argc, char *argv[])
 	ret = initialize_philosophers_threads(philosophers, &simulation, forks);
 	if (ret != ERR_OK)
 		goto cleanup;
-	printf("Start death monitoring:\n");
 	while (!simulation.flags.death && !simulation.flags.all_philosophers_full)
-	// figure out data daces between full / death, check mutexes
 	{
 		usleep(1000);
 		death_monitoring(philosophers, &simulation);
 		philosophers_full_monitoring(philosophers, &simulation);
-		//printf("full monitoring loop done\n");
 	}
-	if (simulation.flags.death)
-		log_death(&simulation);
-	else if (simulation.flags.all_philosophers_full)
-		log_all_philosophers_ate(&simulation);
-	printf("Cleanup next:\n");
+	log_end_of_simulation(&simulation);
 	cleanup:
 		clean_up(philosophers, forks, &simulation);
 		return (ret);
@@ -100,7 +93,6 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 			pthread_mutex_lock(&sim->death_mutex);
 			sim->flags.death = philosophers[i].id;
 			pthread_mutex_unlock(&sim->death_mutex);
-			printf("Death detected: philosophre: %d, current time: %ld, last meal: %ld\n", i + 1, current_time_ms, philosophers[i].last_meal);
 			return ;
 		}
 		++i;

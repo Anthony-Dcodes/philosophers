@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 15:27:18 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/03 15:51:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim)
 	int	i;
 
 	i = 0;
-	printf("Cleaninging up\n");
 	if (philosophers)
 	{
 		while (i < sim->flags.n_threads_created)
