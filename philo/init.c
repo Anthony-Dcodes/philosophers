@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 15:27:30 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/03 16:27:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,26 @@ int	perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **
 		return (ERR_MEMORY);
 	while (i < simulation->n_philosophers)
 	{
-		ret = fork_mutex_init(&(*forks)[i]);
+		ret = initialize_mutexes(simulation, philosophers, forks, i);
 		if (ret != ERR_OK)
-			return (ERR_MUTEX);
-		++simulation->flags.n_forks_created;
-		ret = meal_mutex_init(&(*philosophers)[i]);
-		if (ret != ERR_OK)
-			return (ERR_MUTEX);
-		++simulation->flags.n_meal_mutex_created;
+			return (ret);
 		++i;
 	}
+	return (ret);
+}
+
+int	initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks, int i)
+{
+	int	ret;
+	
+	ret = ERR_OK;
+	ret = fork_mutex_init(&(*forks)[i]);
+	if (ret != ERR_OK)
+		return (ERR_MUTEX);
+	++simulation->flags.n_forks_created;
+	ret = meal_mutex_init(&(*philosophers)[i]);
+	if (ret != ERR_OK)
+		return (ERR_MUTEX);
+	++simulation->flags.n_meal_mutex_created;
 	return (ret);
 }
