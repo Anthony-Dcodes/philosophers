@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 15:42:58 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/04 09:51:36 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	log_general(t_philosopher *philosopher, const char *message)
 	long			timestamp_ms;
 	int				philosopher_n;
 
-	pthread_mutex_lock(&philosopher->sim->death_mutex);
-	if (philosopher->sim->flags.death)
+	pthread_mutex_lock(&philosopher->sim->state_mutex);
+	if (philosopher->sim->flags.prilosopher_died)
 	{
-		pthread_mutex_unlock(&philosopher->sim->death_mutex);
+		pthread_mutex_unlock(&philosopher->sim->state_mutex);
 		return ;
 	}
 	else
 	{
-		pthread_mutex_unlock(&philosopher->sim->death_mutex);
+		pthread_mutex_unlock(&philosopher->sim->state_mutex);
 		pthread_mutex_lock(&philosopher->sim->print_mutex);
 		philosopher_n = philosopher->id;
 		timestamp_ms = get_timestamp_ms();
@@ -39,7 +39,7 @@ void	log_death(t_simulation *sim)
 	long			timestamp_ms;
 	int				philosopher_id;
 
-	philosopher_id = sim->flags.death;
+	philosopher_id = sim->flags.prilosopher_died;
 	pthread_mutex_lock(&sim->print_mutex);	
 	timestamp_ms = get_timestamp_ms();
 	printf("%ld %d %s\n", timestamp_ms, philosopher_id, DIED);
@@ -60,7 +60,7 @@ void	log_all_philosophers_ate(t_simulation *sim)
 
 void	log_end_of_simulation(t_simulation *simulation)
 {
-	if (simulation->flags.death)
+	if (simulation->flags.prilosopher_died)
 		log_death(simulation);
 	else if (simulation->flags.all_philosophers_full)
 		log_all_philosophers_ate(simulation);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_structs.h                                    :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/02 15:37:49 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/04 09:43:26 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ pthread_mutex_unlock - unlock a mutex (release the fork), allows other threads t
 
 typedef struct s_flags
 {
-	int	death;
+	int	prilosopher_died;
 	int	print_mutex_created;
-	int	death_mutex_created;
+	int	state_mutex_created;
 	int	n_threads_created;
 	int	n_forks_created;
 	int all_philosophers_full;
@@ -43,7 +43,7 @@ typedef struct s_simulation
 	int	time_to_sleep;
 	int	n_times_must_eat;
 	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	death_mutex;
+	pthread_mutex_t	state_mutex;
 	t_flags	flags;
 } t_simulation;
 

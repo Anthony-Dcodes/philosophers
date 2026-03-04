@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 15:27:40 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/04 09:36:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int	simulation_mutex_init(t_simulation *simulation)
 	if (pthread_mutex_init(&simulation->print_mutex, NULL))
 		return (ERR_MUTEX);
 	simulation->flags.print_mutex_created = 1;
-	if (pthread_mutex_init(&simulation->death_mutex, NULL))
+	if (pthread_mutex_init(&simulation->state_mutex, NULL))
 		return (ERR_MUTEX);
-	simulation->flags.death_mutex_created = 1;
+	simulation->flags.state_mutex_created = 1;
 	return (0);
 }
 

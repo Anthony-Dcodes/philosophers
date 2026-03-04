@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:55:19 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/03 16:29:09 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/04 09:49:44 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void    monitoring(t_simulation *simulation, t_philosopher *philosophers)
 {
-    while (!simulation->flags.death && !simulation->flags.all_philosophers_full)
+    while (!simulation->flags.prilosopher_died && !simulation->flags.all_philosophers_full)
 	{
 		usleep(1000);
 		death_monitoring(philosophers, simulation);
@@ -34,9 +34,9 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 		//printf("Monitor philosopher: %d, time: %ld\n", i + 1, current_time_ms);
 		if (current_time_ms - philosophers[i].last_meal >= sim->time_to_die)
 		{
-			pthread_mutex_lock(&sim->death_mutex);
-			sim->flags.death = philosophers[i].id;
-			pthread_mutex_unlock(&sim->death_mutex);
+			pthread_mutex_lock(&sim->state_mutex);
+			sim->flags.prilosopher_died = philosophers[i].id;
+			pthread_mutex_unlock(&sim->state_mutex);
 			return ;
 		}
 		++i;
