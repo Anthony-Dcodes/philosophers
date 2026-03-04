@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 10:22:01 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/04 10:28:12 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/04 16:05:36 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,12 @@ int get_last_meal(t_philosopher *philosopher)
     return (value);
 }
 
-int
+int get_meals_eaten(t_philosopher *philosopher)
+{
+    int value;
+
+    pthread_mutex_lock(&philosopher->meal_mutex);
+    value = philosopher->meals_eaten;
+    pthread_mutex_unlock(&philosopher->meal_mutex);
+    return (value);
+}
