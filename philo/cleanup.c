@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 16:20:21 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/04 16:38:06 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ void	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim)
 	i = 0;
 	if (philosophers)
 	{
+		while (i < sim->flags.n_meal_mutex_created)
+			pthread_mutex_destroy(&philosophers[i].meal_mutex);
+		i = 0;
 		while (i < sim->flags.n_threads_created)
 			pthread_join(philosophers[i++].thread, NULL);
 		free(philosophers);
@@ -30,8 +33,8 @@ void	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim)
 			pthread_mutex_destroy(&forks[i++].mutex);
 		free(forks);
 	}
-	if (sim->flags.death_mutex_created)
-		pthread_mutex_destroy(&sim->death_mutex);
+	if (sim->flags.state_mutex_created)
+		pthread_mutex_destroy(&sim->state_mutex);
 	if (sim->flags.print_mutex_created)
 		pthread_mutex_destroy(&sim->print_mutex);
 }
