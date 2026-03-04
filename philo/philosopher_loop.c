@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/04 09:46:43 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/04 16:23:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ void	*philosopher_loop(void *arg)
         return (NULL);
 	}
 	else if (philosopher->sim->n_times_must_eat)
-		while (philosopher->meals_eaten < philosopher->sim->n_times_must_eat && !philosopher->sim->flags.prilosopher_died)
+		while (get_meals_eaten(philosopher) < philosopher->sim->n_times_must_eat && !get_death(philosopher->sim))
 		{
 			thinking(philosopher);
 			eating(philosopher);
 			sleeping(philosopher);
-			++philosopher->meals_eaten;
+			set_increment_meals_eaten(philosopher);
 		}
 	else
 		while (!philosopher->sim->flags.prilosopher_died)
