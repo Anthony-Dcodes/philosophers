@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_helpers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:11:47 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/04 16:17:23 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/07 11:02:41 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ void	set_last_meal_time(t_philosopher *philosopher)
 void	set_death(t_simulation *simulation, int id)
 {
 	pthread_mutex_lock(&simulation->state_mutex);
-	simulation->flags.prilosopher_died = id;
+	simulation->flags.philosopher_died = id;
 	pthread_mutex_unlock(&simulation->state_mutex);
 }
 
 void    set_all_philosophers_full(t_simulation *simulation)
 {
-    pthread_mutex_loc(&simulation->state_mutex);
+    pthread_mutex_lock(&simulation->state_mutex);
     simulation->flags.all_philosophers_full = 1;
     pthread_mutex_unlock(&simulation->state_mutex);
 }

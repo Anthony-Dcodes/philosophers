@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/04 09:43:26 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/07 11:01:40 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ pthread_mutex_unlock - unlock a mutex (release the fork), allows other threads t
 
 typedef struct s_flags
 {
-	int	prilosopher_died;
+	int	philosopher_died;
 	int	print_mutex_created;
 	int	state_mutex_created;
 	int	n_threads_created;

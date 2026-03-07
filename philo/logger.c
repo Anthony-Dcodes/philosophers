@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logger.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/04 16:31:47 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/07 10:36:10 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	log_general(t_philosopher *philosopher, const char *message)
 	int				philosopher_n;
 
 	pthread_mutex_lock(&philosopher->sim->state_mutex);
-	if (get_death(&philosopher->sim))
+	if (get_death(philosopher->sim))
 	{
 		pthread_mutex_unlock(&philosopher->sim->state_mutex);
 		return ;
@@ -40,7 +40,7 @@ void	log_death(t_simulation *sim)
 	int				philosopher_id;
 
 	philosopher_id = get_death(sim);
-	pthread_mutex_lock(&sim->print_mutex);	
+	pthread_mutex_lock(&sim->print_mutex);
 	timestamp_ms = get_timestamp_ms();
 	printf("%ld %d %s\n", timestamp_ms, philosopher_id, DIED);
 	pthread_mutex_unlock(&sim->print_mutex);
