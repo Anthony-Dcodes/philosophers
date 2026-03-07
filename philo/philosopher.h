@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/04 16:19:37 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/07 13:12:33 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int     initialize_mutexes(t_simulation *simulation, t_philosopher **philosopher
 // Get helpers
 int get_death(t_simulation *simulation);
 int get_all_philosophers_full(t_simulation *simulation);
-int get_last_meal(t_philosopher *philosopher);
+long get_last_meal(t_philosopher *philosopher);
 int get_meals_eaten(t_philosopher *philosopher);
 
 // Set helpers

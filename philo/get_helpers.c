@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 10:22:01 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/07 11:02:32 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/07 13:12:17 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int get_all_philosophers_full(t_simulation *simulation)
     return (value);
 }
 
-int get_last_meal(t_philosopher *philosopher)
+long get_last_meal(t_philosopher *philosopher)
 {
-    int value;
+    long value;
 
     pthread_mutex_lock(&philosopher->meal_mutex);
     value = philosopher->last_meal;
