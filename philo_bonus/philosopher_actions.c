@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_state.c                                      :+:      :+:    :+:   */
+/*   philosopher_actions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42.fr>          +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/17 21:28:53 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/07 11:20:56 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philosopher.h"
 
 static void	pick_up_forks(t_philosopher *philosopher)
 {
 	if (philosopher->id % 2)
 	{
 		pthread_mutex_lock(&philosopher->left_fork->mutex);
-		log_general(philosopher, LEFT_FORK);
+		log_general(philosopher, FORK);
 		pthread_mutex_lock(&philosopher->right_fork->mutex);
-		log_general(philosopher, RIGHT_FORK);
+		log_general(philosopher, FORK);
 	}
 	else
 	{
 		pthread_mutex_lock(&philosopher->right_fork->mutex);
-		log_general(philosopher, RIGHT_FORK);
+		log_general(philosopher, FORK);
 		pthread_mutex_lock(&philosopher->left_fork->mutex);
-		log_general(philosopher, LEFT_FORK);
+		log_general(philosopher, FORK);
 	}
 	return ;
 }

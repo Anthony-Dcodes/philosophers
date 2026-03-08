@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
+/*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/02/25 23:28:57 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:50:36 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_H
-# define PHILO_H
+#pragma once
 
 # include <stdio.h> // printf
 # include <stdlib.h> // malloc, free, exit
@@ -37,57 +36,8 @@ pthread_join - wait for a thread to finish
 */
 # include <pthread.h>
 
-#define FORK "has taken a fork"
-#define LEFT_FORK "has taken a left fork"
-#define RIGHT_FORK "has taken a right fork"
-#define EAT "is eating"
-#define SLEEP "is sleeping"
-#define THINK "is thinking"
-#define DIED "died"
-
-// ERROR CODES
-#define ERR_PARSE 1
-#define ERR_MEMORY 2
-#define ERR_MUTEX 3
-#define ERR_THREAD 4
-
-typedef struct s_flags
-{
-	int	death;
-	int	print_mutex_created;
-	int	death_mutex_created;
-	int	n_threads_created;
-	int	n_forks_created;
-	int all_philosophers_full;
-} t_flags;
-
-typedef struct s_simulation
-{
-	int	n_philosophers;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	n_times_must_eat;
-	pthread_mutex_t	print_mutex;
-	pthread_mutex_t	death_mutex;
-	t_flags	flags;
-} t_simulation;
-
-typedef struct s_fork
-{
-	pthread_mutex_t	mutex;
-} t_fork;
-
-typedef struct s_philosopher
-{
-	int	id;
-	t_fork	*left_fork;
-	t_fork	*right_fork;
-	pthread_t	thread;
-	t_simulation	*sim;
-	long	last_meal;
-	int		meals_eaten;
-} t_philosopher;
+# include "macros.h"
+# include "structs.h"
 
 // Error functions
 int	wrong_number_format(void);
@@ -102,17 +52,20 @@ int	ft_isdigit(int c);
 int	ft_atoi(const char *nptr);
 int	is_more_then_int_max(char *nptr);
 
-// Logs
+// Logger
 void	log_general(t_philosopher *philosopher, const char *message);
 void	log_death(t_simulation *sim);
 void	log_all_philosophers_ate(t_simulation *sim);
+void	log_end_of_simulation(t_simulation *simulation);
 
 // Philosophers main loop / helpers
-void	*philo_loop(void *arg);
+void	*philosopher_loop(void *arg);
+void    handle_single_philosopher(t_philosopher *philosopher);
 
 // Mutex
 int	simulation_mutex_init(t_simulation *simulation);
 int	fork_mutex_init(t_fork *fork);
+int	meal_mutex_init(t_philosopher *philosopher);
 
 // Philosophers states
 void	eating(t_philosopher *philosopher);
@@ -121,13 +74,27 @@ void	thinking(t_philosopher *philosopher);
 
 // Utils
 long	get_timestamp_ms(void);
-void	set_last_meal_time(t_philosopher *philosopher);
 
 // Philosphers monitoring
 void	death_monitoring(t_philosopher *philosophers, t_simulation *sim);
-void	all_philosophers_full_monitoring(t_philosopher *philosophers, t_simulation *sim);
+void	philosophers_full_monitoring(t_philosopher *philosophers, t_simulation *sim);
+void    monitoring(t_simulation *simulation, t_philosopher *philosophers);
 
 // Init functions
 void	init_flags(t_flags *flags);
+int     initialize_philosophers_threads(t_philosopher *philosophers, t_simulation *simulation, t_fork *forks);
+int	    perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks);
+int     initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks, int i);
 
-#endif
+// Get helpers
+int get_death(t_simulation *simulation);
+int get_all_philosophers_full(t_simulation *simulation);
+long get_last_meal(t_philosopher *philosopher);
+int get_meals_eaten(t_philosopher *philosopher);
+
+// Set helpers
+void	set_last_meal_time(t_philosopher *philosopher);
+void	set_death(t_simulation *simulation, int id);
+void    set_all_philosophers_full(t_simulation *simulation);
+void    set_increment_meals_eaten(t_philosopher *philosopher);
+

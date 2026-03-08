@@ -3,15 +3,19 @@ CC = cc
 CC_FLAGS = -Wall -Wextra -Werror -pthread
 
 SRCS = \
-	philo.c \
-	error.c \
+	main.c \
+	error_messages.c \
 	parser.c \
-	logs.c \
+	logger.c \
 	mutex_init.c \
-	philo_state.c \
-	clean_up.c \
+	philosopher_actions.c \
+	cleanup.c \
 	utils.c \
-	init.c
+	init.c \
+	monitoring.c \
+	philosopher_loop.c \
+	get_helpers.c \
+	set_helpers.c
 
 OBJS = $(SRCS:.c=.o)
 
