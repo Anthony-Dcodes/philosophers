@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_macros.h                                     :+:      :+:    :+:   */
+/*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/02 11:40:30 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/08 16:43:07 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_MACROS_H
-# define PHILO_MACROS_H
+#pragma once
 
 // Philosopher states
 #define FORK "has taken a fork"
@@ -30,5 +29,3 @@ typedef enum e_error {
     ERR_MUTEX,
     ERR_THREAD
 } t_error;
-
-#endif

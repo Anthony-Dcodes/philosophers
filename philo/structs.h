@@ -6,12 +6,11 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/07 11:01:40 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/08 16:43:39 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_STRUCTS_H
-# define PHILO_STRUCTS_H
+#pragma once
 
 /*
 pthread_create - create new thread
@@ -63,5 +62,3 @@ typedef struct s_philosopher
 	int		meals_eaten;
 	pthread_mutex_t	meal_mutex;
 } t_philosopher;
-
-#endif
