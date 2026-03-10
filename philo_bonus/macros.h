@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/08 16:51:06 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/10 21:28:45 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,7 @@ typedef enum e_error {
     ERR_MUTEX,
     ERR_THREAD
 } t_error;
+
+// Semaphore name
+#define SEM_FORKS "/sem_forks"
+#define SEM_D
