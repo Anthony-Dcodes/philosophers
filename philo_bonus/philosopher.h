@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/08 16:50:36 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/10 23:42:53 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <limits.h> // INT_MAX
 # include <signal.h> // kill
 # include <sys/wait.h> // waitpid
+# include <fcntl.h> // for O_CREAT
 
 /*
 sem_open - initialize and open a named semaphore
@@ -83,7 +84,7 @@ void    monitoring(t_simulation *simulation, t_philosopher *philosophers);
 // Init functions
 void	init_flags(t_flags *flags);
 int     initialize_philosophers_threads(t_philosopher *philosophers, t_simulation *simulation, t_fork *forks);
-int	    perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks);
+int	    perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers);
 int     initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks, int i);
 
 // Get helpers
@@ -97,4 +98,7 @@ void	set_last_meal_time(t_philosopher *philosopher);
 void	set_death(t_simulation *simulation, int id);
 void    set_all_philosophers_full(t_simulation *simulation);
 void    set_increment_meals_eaten(t_philosopher *philosopher);
+
+// Semaphore init
+int	simulation_sem_init(t_simulation *simulation);
 

@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/08 13:07:02 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/10 23:21:53 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	main(int argc, char *argv[])
 {
 	t_simulation	simulation;
 	t_philosopher	*philosophers;
-	t_fork			*forks;
 	int				ret;
 
 	ret = ERR_OK;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/04 09:35:21 by codespace        ###   ########.fr       */
+/*   Updated: 2026/03/10 23:23:10 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,36 +46,36 @@ int	initialize_philosophers_threads(t_philosopher *philosophers, t_simulation *s
 	return (ret);
 }
 
-int	perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks)
+int	perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers)
 {
 	int	i;
 	int	ret;
 
 	i = 0;
 	ret = ERR_OK;
-	ret = simulation_mutex_init(simulation);
+	ret = simulation_sem_init(simulation);
 	if (ret != ERR_OK)
 		return (ret);
-	*philosophers = malloc(sizeof(t_philosopher) * simulation->n_philosophers);
-	if (!philosophers)
-		return (ERR_MEMORY);
-	*forks = malloc(sizeof(t_fork) * simulation->n_philosophers);
-	if (!forks)
-		return (ERR_MEMORY);
-	while (i < simulation->n_philosophers)
-	{
-		ret = initialize_mutexes(simulation, philosophers, forks, i);
-		if (ret != ERR_OK)
-			return (ret);
-		++i;
-	}
+	// *philosophers = malloc(sizeof(t_philosopher) * simulation->n_philosophers);
+	// if (!philosophers)
+	// 	return (ERR_MEMORY);
+	// //*forks = malloc(sizeof(t_fork) * simulation->n_philosophers);
+	// if (!forks)
+	// 	return (ERR_MEMORY);
+	// while (i < simulation->n_philosophers)
+	// {
+	// 	ret = initialize_mutexes(simulation, philosophers, forks, i);
+	// 	if (ret != ERR_OK)
+	// 		return (ret);
+	// 	++i;
+	// }
 	return (ret);
 }
 
 int	initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks, int i)
 {
 	int	ret;
-	
+
 	ret = ERR_OK;
 	ret = fork_mutex_init(&(*forks)[i]);
 	if (ret != ERR_OK)

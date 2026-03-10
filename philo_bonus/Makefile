@@ -7,7 +7,6 @@ SRCS = \
 	error_messages.c \
 	parser.c \
 	logger.c \
-	mutex_init.c \
 	philosopher_actions.c \
 	cleanup.c \
 	utils.c \
@@ -15,7 +14,8 @@ SRCS = \
 	monitoring.c \
 	philosopher_loop.c \
 	get_helpers.c \
-	set_helpers.c
+	set_helpers.c \
+	sem_init.c
 
 OBJS = $(SRCS:.c=.o)
 
