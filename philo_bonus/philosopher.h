@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/10 23:42:53 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 21:32:30 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ pthread_join - wait for a thread to finish
 int	wrong_number_format(void);
 int	not_an_int(void);
 int	wrong_number_of_args(void);
+
+// Cleanup
+void	cleanup_semaphores(void);
 void	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim);
 
 // Parsing
@@ -100,5 +103,5 @@ void    set_all_philosophers_full(t_simulation *simulation);
 void    set_increment_meals_eaten(t_philosopher *philosopher);
 
 // Semaphore init
-int	simulation_sem_init(t_simulation *simulation);
+int	semaphore_init(t_simulation *simulation);
 

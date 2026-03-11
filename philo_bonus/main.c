@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/10 23:21:53 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 21:32:45 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@ int	main(int argc, char *argv[])
 
 	ret = ERR_OK;
 	init_flags(&simulation.flags);
+	cleanup_semaphores();
 	ret = parser_args(argc, argv, &simulation);
 	if (ret != ERR_OK)
 		return (ret);
-	ret = perfom_mallocs_initialize_mutexes(&simulation, &philosophers, &forks);
+	ret = semaphore_init(&simulation);
 	if (ret != ERR_OK)
 		goto cleanup;
 	ret = initialize_philosophers_threads(philosophers, &simulation, forks);

@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/10 23:23:10 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 21:31:28 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,47 +43,5 @@ int	initialize_philosophers_threads(t_philosopher *philosophers, t_simulation *s
 		++simulation->flags.n_threads_created;
 		++i;
 	}
-	return (ret);
-}
-
-int	perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers)
-{
-	int	i;
-	int	ret;
-
-	i = 0;
-	ret = ERR_OK;
-	ret = simulation_sem_init(simulation);
-	if (ret != ERR_OK)
-		return (ret);
-	// *philosophers = malloc(sizeof(t_philosopher) * simulation->n_philosophers);
-	// if (!philosophers)
-	// 	return (ERR_MEMORY);
-	// //*forks = malloc(sizeof(t_fork) * simulation->n_philosophers);
-	// if (!forks)
-	// 	return (ERR_MEMORY);
-	// while (i < simulation->n_philosophers)
-	// {
-	// 	ret = initialize_mutexes(simulation, philosophers, forks, i);
-	// 	if (ret != ERR_OK)
-	// 		return (ret);
-	// 	++i;
-	// }
-	return (ret);
-}
-
-int	initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks, int i)
-{
-	int	ret;
-
-	ret = ERR_OK;
-	ret = fork_mutex_init(&(*forks)[i]);
-	if (ret != ERR_OK)
-		return (ERR_MUTEX);
-	++simulation->flags.n_forks_created;
-	ret = meal_mutex_init(&(*philosophers)[i]);
-	if (ret != ERR_OK)
-		return (ERR_MUTEX);
-	++simulation->flags.n_meal_mutex_created;
 	return (ret);
 }

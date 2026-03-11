@@ -6,13 +6,13 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/10 23:19:27 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 21:32:18 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int	simulation_sem_init(t_simulation *simulation)
+int	semaphore_init(t_simulation *simulation)
 {
 	simulation->print_semaphore = sem_open(SEM_PRINT, O_CREAT, 0666, 1);
 	if (simulation->print_semaphore == SEM_FAILED)

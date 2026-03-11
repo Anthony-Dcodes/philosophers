@@ -6,11 +6,19 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/07 13:30:32 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 21:23:26 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+
+void	cleanup_semaphores(void)
+{
+	sem_unlink(SEM_FORKS);
+	sem_unlink(SEM_MEAL);
+	sem_unlink(SEM_PRINT);
+	sem_unlink(SEM_STATE);
+}
 
 void	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim)
 {
