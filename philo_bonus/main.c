@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 22:07:02 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 22:15:39 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,6 @@ int	main(int argc, char *argv[])
 	monitoring(&simulation, philosophers);
 	log_end_of_simulation(&simulation);
 	cleanup:
-		clean_up(philosophers, forks, &simulation);
+		clean_up();
 		return (ret);
 }
