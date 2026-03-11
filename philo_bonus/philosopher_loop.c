@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/08 13:07:25 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 22:12:56 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	*philosopher_loop(void *arg)
 void handle_single_philosopher(t_philosopher *philosopher)
 {
     thinking(philosopher);
-    pthread_mutex_lock(&philosopher->left_fork->mutex);
+    sem_wait(philosopher->sim->fork_semaphore);
     log_general(philosopher, FORK);
     usleep(philosopher->sim->time_to_die * 1000);
-    pthread_mutex_unlock(&philosopher->left_fork->mutex);
+    sem_wait(philosopher->sim->fork_semaphore);
 }

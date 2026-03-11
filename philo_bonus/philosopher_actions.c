@@ -6,45 +6,33 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/07 11:20:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 22:11:27 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-static void	pick_up_forks(t_philosopher *philosopher)
+static void	pick_up_forks(t_simulation *simulation)
 {
-	if (philosopher->id % 2)
-	{
-		pthread_mutex_lock(&philosopher->left_fork->mutex);
-		log_general(philosopher, FORK);
-		pthread_mutex_lock(&philosopher->right_fork->mutex);
-		log_general(philosopher, FORK);
-	}
-	else
-	{
-		pthread_mutex_lock(&philosopher->right_fork->mutex);
-		log_general(philosopher, FORK);
-		pthread_mutex_lock(&philosopher->left_fork->mutex);
-		log_general(philosopher, FORK);
-	}
+	sem_wait(simulation->fork_semaphore);
+	sem_wait(simulation->fork_semaphore);
 	return ;
 }
 
-static void	put_down_forks(t_philosopher *philosopher)
+static void	put_down_forks(t_simulation *simulation)
 {
-	pthread_mutex_unlock(&philosopher->left_fork->mutex);
-	pthread_mutex_unlock(&philosopher->right_fork->mutex);
+	sem_post(simulation->fork_semaphore);
+	sem_post(simulation->fork_semaphore);
 	return ;
 }
 
 void	eating(t_philosopher *philosopher)
 {
-	pick_up_forks(philosopher);
+	pick_up_forks(philosopher->sim);
 	log_general(philosopher, EAT);
 	set_last_meal_time(philosopher);
 	usleep(philosopher->sim->time_to_eat * 1000);
-	put_down_forks(philosopher);
+	put_down_forks(philosopher->sim);
 }
 
 void	sleeping(t_philosopher *philosopher)

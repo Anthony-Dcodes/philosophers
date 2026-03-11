@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 21:32:45 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 22:07:02 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,10 @@ int	main(int argc, char *argv[])
 	t_simulation	simulation;
 	t_philosopher	*philosophers;
 	int				ret;
+	int				i;
+	pid_t			pid;
 
+	i = 0;
 	ret = ERR_OK;
 	init_flags(&simulation.flags);
 	cleanup_semaphores();
@@ -27,9 +30,11 @@ int	main(int argc, char *argv[])
 	ret = semaphore_init(&simulation);
 	if (ret != ERR_OK)
 		goto cleanup;
-	ret = initialize_philosophers_threads(philosophers, &simulation, forks);
-	if (ret != ERR_OK)
-		goto cleanup;
+	while (i < simulation.n_philosophers)
+	{
+		pid = fork();
+		printf("new process spawned: %d, with pid: %d\n", i, (int)(pid));
+	}
 	monitoring(&simulation, philosophers);
 	log_end_of_simulation(&simulation);
 	cleanup:

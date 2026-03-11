@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/11 21:40:26 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 21:53:41 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ typedef struct s_flags
 	int	state_semaphore_created;
 	int fork_semaphore_created;
 	int meal_semaphore_created;
-	int	state_mutex_created;
-	int	print_mutex_created;
-	int	meal_mutex_created;
 } t_flags;
 
 typedef struct s_simulation
@@ -33,9 +30,6 @@ typedef struct s_simulation
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	n_times_must_eat;
-	pthread_mutex_t	state_mutex;
-	pthread_mutex_t print_mutex;
-	pthread_mutex_t meal_mutex;
 	sem_t	*print_semaphore;
 	sem_t	*state_semaphore;
 	sem_t	*fork_semaphore;
