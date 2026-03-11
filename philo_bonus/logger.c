@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/07 11:23:06 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 23:00:14 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	log_general(t_philosopher *philosopher, const char *message)
 		return ;
 	else
 	{
-		pthread_mutex_lock(&philosopher->sim->print_mutex);
+		sem_wait(philosopher->sim->print_semaphore);
 		philosopher_n = philosopher->id;
 		timestamp_ms = get_timestamp_ms();
 		printf("%ld %d %s\n", timestamp_ms, philosopher_n, message);
-		pthread_mutex_unlock(&philosopher->sim->print_mutex);
+		sem_post(philosopher->sim->print_semaphore);
 	}
 }
 
@@ -35,10 +35,10 @@ void	log_death(t_simulation *sim)
 	int				philosopher_id;
 
 	philosopher_id = get_death(sim);
-	pthread_mutex_lock(&sim->print_mutex);
+	sem_wait(sim->print_semaphore);
 	timestamp_ms = get_timestamp_ms();
 	printf("%ld %d %s\n", timestamp_ms, philosopher_id, DIED);
-	pthread_mutex_unlock(&sim->print_mutex);
+	sem_post(sim->print_semaphore);
 }
 
 void	log_all_philosophers_ate(t_simulation *sim)
@@ -47,10 +47,10 @@ void	log_all_philosophers_ate(t_simulation *sim)
 	int				ate_n_times;
 
 	ate_n_times = sim->n_times_must_eat;
-	pthread_mutex_lock(&sim->print_mutex);
+	sem_wait(sim->print_semaphore);
 	timestamp_ms = get_timestamp_ms();
 	printf("%ld %s %d %s\n", timestamp_ms, "all philosophers ate", ate_n_times, "times");
-	pthread_mutex_unlock(&sim->print_mutex);
+	sem_post(sim->print_semaphore);
 }
 
 void	log_end_of_simulation(t_simulation *simulation)
