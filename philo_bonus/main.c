@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 22:15:39 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 23:09:11 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ int	main(int argc, char *argv[])
 	{
 		pid = fork();
 		printf("new process spawned: %d, with pid: %d\n", i, (int)(pid));
+		++i;
 	}
 	monitoring(&simulation, philosophers);
 	log_end_of_simulation(&simulation);
 	cleanup:
-		clean_up();
+		clean_up(&simulation);
 		return (ret);
 }

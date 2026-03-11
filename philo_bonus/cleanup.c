@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 22:05:28 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 23:02:56 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	cleanup_semaphores(void)
 	sem_unlink(SEM_STATE);
 }
 
-void	clean_up(void)
+void	clean_up(t_simulation *sim)
 {
-	sem_close(SEM_FORKS);
-	sem_close(SEM_MEAL);
-	sem_close(SEM_PRINT);
-	sem_close(SEM_STATE);
+	sem_close(sim->fork_semaphore);
+	sem_close(sim->meal_semaphore);
+	sem_close(sim->print_semaphore);
+	sem_close(sim->state_semaphore);
 	cleanup_semaphores();
 }

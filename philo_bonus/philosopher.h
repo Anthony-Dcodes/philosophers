@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 22:15:21 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 23:03:11 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	wrong_number_of_args(void);
 
 // Cleanup
 void	cleanup_semaphores(void);
-void	clean_up(void);
+void	clean_up(t_simulation *sim);
 
 // Parsing
 int	parser_args(int argc, char *argv[], t_simulation *t_simulation);
