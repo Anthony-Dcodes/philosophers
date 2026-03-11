@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 21:32:30 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/11 22:15:21 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	wrong_number_of_args(void);
 
 // Cleanup
 void	cleanup_semaphores(void);
-void	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim);
+void	clean_up(void);
 
 // Parsing
 int	parser_args(int argc, char *argv[], t_simulation *t_simulation);
@@ -66,11 +66,6 @@ void	log_end_of_simulation(t_simulation *simulation);
 void	*philosopher_loop(void *arg);
 void    handle_single_philosopher(t_philosopher *philosopher);
 
-// Mutex
-int	simulation_mutex_init(t_simulation *simulation);
-int	fork_mutex_init(t_fork *fork);
-int	meal_mutex_init(t_philosopher *philosopher);
-
 // Philosophers states
 void	eating(t_philosopher *philosopher);
 void	sleeping(t_philosopher *philosopher);
@@ -86,9 +81,8 @@ void    monitoring(t_simulation *simulation, t_philosopher *philosophers);
 
 // Init functions
 void	init_flags(t_flags *flags);
-int     initialize_philosophers_threads(t_philosopher *philosophers, t_simulation *simulation, t_fork *forks);
-int	    perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers);
-int     initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks, int i);
+int	semaphore_init(t_simulation *simulation);
+
 
 // Get helpers
 int get_death(t_simulation *simulation);
@@ -102,6 +96,4 @@ void	set_death(t_simulation *simulation, int id);
 void    set_all_philosophers_full(t_simulation *simulation);
 void    set_increment_meals_eaten(t_philosopher *philosopher);
 
-// Semaphore init
-int	semaphore_init(t_simulation *simulation);
 
