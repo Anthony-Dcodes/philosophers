@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 21:32:18 by advorace         ###   ########.fr       */
+/*   Updated: 2026/03/28 14:36:15 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ int	semaphore_init(t_simulation *simulation)
 	simulation->meal_semaphore = sem_open(SEM_MEAL, O_CREAT, 0666, 1);
 	if (simulation->meal_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
-	simulation->flags.meal_semaphore_created;
+	simulation->flags.meal_semaphore_created = 1;
 	simulation->fork_semaphore = sem_open(SEM_FORKS, O_CREAT, 0666, simulation->n_philosophers);
 	if (simulation->fork_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
-	simulation->flags.fork_semaphore_created;
+	simulation->flags.fork_semaphore_created = 1;
 	return (0);
 }
