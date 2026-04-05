@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/05 16:34:45 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/05 17:22:22 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char *argv[])
 	i = 0;
 	ret = ERR_OK;
 	init_flags(&simulation.flags);
-	cleanup_semaphores();
+	unlink_semaphores();
 	printf("Main process id: %d\n", (int)getpid());
 	sleep(1);
 	ret = parser_args(argc, argv, &simulation);
@@ -43,9 +43,11 @@ int	main(int argc, char *argv[])
 			printf("I am child process! %d\n,", getpid());
 			ret = initialize_philosopher_thread(philosopher, i);
 			if (ret != ERR_OK)
-			{
-				// We have a problem huston!
-			}
+				goto subprocess_exit;
+			
+			subprocess_exit:
+				subprocess_cleanup(philosopher);
+				exit(ERR_OK);
 
 		}
 		++i;
@@ -53,6 +55,6 @@ int	main(int argc, char *argv[])
 	monitoring(&simulation, philosopher);
 	log_end_of_simulation(&simulation);
 	cleanup:
-		clean_up(&simulation);
+		unlink_semaphores();
 		return (ret);
 }

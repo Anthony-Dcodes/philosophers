@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/28 14:36:15 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/05 16:53:08 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,5 @@ int	semaphore_init(t_simulation *simulation)
 	if (simulation->fork_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
 	simulation->flags.fork_semaphore_created = 1;
-	return (0);
+	return (ERR_OK);
 }

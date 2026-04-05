@@ -6,13 +6,13 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 23:02:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/05 17:19:07 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-void	cleanup_semaphores(void)
+void	unlink_semaphores(void)
 {
 	sem_unlink(SEM_FORKS);
 	sem_unlink(SEM_MEAL);
@@ -20,11 +20,18 @@ void	cleanup_semaphores(void)
 	sem_unlink(SEM_STATE);
 }
 
-void	clean_up(t_simulation *sim)
+void	close_semaphores(t_simulation *sim)
 {
 	sem_close(sim->fork_semaphore);
 	sem_close(sim->meal_semaphore);
 	sem_close(sim->print_semaphore);
 	sem_close(sim->state_semaphore);
-	cleanup_semaphores();
+}
+
+void	subprocess_cleanup(t_philosopher *philosopher)
+{
+	close_semaphores(philosopher->sim);
+	if (philosopher->sim->flags.thread_created)
+		pthread_join(philosopher->thread, NULL);
+	return (NULL);
 }

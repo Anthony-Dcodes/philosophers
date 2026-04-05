@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/05 16:23:58 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/05 17:16:37 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 typedef struct s_flags
 {
 	int	philosopher_died;
-	int	n_threads_created;
 	int all_philosophers_full;
 	int	print_semaphore_created;
 	int	state_semaphore_created;
