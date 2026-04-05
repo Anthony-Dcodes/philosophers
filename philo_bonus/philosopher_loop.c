@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/11 22:12:56 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/05 16:38:31 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,5 @@ void handle_single_philosopher(t_philosopher *philosopher)
     sem_wait(philosopher->sim->fork_semaphore);
     log_general(philosopher, FORK);
     usleep(philosopher->sim->time_to_die * 1000);
-    sem_wait(philosopher->sim->fork_semaphore);
+    sem_post(philosopher->sim->fork_semaphore);
 }

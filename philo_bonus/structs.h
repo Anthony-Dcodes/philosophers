@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/11 21:53:41 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/05 16:23:58 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_flags
 	int	state_semaphore_created;
 	int fork_semaphore_created;
 	int meal_semaphore_created;
+	int	thread_created;
 } t_flags;
 
 typedef struct s_simulation

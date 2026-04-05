@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 23:03:11 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/05 16:33:18 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void    monitoring(t_simulation *simulation, t_philosopher *philosophers);
 // Init functions
 void	init_flags(t_flags *flags);
 int	semaphore_init(t_simulation *simulation);
+int	initialize_philosopher_thread(t_philosopher *philosopher, int i);
 
 
 // Get helpers

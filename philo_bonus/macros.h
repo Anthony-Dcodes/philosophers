@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/10 23:41:36 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/05 16:28:09 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ typedef enum e_error {
     ERR_PARSE,
     ERR_MEMORY,
     ERR_SEMAPHORE,
-    ERR_PROCESS
+    ERR_PROCESS,
+	ERR_THREAD
 } t_error;
 
 // Semaphore name

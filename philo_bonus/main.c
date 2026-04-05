@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 23:09:11 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/05 16:34:45 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char *argv[])
 {
 	t_simulation	simulation;
-	t_philosopher	*philosophers;
+	t_philosopher	*philosopher;
 	int				ret;
 	int				i;
 	pid_t			pid;
@@ -24,19 +24,33 @@ int	main(int argc, char *argv[])
 	ret = ERR_OK;
 	init_flags(&simulation.flags);
 	cleanup_semaphores();
+	printf("Main process id: %d\n", (int)getpid());
+	sleep(1);
 	ret = parser_args(argc, argv, &simulation);
 	if (ret != ERR_OK)
 		return (ret);
 	ret = semaphore_init(&simulation);
 	if (ret != ERR_OK)
 		goto cleanup;
-	while (i < simulation.n_philosophers)
+	pid = getpid();
+	philosopher->sim = &simulation;
+	while (i < simulation.n_philosophers && pid != 0) // spawn all child proceses
 	{
 		pid = fork();
-		printf("new process spawned: %d, with pid: %d\n", i, (int)(pid));
+		printf("new process spawned: %d, returned pidid: %d\n", getpid(), (int)(pid));
+		if (pid == 0)
+		{
+			printf("I am child process! %d\n,", getpid());
+			ret = initialize_philosopher_thread(philosopher, i);
+			if (ret != ERR_OK)
+			{
+				// We have a problem huston!
+			}
+
+		}
 		++i;
 	}
-	monitoring(&simulation, philosophers);
+	monitoring(&simulation, philosopher);
 	log_end_of_simulation(&simulation);
 	cleanup:
 		clean_up(&simulation);
