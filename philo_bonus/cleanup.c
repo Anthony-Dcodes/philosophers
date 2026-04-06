@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/05 17:19:07 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/06 21:01:56 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	subprocess_cleanup(t_philosopher *philosopher)
 	close_semaphores(philosopher->sim);
 	if (philosopher->sim->flags.thread_created)
 		pthread_join(philosopher->thread, NULL);
-	return (NULL);
+	return ;
 }
