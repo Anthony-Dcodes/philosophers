@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/07 13:44:32 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/07 13:50:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	main(int argc, char *argv[])
 				exit(ret);
 			sleep(10);
 			monitoring(&simulation, philosopher);
-			log_end_of_simulation(&simulation);
+			log_end_of_simulation(&simulation, &ret);
+			exit(ret);
 			//subprocess_exit:
 			//	subprocess_cleanup(philosopher);
 			//	exit(ret);
