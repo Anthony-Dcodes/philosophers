@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/06 21:18:03 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/07 13:44:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ int	main(int argc, char *argv[])
 			printf("I am child process! %d\n,", getpid());
 			ret = initialize_philosopher_thread(philosopher, i);
 			if (ret != ERR_OK)
-				goto subprocess_exit;
-			sleep(10);
-			//monitoring();
-			subprocess_exit:
-				subprocess_cleanup(philosopher);
 				exit(ret);
+			sleep(10);
+			monitoring(&simulation, philosopher);
+			log_end_of_simulation(&simulation);
+			//subprocess_exit:
+			//	subprocess_cleanup(philosopher);
+			//	exit(ret);
 
 		}
 		else

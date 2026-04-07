@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/07 13:11:32 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/07 13:40:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef struct s_flags
 	int	state_semaphore_created;
 	int fork_semaphore_created;
 	int meal_semaphore_created;
+	int	end_simulation_semaphore_created;
 	int	thread_created;
 } t_flags;
 
@@ -34,6 +35,7 @@ typedef struct s_simulation
 	sem_t	*state_semaphore;
 	sem_t	*fork_semaphore;
 	sem_t	*meal_semaphore;
+	sem_t	*end_simulation_semaphore;
 	t_flags	flags;
 } t_simulation;
 

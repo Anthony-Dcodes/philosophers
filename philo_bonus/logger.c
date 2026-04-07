@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/07 13:28:00 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/07 13:47:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ void	log_death(t_simulation *sim)
 	sem_wait(sim->print_semaphore);
 	timestamp_ms = get_timestamp_ms();
 	printf("%ld %d %s\n", timestamp_ms, philosopher_id, DIED);
-	sem_post(sim->print_semaphore);
+	//sem_post(sim->print_semaphore);
 }
 
+/*
 void	log_all_philosophers_ate(t_simulation *sim)
 {
 	long			timestamp_ms;
@@ -52,11 +53,16 @@ void	log_all_philosophers_ate(t_simulation *sim)
 	printf("%ld %s %d %s\n", timestamp_ms, "all philosophers ate", ate_n_times, "times");
 	sem_post(sim->print_semaphore);
 }
+*/
 
 void	log_end_of_simulation(t_simulation *simulation)
 {
 	if (get_death(simulation))
+	{
 		log_death(simulation);
+		sem_post(simulation->end_simulation_semaphore);
+		exit(ERR_DIED);
+	}
 	else if (get_philosopher_full(simulation))
-		log_all_philosophers_ate(simulation);
+		exit(ERR_OK);
 }

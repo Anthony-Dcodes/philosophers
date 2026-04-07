@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/07 13:28:50 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/07 13:47:17 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	is_more_then_int_max(char *nptr);
 // Logger
 void	log_general(t_philosopher *philosopher, const char *message);
 void	log_death(t_simulation *sim);
-void	log_all_philosophers_ate(t_simulation *sim);
+//void	log_all_philosophers_ate(t_simulation *sim);
 void	log_end_of_simulation(t_simulation *simulation);
 
 // Philosophers main loop / helpers
@@ -76,7 +76,7 @@ void	thinking(t_philosopher *philosopher);
 long	get_timestamp_ms(void);
 
 // Philosphers monitoring
-void	death_monitoring(t_philosopher *philosophers, t_simulation *sim);
+void	death_monitoring(t_philosopher *philosopher, t_simulation *sim);
 void	philosopher_full_monitoring(t_philosopher *philosophers, t_simulation *sim);
 void    monitoring(t_simulation *simulation, t_philosopher *philosophers);
 

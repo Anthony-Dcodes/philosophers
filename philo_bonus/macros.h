@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/06 21:09:04 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/07 13:45:53 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef enum e_error {
     ERR_SEMAPHORE,
     ERR_PROCESS,
 	ERR_THREAD,
-	ERR_FORK
+	ERR_FORK,
+    ERR_DIED
 } t_error;
 
 // Semaphore name
@@ -37,3 +38,4 @@ typedef enum e_error {
 #define SEM_STATE "/sem_state"
 #define SEM_PRINT "/sem_print"
 #define SEM_MEAL "/sem_meal"
+#define SEM_END "/sem_end"

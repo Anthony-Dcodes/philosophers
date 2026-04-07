@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sem_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/05 16:53:08 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/07 13:43:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,9 @@ int	semaphore_init(t_simulation *simulation)
 	if (simulation->fork_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
 	simulation->flags.fork_semaphore_created = 1;
+	simulation->end_simulation_semaphore = sem_open(SEM_END, O_CREAT, 0666, 0);
+	if (simulation->end_simulation_semaphore == SEM_FAILED)
+		return (ERR_SEMAPHORE);
+	simulation->flags.end_simulation_semaphore_created = 1;
 	return (ERR_OK);
 }
