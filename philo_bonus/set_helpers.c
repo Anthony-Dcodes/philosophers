@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_helpers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:11:47 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/11 22:56:38 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/07 13:19:18 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	set_death(t_simulation *simulation, int id)
 	sem_post(simulation->state_semaphore);
 }
 
-void    set_all_philosophers_full(t_simulation *simulation)
+void    set_philosopher_full(t_simulation *simulation)
 {
     sem_wait(simulation->state_semaphore);
-    simulation->flags.all_philosophers_full = 1;
+    simulation->flags.philosopher_full = 1;
     sem_post(simulation->state_semaphore);
 }
 

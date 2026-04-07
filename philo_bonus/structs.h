@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/05 17:16:37 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/07 13:11:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 typedef struct s_flags
 {
 	int	philosopher_died;
-	int all_philosophers_full;
+	int philosopher_full;
 	int	print_semaphore_created;
 	int	state_semaphore_created;
 	int fork_semaphore_created;

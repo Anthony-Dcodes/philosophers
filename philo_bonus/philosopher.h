@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/05 16:49:48 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/07 13:28:50 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ long	get_timestamp_ms(void);
 
 // Philosphers monitoring
 void	death_monitoring(t_philosopher *philosophers, t_simulation *sim);
-void	philosophers_full_monitoring(t_philosopher *philosophers, t_simulation *sim);
+void	philosopher_full_monitoring(t_philosopher *philosophers, t_simulation *sim);
 void    monitoring(t_simulation *simulation, t_philosopher *philosophers);
 
 // Init functions
@@ -88,14 +88,14 @@ int	initialize_philosopher_thread(t_philosopher *philosopher, int i);
 
 // Get helpers
 int get_death(t_simulation *simulation);
-int get_all_philosophers_full(t_simulation *simulation);
+int get_philosopher_full(t_simulation *simulation);
 long get_last_meal(t_philosopher *philosopher);
 int get_meals_eaten(t_philosopher *philosopher);
 
 // Set helpers
 void	set_last_meal_time(t_philosopher *philosopher);
 void	set_death(t_simulation *simulation, int id);
-void    set_all_philosophers_full(t_simulation *simulation);
+void    set_philosopher_full(t_simulation *simulation);
 void    set_increment_meals_eaten(t_philosopher *philosopher);
 
 

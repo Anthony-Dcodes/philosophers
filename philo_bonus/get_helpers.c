@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_helpers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 10:22:01 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/11 22:54:37 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/07 13:25:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int get_death(t_simulation *simulation)
     return (value);
 }
 
-int get_all_philosophers_full(t_simulation *simulation)
+int get_philosopher_full(t_simulation *simulation)
 {
     int value;
 
     sem_wait(simulation->state_semaphore);
-    value = simulation->flags.all_philosophers_full;
+    value = simulation->flags.philosopher_full;
     sem_post(simulation->state_semaphore);
     return (value);
 }

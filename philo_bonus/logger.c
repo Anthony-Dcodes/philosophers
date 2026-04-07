@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logger.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 23:00:14 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/07 13:28:00 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ void	log_end_of_simulation(t_simulation *simulation)
 {
 	if (get_death(simulation))
 		log_death(simulation);
-	else if (get_all_philosophers_full(simulation))
+	else if (get_philosopher_full(simulation))
 		log_all_philosophers_ate(simulation);
 }
