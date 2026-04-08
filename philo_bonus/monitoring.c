@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:55:19 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/08 14:50:16 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/08 16:10:12 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ void    monitoring(t_simulation *simulation, t_philosopher *philosopher)
 	{
 		//printf("Monitoring on pid: %d\n", getpid());
 		usleep(1000);
+		//printf("child monitoring timestamp: %ld, meals_eaten: %d, dead: %d, philo_full: %d\n", get_timestamp_ms(), get_meals_eaten(philosopher), get_death(simulation), get_philosopher_full(simulation));
 		death_monitoring(philosopher, simulation);
 		philosopher_full_monitoring(philosopher, simulation);
 	}
+	//printf("child monitoring timestamp: %ld, meals_eaten: %d, dead: %d, philo_full: %d\n", get_timestamp_ms(), get_meals_eaten(philosopher), get_death(simulation), get_philosopher_full(simulation));
 }
 
 void	death_monitoring(t_philosopher *philosopher, t_simulation *sim)
@@ -41,7 +43,7 @@ void	philosopher_full_monitoring(t_philosopher *philosopher, t_simulation *sim)
 
 	n_times_must_eat = sim->n_times_must_eat;
 	meals_eaten = get_meals_eaten(philosopher);
-	if (meals_eaten < n_times_must_eat)
+	if (meals_eaten >= n_times_must_eat)
 		return ;
 	else
 		set_philosopher_full(philosopher->sim);
