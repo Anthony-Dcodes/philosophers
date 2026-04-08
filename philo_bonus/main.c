@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/08 15:49:37 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/08 16:23:19 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	main(int argc, char *argv[])
 		}
 		else if (pid == 0)
 		{
-			sleep(2);
+			sleep(0);
 			printf("I am child process! %d\n", getpid());
 			ret = initialize_philosopher_thread(philosopher, i);
 			if (ret != ERR_OK)
@@ -73,6 +73,7 @@ int	main(int argc, char *argv[])
 			//sleep(10);
 			monitoring(&simulation, philosopher);
 			log_end_of_simulation(&simulation, &ret);
+			printf("Exiting child\n");
 			exit(ret);
 			//subprocess_exit:
 			//	subprocess_cleanup(philosopher);
@@ -88,16 +89,24 @@ int	main(int argc, char *argv[])
 	full_philos = 0;
 	while (i < simulation.n_philosophers && full_philos != simulation.n_philosophers)
 	{
+		usleep(100000);
+		printf("Main process monitoring i: %d, full_philos: %d, n_philos: %d\n", i, full_philos, simulation.n_philosophers);
 		if (waitpid(pids[i], &status, WNOHANG) > 0)
 		{
+			printf("child exited: %d\n", pids[i]);
 			pids[i] = 0;
 			if (WIFEXITED(status))
 			{
 				if (WEXITSTATUS(status) > 0)
 				{
-					while (pids[j])
+					while (j < simulation.n_philosophers);
 					{
-						printf("killing all processes from main proces\n");
+						printf("killing process: %d\n", pids[j]);
+						if (pids[j] == 0)
+						{
+							printf("skipping reaped process\n");
+							continue;
+						}
 						kill(pids[j], SIGKILL);
 						waitpid(pids[j], &status, 0);
 						++j;
