@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher_actions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/11 22:11:27 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/08 15:14:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-static void	pick_up_forks(t_simulation *simulation)
+static void	pick_up_forks(t_philosopher *philosopher)
 {
-	sem_wait(simulation->fork_semaphore);
-	sem_wait(simulation->fork_semaphore);
+	sem_wait(philosopher->sim->fork_semaphore);
+	log_general(philosopher, FORK);
+	sem_wait(philosopher->sim->fork_semaphore);
+	log_general(philosopher, FORK);
 	return ;
 }
 
@@ -28,7 +30,7 @@ static void	put_down_forks(t_simulation *simulation)
 
 void	eating(t_philosopher *philosopher)
 {
-	pick_up_forks(philosopher->sim);
+	pick_up_forks(philosopher);
 	log_general(philosopher, EAT);
 	set_last_meal_time(philosopher);
 	usleep(philosopher->sim->time_to_eat * 1000);
