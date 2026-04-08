@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/06 21:03:38 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/08 15:50:33 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	initialize_philosopher_thread(t_philosopher *philosopher, int i)
 	int	ret;
 
 	ret = ERR_OK;
+	printf("set philo id to: %d\n", i + 1);
 	philosopher->id = i + 1;
 	philosopher->meals_eaten = 0;
 	ret = pthread_create(&philosopher->thread, NULL, philosopher_loop, philosopher);

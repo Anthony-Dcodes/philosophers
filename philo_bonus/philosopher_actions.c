@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/08 15:14:08 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/08 15:47:21 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 static void	pick_up_forks(t_philosopher *philosopher)
 {
+	sem_wait(philosopher->sim->seats_semaphore);
 	sem_wait(philosopher->sim->fork_semaphore);
 	log_general(philosopher, FORK);
 	sem_wait(philosopher->sim->fork_semaphore);
 	log_general(philosopher, FORK);
+	sem_post(philosopher->sim->seats_semaphore);
 	return ;
 }
 

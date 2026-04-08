@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/08 14:51:58 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/08 15:49:37 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int argc, char *argv[])
 	while (i < simulation.n_philosophers && pid != 0) // spawn all child proceses
 	{
 		pid = fork();
-		printf("new process spawned: %d, returned pidid: %d\n", getpid(), (int)(pid));
+		printf("new process spawned: %d, returned pidid: %d, iterator: %d\n", getpid(), (int)(pid), i);
 		if (pid < 0)
 		{
 			//fork failed

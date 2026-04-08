@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/07 13:43:22 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/08 15:45:47 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,9 @@ int	semaphore_init(t_simulation *simulation)
 	if (simulation->end_simulation_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
 	simulation->flags.end_simulation_semaphore_created = 1;
+	simulation->seats_semaphore = sem_open(SEM_SEATS, O_CREAT, 0666, simulation->n_philosophers / 2);
+	if (simulation->seats_semaphore == SEM_FAILED)
+		return (ERR_SEMAPHORE);
+	simulation->flags.seats_semaphore_created = 1;
 	return (ERR_OK);
 }

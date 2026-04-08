@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/07 13:45:53 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/08 15:43:54 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,4 @@ typedef enum e_error {
 #define SEM_PRINT "/sem_print"
 #define SEM_MEAL "/sem_meal"
 #define SEM_END "/sem_end"
+#define SEM_SEATS "/sem_seats"
