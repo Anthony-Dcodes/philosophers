@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:55:19 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/07 13:26:52 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/08 14:50:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void    monitoring(t_simulation *simulation, t_philosopher *philosopher)
 {
     while (!get_death(simulation) && !get_philosopher_full(simulation))
 	{
+		//printf("Monitoring on pid: %d\n", getpid());
 		usleep(1000);
 		death_monitoring(philosopher, simulation);
 		philosopher_full_monitoring(philosopher, simulation);

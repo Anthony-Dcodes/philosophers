@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/07 13:41:45 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/08 14:28:47 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	unlink_semaphores(void)
 	sem_unlink(SEM_MEAL);
 	sem_unlink(SEM_PRINT);
 	sem_unlink(SEM_STATE);
-	sem_unline(SEM_END);
+	sem_unlink(SEM_END);
 }
 
 void	close_semaphores(t_simulation *sim)

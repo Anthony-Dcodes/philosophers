@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/07 13:49:50 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/08 14:29:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	log_end_of_simulation(t_simulation *simulation, int *ret)
 	{
 		log_death(simulation);
 		sem_post(simulation->end_simulation_semaphore);
-		ret = ERR_DIED;
+		*ret = ERR_DIED;
 	}
 	else if (get_philosopher_full(simulation))
 		ret = ERR_OK;
