@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:55:19 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/08 16:10:12 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 10:52:26 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ void	philosopher_full_monitoring(t_philosopher *philosopher, t_simulation *sim)
 
 	n_times_must_eat = sim->n_times_must_eat;
 	meals_eaten = get_meals_eaten(philosopher);
-	if (meals_eaten >= n_times_must_eat)
-		return ;
-	else
+	//printf("philo id: %d, meals eaten: %d, need to eat: %d\n", philosopher->id, meals_eaten, n_times_must_eat);
+	if (meals_eaten >= n_times_must_eat && n_times_must_eat)
 		set_philosopher_full(philosopher->sim);
 	return ;
 }
