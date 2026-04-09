@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/09 09:20:22 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 11:19:44 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int argc, char *argv[])
 {
 	t_simulation	simulation;
-	t_philosopher	*philosopher;
+	t_philosopher	philosopher;
 	int				ret;
 	int				i;
 	int				j;
@@ -43,15 +43,9 @@ int	main(int argc, char *argv[])
 		ret = ERR_MEMORY;
 		goto cleanup;
 	}
-	philosopher = malloc(sizeof(t_philosopher));
-	if (!philosopher)
-	{
-		ret = ERR_MEMORY;
-		goto cleanup;
-	}
 	printf("pids allocated\n");
 	pid = getpid();
-	philosopher->sim = &simulation;
+	philosopher.sim = &simulation;
 	printf("before while loop\n");
 	while (i < simulation.n_philosophers && pid != 0) // spawn all child proceses
 	{
@@ -67,13 +61,13 @@ int	main(int argc, char *argv[])
 		{
 			sleep(0);
 			printf("I am child process! %d\n", getpid());
-			ret = initialize_philosopher_thread(philosopher, i);
+			ret = initialize_philosopher_thread(&philosopher, i);
 			if (ret != ERR_OK)
 				exit(ret);
 			//sleep(10);
-			monitoring(&simulation, philosopher);
+			monitoring(&simulation, &philosopher);
 			log_end_of_simulation(&simulation, &ret);
-			printf("Exiting child\n");
+			printf("Exiting child: %d, id: %d, meals_eaten: %d, to_eat: %d\n", (int)getpid(), philosopher.id, simulation.n_times_must_eat, philosopher.meals_eaten);
 			exit(ret);
 			//subprocess_exit:
 			//	subprocess_cleanup(philosopher);
@@ -90,6 +84,7 @@ int	main(int argc, char *argv[])
 	//monitoring(&simulation, philosopher);
 	//log_end_of_simulation(&simulation);
 	cleanup:
+		free_memory(pids);
 		unlink_semaphores();
 		return (ret);
 }

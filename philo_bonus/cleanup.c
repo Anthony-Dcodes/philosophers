@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/08 15:44:28 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 11:19:10 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,4 +38,10 @@ void	subprocess_cleanup(t_philosopher *philosopher)
 	if (philosopher->sim->flags.thread_created)
 		pthread_join(philosopher->thread, NULL);
 	return ;
+}
+
+void	free_memory(pid_t *pids)
+{
+	free(pids);
+	pids = NULL;
 }

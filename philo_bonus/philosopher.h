@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/09 09:19:56 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 11:19:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	wrong_number_of_args(void);
 void	unlink_semaphores(void);
 void	close_semaphores(t_simulation *sim);
 void	subprocess_cleanup(t_philosopher *philosopher);
+void	free_memory(pid_t *pids);
 
 // Parsing
 int	parser_args(int argc, char *argv[], t_simulation *t_simulation);
