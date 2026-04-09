@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/09 11:30:15 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 14:38:52 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,16 @@ void	close_semaphores(t_simulation *sim)
 
 void	subprocess_cleanup(t_philosopher *philosopher, pid_t *pids)
 {
-	close_semaphores(philosopher->sim);
+	printf("thread created?: %d\n", philosopher->sim->flags.thread_created);
+	printf("thread value: %lu\n", (unsigned long)philosopher->thread);
 	if (philosopher->sim->flags.thread_created)
+	{
+		printf("About to join thread\n");
 		pthread_join(philosopher->thread, NULL);
+	}
+	printf("thread joined\n");
+	close_semaphores(philosopher->sim);
+	printf("sems closed\n");
 	free(pids);
 	pids = NULL;
 	return ;

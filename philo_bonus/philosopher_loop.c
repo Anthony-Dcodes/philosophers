@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher_loop.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/05 16:38:31 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/09 14:34:44 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	*philosopher_loop(void *arg)
 			}
 		}
 	else
-		while (!philosopher->sim->flags.philosopher_died)
+		while (!get_death(philosopher->sim))
 		{
 			thinking(philosopher);
 			eating(philosopher);

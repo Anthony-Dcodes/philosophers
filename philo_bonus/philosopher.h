@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/09 12:03:41 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 13:40:38 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	init_flags(t_flags *flags);
 int	semaphore_init(t_simulation *simulation);
 int	initialize_philosopher_thread(t_philosopher *philosopher, int i);
 int	pids_malloc(pid_t **pids, t_simulation *simulation);
+int	preclean_init_malloc(t_simulation *simulation, pid_t **pids, t_philosopher *philosopher);
 
 
 // Get helpers
@@ -101,10 +102,10 @@ void    set_philosopher_full(t_simulation *simulation);
 void    set_increment_meals_eaten(t_philosopher *philosopher);
 
 // Children management
-int    monitor_children(pid_t *pids, t_simulation simulation);
-void    terminate_children(pid_t *pids, t_simulation simulation);
-int spawn_children(t_simulation simulation, t_philosopher philosopher, pid_t *pids);
-void    children_execution(t_philosopher philosopher, t_simulation simulation, int i, pid_t *pids);
+void    monitor_children(pid_t **pids, t_simulation *simulation);
+void    terminate_children(pid_t **pids, t_simulation *simulation);
+int spawn_children(t_simulation *simulation, t_philosopher *philosopher, pid_t **pids);
+void    children_execution(t_philosopher *philosopher, t_simulation *simulation, int i, pid_t **pids);
 
 
 

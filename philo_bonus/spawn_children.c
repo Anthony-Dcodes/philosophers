@@ -6,13 +6,13 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 11:43:03 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/09 11:59:26 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 14:18:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int spawn_children(t_simulation simulation, t_philosopher philosopher, pid_t *pids)
+int spawn_children(t_simulation *simulation, t_philosopher *philosopher, pid_t **pids)
 {
     int i;
     pid_t   pid;
@@ -21,7 +21,7 @@ int spawn_children(t_simulation simulation, t_philosopher philosopher, pid_t *pi
     i = 0;
     pid = getpid();
     ret = ERR_OK;
-    while (i < simulation.n_philosophers && pid != 0) // spawn all child proceses
+    while (i < simulation->n_philosophers && pid != 0) // spawn all child proceses
 	{
 		pid = fork();
 		printf("new process spawned: %d, returned pidid: %d, iterator: %d\n", getpid(), (int)(pid), i);
@@ -30,25 +30,27 @@ int spawn_children(t_simulation simulation, t_philosopher philosopher, pid_t *pi
 		else if (pid == 0)
             children_execution(philosopher, simulation, i, pids);
 		else
-			pids[i] = pid;
+			(*pids)[i] = pid;
 		++i;
 	}
     return (ERR_OK);
 }
 
-void    children_execution(t_philosopher philosopher, t_simulation simulation, int i, pid_t *pids)
+void    children_execution(t_philosopher *philosopher, t_simulation *simulation, int i, pid_t **pids)
 {
     int ret;
     
     ret = ERR_OK;
     printf("I am child process! %d\n", getpid());
-    ret = initialize_philosopher_thread(&philosopher, i);
+    ret = initialize_philosopher_thread(philosopher, i);
     if (ret != ERR_OK)
         goto subprocess_exit;
-    monitoring(&simulation, &philosopher);
-    log_end_of_simulation(&simulation, &ret);
-    printf("Exiting child: %d, id: %d, meals_eaten: %d, to_eat: %d\n", (int)getpid(), philosopher.id, simulation.n_times_must_eat, philosopher.meals_eaten);
+    monitoring(simulation, philosopher);
+    log_end_of_simulation(simulation, &ret);
+    printf("Exiting child: %d, id: %d, meals_eaten: %d, to_eat: %d\n", (int)getpid(), philosopher->id, simulation->n_times_must_eat, philosopher->meals_eaten);
     subprocess_exit:
-        subprocess_cleanup(&philosopher, pids);
+        printf("subprocess_exit started\n");
+        subprocess_cleanup(philosopher, *pids);
+        printf("after subprocess_cleanup\n");
         exit(ret);
 }

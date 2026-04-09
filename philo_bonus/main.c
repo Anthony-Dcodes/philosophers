@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/09 12:04:18 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 14:04:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,28 +21,20 @@ int	main(int argc, char *argv[])
 	pid_t			*pids;
 
 	ret = ERR_OK;
-	init_flags(&simulation.flags);
-	unlink_semaphores();
 	printf("Main process id: %d\n", (int)getpid());
 	ret = parser_args(argc, argv, &simulation);
 	if (ret != ERR_OK)
-		return (ret);
-	ret = semaphore_init(&simulation);
+		goto cleanup;
+	ret = preclean_init_malloc(&simulation, &pids, &philosopher);
 	if (ret != ERR_OK)
 		goto cleanup;
-	printf("semaphores done\n");
-	ret = pids_malloc(&pids, &simulation);
-	if (ret != ERR_OK)
-		goto cleanup;
-	printf("pids allocated\n");
-	philosopher.sim = &simulation;
 	printf("before while loop\n");
-	ret = spawn_children(simulation, philosopher, pids);
-	full_philos = monitor_children(pids, simulation);
-	if (full_philos == simulation.n_philosophers)
-		printf("All philosophers are full!\n");
+	ret = spawn_children(&simulation, &philosopher, &pids);
+	if (ret != ERR_OK)
+		goto cleanup;
+	monitor_children(&pids, &simulation);
 	cleanup:
-		terminate_children(pids, simulation);
+		terminate_children(&pids, &simulation);
 		free_memory(pids);
 		close_semaphores(&simulation);
 		unlink_semaphores();
