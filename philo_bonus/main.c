@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/09 11:52:46 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 12:04:18 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,9 @@ int	main(int argc, char *argv[])
 	if (ret != ERR_OK)
 		goto cleanup;
 	printf("semaphores done\n");
-	pids = malloc(sizeof(pid_t) * simulation.n_philosophers);
-	if (!pids)
-	{
-		ret = ERR_MEMORY;
+	ret = pids_malloc(&pids, &simulation);
+	if (ret != ERR_OK)
 		goto cleanup;
-	}
-	simulation.flags.pids_mallocked = 1;
 	printf("pids allocated\n");
 	philosopher.sim = &simulation;
 	printf("before while loop\n");

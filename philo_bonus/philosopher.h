@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/09 11:59:07 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 12:03:41 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ void    monitoring(t_simulation *simulation, t_philosopher *philosophers);
 void	init_flags(t_flags *flags);
 int	semaphore_init(t_simulation *simulation);
 int	initialize_philosopher_thread(t_philosopher *philosopher, int i);
+int	pids_malloc(pid_t **pids, t_simulation *simulation);
 
 
 // Get helpers

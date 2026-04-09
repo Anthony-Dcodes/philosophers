@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/08 16:12:25 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 12:03:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,13 @@ int	initialize_philosopher_thread(t_philosopher *philosopher, int i)
 	}
 	philosopher->sim->flags.thread_created = 1;
 	return (ret);
+}
+
+int	pids_malloc(pid_t **pids, t_simulation *simulation)
+{
+	*pids = malloc(sizeof(pid_t) * simulation->n_philosophers);
+	if (!pids)
+		return (ERR_MEMORY);
+	simulation->flags.pids_mallocked = 1;
+	return (ERR_OK);
 }
