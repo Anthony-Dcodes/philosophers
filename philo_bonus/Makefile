@@ -16,7 +16,8 @@ SRCS = \
 	sem_init.c \
 	get_helpers.c \
 	set_helpers.c \
-	monitor_children.c
+	monitor_children.c \
+	spawn_children.c
 
 OBJS = $(SRCS:.c=.o)
 
