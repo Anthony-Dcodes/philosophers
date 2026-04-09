@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/08 15:43:28 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 11:33:20 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_flags
 	int	end_simulation_semaphore_created;
 	int	seats_semaphore_created;
 	int	thread_created;
+	int	pids_mallocked;
 } t_flags;
 
 typedef struct s_simulation

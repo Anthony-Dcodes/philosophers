@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/09 11:19:44 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 11:33:52 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main(int argc, char *argv[])
 		ret = ERR_MEMORY;
 		goto cleanup;
 	}
+	simulation.flags.pids_mallocked = 1;
 	printf("pids allocated\n");
 	pid = getpid();
 	philosopher.sim = &simulation;
@@ -63,15 +64,14 @@ int	main(int argc, char *argv[])
 			printf("I am child process! %d\n", getpid());
 			ret = initialize_philosopher_thread(&philosopher, i);
 			if (ret != ERR_OK)
-				exit(ret);
+				goto subprocess_exit;
 			//sleep(10);
 			monitoring(&simulation, &philosopher);
 			log_end_of_simulation(&simulation, &ret);
 			printf("Exiting child: %d, id: %d, meals_eaten: %d, to_eat: %d\n", (int)getpid(), philosopher.id, simulation.n_times_must_eat, philosopher.meals_eaten);
-			exit(ret);
-			//subprocess_exit:
-			//	subprocess_cleanup(philosopher);
-			//	exit(ret);
+			subprocess_exit:
+				subprocess_cleanup(&philosopher, pids);
+				exit(ret);
 
 		}
 		else
@@ -84,7 +84,9 @@ int	main(int argc, char *argv[])
 	//monitoring(&simulation, philosopher);
 	//log_end_of_simulation(&simulation);
 	cleanup:
+		terminate_children(pids, simulation);
 		free_memory(pids);
+		close_semaphores(&simulation);
 		unlink_semaphores();
 		return (ret);
 }
