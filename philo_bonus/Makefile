@@ -15,7 +15,8 @@ SRCS = \
 	philosopher_loop.c \
 	sem_init.c \
 	get_helpers.c \
-	set_helpers.c
+	set_helpers.c \
+	monitor_children.c
 
 OBJS = $(SRCS:.c=.o)
 

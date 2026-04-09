@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/07 13:50:06 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 09:19:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,9 @@ void	set_last_meal_time(t_philosopher *philosopher);
 void	set_death(t_simulation *simulation, int id);
 void    set_philosopher_full(t_simulation *simulation);
 void    set_increment_meals_eaten(t_philosopher *philosopher);
+
+// Monitor children
+int    monitor_children(pid_t *pids, t_simulation simulation);
+void    terminate_children(pid_t *pids, t_simulation simulation);
 
 

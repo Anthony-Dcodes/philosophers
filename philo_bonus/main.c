@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/09 09:06:21 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/09 09:20:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,38 +84,7 @@ int	main(int argc, char *argv[])
 			pids[i] = pid;
 		++i;
 	}
-	i = 0;
-	j = 0;
-	full_philos = 0;
-	while (full_philos != simulation.n_philosophers)
-	{
-		if (i == simulation.n_philosophers)
-			i = 0;
-		usleep(100000);
-		printf("Main process monitoring i: %d, full_philos: %d, n_philos: %d\n", i, full_philos, simulation.n_philosophers);
-		if (waitpid(pids[i], &status, WNOHANG) > 0)
-		{
-			printf("child exited: %d, iterator i: %d\n", pids[i], i);
-			pids[i] = 0;
-			if (WIFEXITED(status) && WEXITSTATUS(status) > 0)
-			{
-				while (j < simulation.n_philosophers)
-				{
-					printf("killing process: %d\n", pids[j]);
-					if (pids[j] != 0)
-					{
-						kill(pids[j], SIGKILL);
-						waitpid(pids[j], &status, 0);
-					}
-					++j;
-				}
-				break;
-			}
-			else
-				++full_philos;
-		}
-		++i;
-	}
+	full_philos = monitor_children(pids, simulation);
 	if (full_philos == simulation.n_philosophers)
 		printf("All philosophers are full!\n");
 	//monitoring(&simulation, philosopher);
