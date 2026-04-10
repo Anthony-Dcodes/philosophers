@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   logger.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/08 14:29:29 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/10 19:01:36 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,28 +17,15 @@ void	log_general(t_philosopher *philosopher, const char *message)
 	long			timestamp_ms;
 	int				philosopher_n;
 
+	sem_wait(philosopher->sim->end_simulation_semaphore);
+	sem_wait(philosopher->sim->print_semaphore);
+	philosopher_n = philosopher->id;
+	timestamp_ms = get_timestamp_ms();
+	printf("%ld %d %s\n", timestamp_ms, philosopher_n, message);
+	sem_post(philosopher->sim->print_semaphore);
 	if (get_death(philosopher->sim))
 		return ;
-	else
-	{
-		sem_wait(philosopher->sim->print_semaphore);
-		philosopher_n = philosopher->id;
-		timestamp_ms = get_timestamp_ms();
-		printf("%ld %d %s\n", timestamp_ms, philosopher_n, message);
-		sem_post(philosopher->sim->print_semaphore);
-	}
-}
-
-void	log_death(t_simulation *sim)
-{
-	long			timestamp_ms;
-	int				philosopher_id;
-
-	philosopher_id = get_death(sim);
-	sem_wait(sim->print_semaphore);
-	timestamp_ms = get_timestamp_ms();
-	printf("%ld %d %s\n", timestamp_ms, philosopher_id, DIED);
-	//sem_post(sim->print_semaphore);
+	sem_post(philosopher->sim->end_simulation_semaphore);
 }
 
 /*
@@ -55,14 +42,13 @@ void	log_all_philosophers_ate(t_simulation *sim)
 }
 */
 
-void	log_end_of_simulation(t_simulation *simulation, int *ret)
+void	log_end_of_simulation(t_philosopher *philosopher, int *ret)
 {
-	if (get_death(simulation))
+	if (get_death(philosopher->sim))
 	{
-		log_death(simulation);
-		sem_post(simulation->end_simulation_semaphore);
+		log_general(philosopher, DIED);
 		*ret = ERR_DIED;
 	}
-	else if (get_philosopher_full(simulation))
+	else if (get_philosopher_full(philosopher->sim))
 		ret = ERR_OK;
 }
