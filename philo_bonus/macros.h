@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/08 15:43:54 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/11 20:10:11 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,17 @@
 #define DIED "died"
 
 // ERROR CODES
-typedef enum e_error {
-    ERR_OK = 0,
-    ERR_PARSE,
-    ERR_MEMORY,
-    ERR_SEMAPHORE,
-    ERR_PROCESS,
+typedef enum e_error
+{
+	ERR_OK = 0,
+	ERR_PARSE,
+	ERR_MEMORY,
+	ERR_SEMAPHORE,
+	ERR_PROCESS,
 	ERR_THREAD,
 	ERR_FORK,
-    ERR_DIED
-} t_error;
+	ERR_DIED
+}	t_error;
 
 // Semaphore name
 #define SEM_FORKS "/sem_forks"
