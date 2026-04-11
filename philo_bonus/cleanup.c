@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 20:12:51 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/11 20:14:16 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/11 20:34:39 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,13 @@ void	subprocess_cleanup(t_philosopher *philosopher, pid_t *pids)
 	return ;
 }
 
-//void	main_process_cleanup()
+void	main_process_cleanup(pid_t *pids, t_simulation *simulation)
+{
+	if (simulation->flags.pids_mallocked)
+	{
+		terminate_children(&pids, simulation);
+		free_memory(pids);
+	}
+	close_semaphores(simulation);
+	unlink_semaphores();
+}

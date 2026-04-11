@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/11 20:07:31 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/11 20:20:23 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ void	unlink_semaphores(void);
 void	close_semaphores(t_simulation *sim);
 void	subprocess_cleanup(t_philosopher *philosopher, pid_t *pids);
 void	free_memory(pid_t *pids);
+void	main_process_cleanup(pid_t *pids, t_simulation *simulation);
+void    terminate_children(pid_t **pids, t_simulation *simulation);
 
 // Parsing
 int	parser_args(int argc, char *argv[], t_simulation *t_simulation);
@@ -103,7 +105,6 @@ void    set_increment_meals_eaten(t_philosopher *philosopher);
 
 // Children management
 void    monitor_children(pid_t **pids, t_simulation *simulation);
-void    terminate_children(pid_t **pids, t_simulation *simulation);
 int spawn_children(t_simulation *simulation, t_philosopher *philosopher, pid_t **pids);
 void    children_execution(t_philosopher *philosopher, t_simulation *simulation, int i, pid_t **pids);
 
