@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/10 19:01:36 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/11 17:07:26 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,16 @@ void	log_general(t_philosopher *philosopher, const char *message)
 	int				philosopher_n;
 
 	sem_wait(philosopher->sim->end_simulation_semaphore);
+	if (get_death(philosopher->sim))
+	{
+		sem_post(philosopher->sim->end_simulation_semaphore);
+		return ;
+	}
 	sem_wait(philosopher->sim->print_semaphore);
 	philosopher_n = philosopher->id;
 	timestamp_ms = get_timestamp_ms();
 	printf("%ld %d %s\n", timestamp_ms, philosopher_n, message);
 	sem_post(philosopher->sim->print_semaphore);
-	if (get_death(philosopher->sim))
-		return ;
 	sem_post(philosopher->sim->end_simulation_semaphore);
 }
 
@@ -44,9 +47,17 @@ void	log_all_philosophers_ate(t_simulation *sim)
 
 void	log_end_of_simulation(t_philosopher *philosopher, int *ret)
 {
+	int	philosopher_n;
+	long	timestamp_ms;
+
 	if (get_death(philosopher->sim))
 	{
-		log_general(philosopher, DIED);
+		sem_wait(philosopher->sim->end_simulation_semaphore);
+		sem_wait(philosopher->sim->print_semaphore);
+		philosopher_n = philosopher->id;
+		timestamp_ms = get_timestamp_ms();
+		printf("%ld %d %s\n", timestamp_ms, philosopher_n, DIED);
+		sem_post(philosopher->sim->print_semaphore);
 		*ret = ERR_DIED;
 	}
 	else if (get_philosopher_full(philosopher->sim))

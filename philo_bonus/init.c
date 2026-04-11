@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/09 14:05:51 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/11 16:24:46 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,19 @@ int	pids_malloc(pid_t **pids, t_simulation *simulation)
 int	preclean_init_malloc(t_simulation *simulation, pid_t **pids, t_philosopher *philosopher)
 {
 	int	ret;
-	
+
 	ret = ERR_OK;
 	init_flags(&simulation->flags);
 	unlink_semaphores();
-	printf("Main process id: %d\n", (int)getpid());
+	//printf("Main process id: %d\n", (int)getpid());
 	ret = semaphore_init(simulation);
 	if (ret != ERR_OK)
 		return (ret);
-	printf("semaphores done\n");
+	//printf("semaphores done\n");
 	ret = pids_malloc(pids, simulation);
 	if (ret != ERR_OK)
 		return (ret);
-	printf("pids allocated\n");
+	//printf("pids allocated\n");
 	philosopher->sim = simulation;
 	return (ret);
 }
