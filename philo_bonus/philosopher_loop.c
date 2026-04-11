@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher_loop.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/09 14:34:44 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/11 20:49:29 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,38 +16,39 @@ void	*philosopher_loop(void *arg)
 {
 	t_philosopher	*philosopher;
 
-	philosopher = (t_philosopher*)arg;
+	philosopher = (t_philosopher *)arg;
 	set_last_meal_time(philosopher);
 	if (philosopher->sim->n_philosophers == 1)
-	{
 		handle_single_philosopher(philosopher);
-        return (NULL);
-	}
 	else if (philosopher->sim->n_times_must_eat)
+	{
+		while (get_meals_eaten(philosopher) < philosopher->sim->n_times_must_eat
+			&& !get_death(philosopher->sim))
 		{
-			while (get_meals_eaten(philosopher) < philosopher->sim->n_times_must_eat && !get_death(philosopher->sim))
-			{
-				thinking(philosopher);
-				eating(philosopher);
-				sleeping(philosopher);
-				set_increment_meals_eaten(philosopher);
-			}
+			think_eat_sleep(philosopher);
+			set_increment_meals_eaten(philosopher);
 		}
+	}
 	else
+	{
 		while (!get_death(philosopher->sim))
-		{
-			thinking(philosopher);
-			eating(philosopher);
-			sleeping(philosopher);
-		}
+			think_eat_sleep(philosopher);
+	}
 	return (NULL);
 }
 
-void handle_single_philosopher(t_philosopher *philosopher)
+void	handle_single_philosopher(t_philosopher *philosopher)
 {
-    thinking(philosopher);
-    sem_wait(philosopher->sim->fork_semaphore);
-    log_general(philosopher, FORK);
-    usleep(philosopher->sim->time_to_die * 1000);
-    sem_post(philosopher->sim->fork_semaphore);
+	thinking(philosopher);
+	sem_wait(philosopher->sim->fork_semaphore);
+	log_general(philosopher, FORK);
+	usleep(philosopher->sim->time_to_die * 1000);
+	sem_post(philosopher->sim->fork_semaphore);
+}
+
+void	think_eat_sleep(t_philosopher *philosopher)
+{
+	thinking(philosopher);
+	eating(philosopher);
+	sleeping(philosopher);
 }
