@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set_helpers.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:11:47 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/07 13:19:18 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/11 20:51:48 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_last_meal_time(t_philosopher *philosopher)
 {
-	long			timestamp_ms;
+	long	timestamp_ms;
 
 	sem_wait(philosopher->sim->meal_semaphore);
 	timestamp_ms = get_timestamp_ms();
@@ -29,16 +29,16 @@ void	set_death(t_simulation *simulation, int id)
 	sem_post(simulation->state_semaphore);
 }
 
-void    set_philosopher_full(t_simulation *simulation)
+void	set_philosopher_full(t_simulation *simulation)
 {
-    sem_wait(simulation->state_semaphore);
-    simulation->flags.philosopher_full = 1;
-    sem_post(simulation->state_semaphore);
+	sem_wait(simulation->state_semaphore);
+	simulation->flags.philosopher_full = 1;
+	sem_post(simulation->state_semaphore);
 }
 
-void    set_increment_meals_eaten(t_philosopher *philosopher)
+void	set_increment_meals_eaten(t_philosopher *philosopher)
 {
-    sem_wait(philosopher->sim->meal_semaphore);
-    ++philosopher->meals_eaten;
-    sem_post(philosopher->sim->meal_semaphore);
+	sem_wait(philosopher->sim->meal_semaphore);
+	++philosopher->meals_eaten;
+	sem_post(philosopher->sim->meal_semaphore);
 }
