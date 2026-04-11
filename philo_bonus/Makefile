@@ -17,7 +17,8 @@ SRCS = \
 	get_helpers.c \
 	set_helpers.c \
 	monitor_children.c \
-	spawn_children.c
+	spawn_children.c \
+	cleanup_helpers.c
 
 OBJS = $(SRCS:.c=.o)
 

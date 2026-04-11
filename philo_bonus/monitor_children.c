@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 09:09:43 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/11 20:07:47 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/11 20:13:22 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,23 +42,4 @@ void    monitor_children(pid_t **pids, t_simulation *simulation)
 	}
     if (full_philos == simulation->n_philosophers)
 		log_all_philosophers_ate(simulation);
-}
-
-void    terminate_children(pid_t **pids, t_simulation *simulation)
-{
-    int j;
-
-    j = 0;
-    while (j < simulation->n_philosophers)
-    {
-        if ((*pids)[j] != 0)
-        {
-			printf("killing process: %d\n", (*pids)[j]);
-            kill((*pids)[j], SIGKILL);
-            waitpid((*pids)[j], NULL, 0);
-			(*pids)[j] = 0;
-        }
-        ++j;
-    }
-    return ;
 }
