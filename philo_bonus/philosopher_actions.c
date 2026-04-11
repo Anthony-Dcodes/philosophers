@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/10 18:35:41 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/11 20:42:58 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,3 @@ void	thinking(t_philosopher *philosopher)
 {
 	log_general(philosopher, THINK);
 }
-
