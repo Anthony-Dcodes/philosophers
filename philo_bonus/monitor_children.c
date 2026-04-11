@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 09:09:43 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/11 16:34:47 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/11 20:07:47 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void    monitor_children(pid_t **pids, t_simulation *simulation)
 		++i;
 	}
     if (full_philos == simulation->n_philosophers)
-		printf("All philosophers are full!\n");
+		log_all_philosophers_ate(simulation);
 }
 
 void    terminate_children(pid_t **pids, t_simulation *simulation)
