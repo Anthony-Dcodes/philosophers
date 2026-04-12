@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/11 20:49:03 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/12 12:17:15 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	is_more_then_int_max(char *nptr);
 // Logger
 void	log_general(t_philosopher *philosopher, const char *message);
 //void	log_death(t_simulation *sim);
-void	log_all_philosophers_ate(t_simulation *sim);
+void	log_all_philosophers_ate(t_simulation *sim, int full_philos);
 void	log_end_of_simulation(t_philosopher *philosopher, int *ret);
 
 // Philosophers main loop / helpers
@@ -108,6 +108,6 @@ void    set_increment_meals_eaten(t_philosopher *philosopher);
 void    monitor_children(pid_t **pids, t_simulation *simulation);
 int spawn_children(t_simulation *simulation, t_philosopher *philosopher, pid_t **pids);
 void    children_execution(t_philosopher *philosopher, t_simulation *simulation, int i, pid_t **pids);
-
+int	reap_pid_terminate_rest(pid_t **pids, t_simulation *simulation, int i, int *full_philos);
 
 
