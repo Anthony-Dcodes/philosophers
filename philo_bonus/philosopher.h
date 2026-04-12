@@ -6,44 +6,45 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/12 12:17:15 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/12 12:29:51 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-# include <stdio.h> // printf
-# include <stdlib.h> // malloc, free, exit
-# include <string.h> // memset
-# include <unistd.h> // write, usleep, fork
-# include <sys/time.h> // gettimeofday
-# include <limits.h> // INT_MAX
-# include <signal.h> // kill
-# include <sys/wait.h> // waitpid
-# include <fcntl.h> // for O_CREAT
+#include <stdio.h> // printf
+#include <stdlib.h> // malloc, free, exit
+#include <string.h> // memset
+#include <unistd.h> // write, usleep, fork
+#include <sys/time.h> // gettimeofday
+#include <limits.h> // INT_MAX
+#include <signal.h> // kill
+#include <sys/wait.h> // waitpid
+#include <fcntl.h> // for O_CREAT
 
 /*
 sem_open - initialize and open a named semaphore
 sem_close - close a named semaphore
 sem_post - increments semaphore by one
 sem_wait - decrements semaphore by one
-sem_unlink - removes named semaphore, removed immediately, desctoryed once all other processes close it
+sem_unlink - removes named semaphore, removed immediately,
+			desctoryed once all other processes close it
 */
-# include <semaphore.h>
+#include <semaphore.h>
 /*
 pthread_create - create new thread
 pthread_detach - detach a thread (alternative to pthread_join)
 pthread_join - wait for a thread to finish
 */
-# include <pthread.h>
+#include <pthread.h>
 
-# include "macros.h"
-# include "structs.h"
+#include "macros.h"
+#include "structs.h"
 
 // Error functions
-int	wrong_number_format(void);
-int	not_an_int(void);
-int	wrong_number_of_args(void);
+int		wrong_number_format(void);
+int		not_an_int(void);
+int		wrong_number_of_args(void);
 
 // Cleanup
 void	unlink_semaphores(void);
@@ -51,14 +52,14 @@ void	close_semaphores(t_simulation *sim);
 void	subprocess_cleanup(t_philosopher *philosopher, pid_t *pids);
 void	free_memory(pid_t *pids);
 void	main_process_cleanup(pid_t *pids, t_simulation *simulation);
-void    terminate_children(pid_t **pids, t_simulation *simulation);
+void	terminate_children(pid_t **pids, t_simulation *simulation);
 
 // Parsing
-int	parser_args(int argc, char *argv[], t_simulation *t_simulation);
-int	is_int(char *str);
-int	ft_isdigit(int c);
-int	ft_atoi(const char *nptr);
-int	is_more_then_int_max(char *nptr);
+int		parser_args(int argc, char *argv[], t_simulation *t_simulation);
+int		is_int(char *str);
+int		ft_isdigit(int c);
+int		ft_atoi(const char *nptr);
+int		is_more_then_int_max(char *nptr);
 
 // Logger
 void	log_general(t_philosopher *philosopher, const char *message);
@@ -68,7 +69,7 @@ void	log_end_of_simulation(t_philosopher *philosopher, int *ret);
 
 // Philosophers main loop / helpers
 void	*philosopher_loop(void *arg);
-void    handle_single_philosopher(t_philosopher *philosopher);
+void	handle_single_philosopher(t_philosopher *philosopher);
 void	think_eat_sleep(t_philosopher *philosopher);
 
 // Philosophers states
@@ -81,33 +82,35 @@ long	get_timestamp_ms(void);
 
 // Philosphers monitoring
 void	death_monitoring(t_philosopher *philosopher, t_simulation *sim);
-void	philosopher_full_monitoring(t_philosopher *philosophers, t_simulation *sim);
-void    monitoring(t_simulation *simulation, t_philosopher *philosophers);
+void	philosopher_full_monitoring(t_philosopher *philosophers,
+			t_simulation *sim);
+void	monitoring(t_simulation *simulation, t_philosopher *philosophers);
 
 // Init functions
 void	init_flags(t_flags *flags);
-int	semaphore_init(t_simulation *simulation);
-int	initialize_philosopher_thread(t_philosopher *philosopher, int i);
-int	pids_malloc(pid_t **pids, t_simulation *simulation);
-int	preclean_init_malloc(t_simulation *simulation, pid_t **pids, t_philosopher *philosopher);
-
+int		semaphore_init(t_simulation *simulation);
+int		initialize_philosopher_thread(t_philosopher *philosopher, int i);
+int		pids_malloc(pid_t **pids, t_simulation *simulation);
+int		preclean_init_malloc(t_simulation *simulation, pid_t **pids,
+			t_philosopher *philosopher);
 
 // Get helpers
-int get_death(t_simulation *simulation);
-int get_philosopher_full(t_simulation *simulation);
-long get_last_meal(t_philosopher *philosopher);
-int get_meals_eaten(t_philosopher *philosopher);
+int		get_death(t_simulation *simulation);
+int		get_philosopher_full(t_simulation *simulation);
+long	get_last_meal(t_philosopher *philosopher);
+int		get_meals_eaten(t_philosopher *philosopher);
 
 // Set helpers
 void	set_last_meal_time(t_philosopher *philosopher);
 void	set_death(t_simulation *simulation, int id);
-void    set_philosopher_full(t_simulation *simulation);
-void    set_increment_meals_eaten(t_philosopher *philosopher);
+void	set_philosopher_full(t_simulation *simulation);
+void	set_increment_meals_eaten(t_philosopher *philosopher);
 
 // Children management
-void    monitor_children(pid_t **pids, t_simulation *simulation);
-int spawn_children(t_simulation *simulation, t_philosopher *philosopher, pid_t **pids);
-void    children_execution(t_philosopher *philosopher, t_simulation *simulation, int i, pid_t **pids);
-int	reap_pid_terminate_rest(pid_t **pids, t_simulation *simulation, int i, int *full_philos);
-
-
+void	monitor_children(pid_t **pids, t_simulation *simulation);
+int		spawn_children(t_simulation *simulation,
+			t_philosopher *philosopher, pid_t **pids);
+void	children_execution(t_philosopher *philosopher,
+			t_simulation *simulation, int i, pid_t **pids);
+int		reap_pid_terminate_rest(pid_t **pids,
+			t_simulation *simulation, int i, int *full_philos);
