@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 11:43:03 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/11 20:54:39 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/12 11:49:51 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,14 @@ void	children_execution(t_philosopher *philosopher,
 
 	ret = ERR_OK;
 	ret = initialize_philosopher_thread(philosopher, i);
-	if (ret != ERR_OK)
-		goto subprocess_exit;
-	monitoring(simulation, philosopher);
-	subprocess_exit:
+	if (ret == ERR_OK)
+		monitoring(simulation, philosopher);
 	if (philosopher->sim->flags.thread_created)
 	{
-		printf("About to join thread on process: %d, philo id: %d\n", getpid(), philosopher->id);
 		pthread_join(philosopher->thread, NULL);
 	}
 	log_end_of_simulation(philosopher, &ret);
 	close_semaphores(philosopher->sim);
-	printf("sems closed\n");
 	free(*pids);
 	exit(ret);
 }
