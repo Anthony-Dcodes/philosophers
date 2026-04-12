@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/12 12:22:04 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/12 23:29:32 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,11 @@ void	log_general(t_philosopher *philosopher, const char *message)
 	long	timestamp_ms;
 	int		philosopher_n;
 
-	sem_wait(philosopher->sim->end_simulation_semaphore);
 	if (get_death(philosopher->sim))
 	{
-		sem_post(philosopher->sim->end_simulation_semaphore);
 		return ;
 	}
+	sem_wait(philosopher->sim->end_simulation_semaphore);
 	sem_wait(philosopher->sim->print_semaphore);
 	philosopher_n = philosopher->id;
 	timestamp_ms = get_timestamp_ms();
