@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/11 20:13:26 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/12 12:30:52 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,21 @@ void	free_memory(pid_t *pids)
 	pids = NULL;
 }
 
-void    terminate_children(pid_t **pids, t_simulation *simulation)
+void	terminate_children(pid_t **pids, t_simulation *simulation)
 {
-    int j;
+	int	j;
 
-    j = 0;
-    while (j < simulation->n_philosophers)
-    {
-        if ((*pids)[j] != 0)
-        {
+	j = 0;
+	while (j < simulation->n_philosophers)
+	{
+		if ((*pids)[j] != 0)
+		{
 			printf("killing process: %d\n", (*pids)[j]);
-            kill((*pids)[j], SIGKILL);
-            waitpid((*pids)[j], NULL, 0);
+			kill((*pids)[j], SIGKILL);
+			waitpid((*pids)[j], NULL, 0);
 			(*pids)[j] = 0;
-        }
-        ++j;
-    }
-    return ;
+		}
+		++j;
+	}
+	return ;
 }
-
-
