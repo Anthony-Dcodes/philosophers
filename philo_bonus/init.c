@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/11 20:04:55 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/12 13:09:12 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	initialize_philosopher_thread(t_philosopher *philosopher, int i)
 
 	ret = ERR_OK;
 	philosopher->id = i + 1;
-	philosopher->meals_eaten = 0;
 	ret = pthread_create(&philosopher->thread, NULL,
 			philosopher_loop, philosopher);
 	if (ret != ERR_OK)

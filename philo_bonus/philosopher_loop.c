@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/11 20:49:29 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/12 13:09:38 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	*philosopher_loop(void *arg)
 	t_philosopher	*philosopher;
 
 	philosopher = (t_philosopher *)arg;
-	set_last_meal_time(philosopher);
 	if (philosopher->sim->n_philosophers == 1)
 		handle_single_philosopher(philosopher);
 	else if (philosopher->sim->n_times_must_eat)

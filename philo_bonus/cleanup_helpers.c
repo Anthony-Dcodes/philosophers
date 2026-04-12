@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/12 12:30:52 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/12 12:32:00 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	terminate_children(pid_t **pids, t_simulation *simulation)
 	{
 		if ((*pids)[j] != 0)
 		{
-			printf("killing process: %d\n", (*pids)[j]);
 			kill((*pids)[j], SIGKILL);
 			waitpid((*pids)[j], NULL, 0);
 			(*pids)[j] = 0;

@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:55:19 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/11 20:41:59 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/12 13:13:07 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,9 @@ void	death_monitoring(t_philosopher *philosopher, t_simulation *sim)
 
 	current_time_ms = get_timestamp_ms();
 	if (current_time_ms - get_last_meal(philosopher) >= sim->time_to_die)
+	{
 		set_death(sim, philosopher->id);
+	}
 	return ;
 }
 

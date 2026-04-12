@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 11:43:03 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/12 11:49:51 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/12 13:09:16 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	children_execution(t_philosopher *philosopher,
 	int	ret;
 
 	ret = ERR_OK;
+	set_last_meal_time(philosopher);
+	philosopher->meals_eaten = 0;
 	ret = initialize_philosopher_thread(philosopher, i);
 	if (ret == ERR_OK)
 		monitoring(simulation, philosopher);
