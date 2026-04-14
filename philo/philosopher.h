@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/08 16:43:28 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/14 14:56:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	log_end_of_simulation(t_simulation *simulation);
 // Philosophers main loop / helpers
 void	*philosopher_loop(void *arg);
 void    handle_single_philosopher(t_philosopher *philosopher);
+void	think_eat_sleep(t_philosopher *philosopher);
 
 // Mutex
 int	simulation_mutex_init(t_simulation *simulation);
