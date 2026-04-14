@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:55:19 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/04 16:29:06 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/14 14:31:46 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 		//printf("Monitor philosopher: %d, time: %ld\n", i + 1, current_time_ms);
 		if (current_time_ms - get_last_meal(&philosophers[i]) >= sim->time_to_die)
 		{
+			pthread_mutex_lock(&sim->print_mutex);
 			set_death(sim, philosophers[i].id);
+			pthread_mutex_unlock(&sim->print_mutex);
 			return ;
 		}
 		++i;
