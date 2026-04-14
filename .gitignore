@@ -1,3 +1,4 @@
 *.o
 a.out
 philo_bonus/philo_bonus
+philo/philo
