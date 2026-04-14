@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/04 09:35:21 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/14 14:49:51 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	init_flags(t_flags *flags)
 	memset(flags, 0, sizeof(t_flags));
 }
 
-int	initialize_philosophers_threads(t_philosopher *philosophers, t_simulation *simulation, t_fork *forks)
+int	initialize_philosophers_threads(t_philosopher *philosophers,
+	t_simulation *simulation, t_fork *forks)
 {
 	int	i;
 	int	ret;
@@ -34,19 +35,17 @@ int	initialize_philosophers_threads(t_philosopher *philosophers, t_simulation *s
 		else
 			philosophers[i].left_fork = &forks[i + 1];
 		philosophers[i].sim = simulation;
-		ret = pthread_create(&philosophers[i].thread, NULL, philosopher_loop, &philosophers[i]);
-		if (ret != ERR_OK)
-		{
-			ret = ERR_THREAD;
-			return (ret);
-		}
+		if (pthread_create(&philosophers[i].thread, NULL, philosopher_loop,
+				&philosophers[i]) != ERR_OK)
+			return (ERR_THREAD);
 		++simulation->flags.n_threads_created;
 		++i;
 	}
 	return (ret);
 }
 
-int	perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks)
+int	perfom_mallocs_initialize_mutexes(t_simulation *simulation,
+	t_philosopher **philosophers, t_fork **forks)
 {
 	int	i;
 	int	ret;
@@ -72,10 +71,11 @@ int	perfom_mallocs_initialize_mutexes(t_simulation *simulation, t_philosopher **
 	return (ret);
 }
 
-int	initialize_mutexes(t_simulation *simulation, t_philosopher **philosophers, t_fork **forks, int i)
+int	initialize_mutexes(t_simulation *simulation,
+	t_philosopher **philosophers, t_fork **forks, int i)
 {
 	int	ret;
-	
+
 	ret = ERR_OK;
 	ret = fork_mutex_init(&(*forks)[i]);
 	if (ret != ERR_OK)
