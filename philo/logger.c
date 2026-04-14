@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/14 14:29:45 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/14 14:50:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	log_all_philosophers_ate(t_simulation *sim)
 	ate_n_times = sim->n_times_must_eat;
 	pthread_mutex_lock(&sim->print_mutex);
 	timestamp_ms = get_timestamp_ms();
-	printf("%ld %s %d %s\n", timestamp_ms, "all philosophers ate", ate_n_times, "times");
+	printf("%ld %s %d %s\n", timestamp_ms,
+		"all philosophers ate", ate_n_times, "times");
 	pthread_mutex_unlock(&sim->print_mutex);
 }
 
