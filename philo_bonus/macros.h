@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/11 20:10:11 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:45:20 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,4 @@ typedef enum e_error
 #define SEM_STATE "/sem_state"
 #define SEM_PRINT "/sem_print"
 #define SEM_MEAL "/sem_meal"
-#define SEM_END "/sem_end"
 #define SEM_SEATS "/sem_seats"

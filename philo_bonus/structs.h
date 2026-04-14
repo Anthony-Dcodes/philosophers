@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/12 11:51:58 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:44:53 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_simulation
 	sem_t	*state_semaphore;
 	sem_t	*fork_semaphore;
 	sem_t	*meal_semaphore;
-	sem_t	*end_simulation_semaphore;
 	sem_t	*seats_semaphore;
 	t_flags	flags;
 }	t_simulation;

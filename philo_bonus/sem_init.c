@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sem_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/11 20:51:15 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:44:49 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,6 @@ int	semaphore_init(t_simulation *simulation)
 	simulation->fork_semaphore = sem_open(SEM_FORKS, O_CREAT, 0666,
 			simulation->n_philosophers);
 	if (simulation->fork_semaphore == SEM_FAILED)
-		return (ERR_SEMAPHORE);
-	simulation->end_simulation_semaphore = sem_open(SEM_END, O_CREAT, 0666, 1);
-	if (simulation->end_simulation_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
 	simulation->seats_semaphore = sem_open(SEM_SEATS, O_CREAT, 0666,
 			simulation->n_philosophers / 2);
