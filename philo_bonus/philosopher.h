@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/12 12:29:51 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:47:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int		is_more_then_int_max(char *nptr);
 void	log_general(t_philosopher *philosopher, const char *message);
 //void	log_death(t_simulation *sim);
 void	log_all_philosophers_ate(t_simulation *sim, int full_philos);
-void	log_end_of_simulation(t_philosopher *philosopher, int *ret);
+//void	log_end_of_simulation(t_philosopher *philosopher, int *ret);
 
 // Philosophers main loop / helpers
 void	*philosopher_loop(void *arg);

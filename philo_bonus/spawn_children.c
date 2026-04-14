@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spawn_children.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 11:43:03 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/12 23:29:51 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/14 13:53:16 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,10 @@ void	children_execution(t_philosopher *philosopher,
 	ret = initialize_philosopher_thread(philosopher, i);
 	if (ret == ERR_OK)
 		monitoring(simulation, philosopher);
-	log_end_of_simulation(philosopher, &ret);
-	if (philosopher->sim->flags.thread_created)
+	if (get_death(simulation))
+		ret = ERR_DIED;
+	//log_end_of_simulation(philosopher, &ret);
+	if (philosopher->sim->flags.thread_created && get_death(simulation) == 0)
 	{
 		pthread_join(philosopher->thread, NULL);
 	}

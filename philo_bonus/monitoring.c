@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:55:19 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/14 13:44:00 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/14 13:49:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	death_monitoring(t_philosopher *philosopher, t_simulation *sim)
 	if (current_time_ms - get_last_meal(philosopher) >= sim->time_to_die)
 	{
 		sem_wait(sim->print_semaphore);
-		printf("%ld %d %s\n", get_timestamp_ms(), philosopher->id, DIED);
 		set_death(sim, philosopher->id);
+		printf("%ld %d %s\n", get_timestamp_ms(), philosopher->id, DIED);
 	}
 	return ;
 }
