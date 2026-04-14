@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   macros.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/03/08 16:43:07 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/14 14:52:07 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 #define DIED "died"
 
 // ERROR CODES
-typedef enum e_error {
-    ERR_OK = 0,
-    ERR_PARSE,
-    ERR_MEMORY,
-    ERR_MUTEX,
-    ERR_THREAD
-} t_error;
+typedef enum e_error
+{
+	ERR_OK = 0,
+	ERR_PARSE,
+	ERR_MEMORY,
+	ERR_MUTEX,
+	ERR_THREAD
+}	t_error;
