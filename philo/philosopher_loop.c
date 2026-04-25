@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/25 21:59:06 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/25 22:42:04 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ void	*philosopher_loop(void *arg)
 	{
 		while (get_meals_eaten(philosopher) < philosopher->sim->n_times_must_eat
 			&& !get_death(philosopher->sim))
-		{
 			think_eat_sleep(philosopher);
-			set_increment_meals_eaten(philosopher);
-		}
 	}
 	else
 		while (!philosopher->sim->flags.philosopher_died)
@@ -53,5 +50,7 @@ void	think_eat_sleep(t_philosopher *philosopher)
 {
 	thinking(philosopher);
 	eating(philosopher);
+	if (philosopher->sim->n_times_must_eat)
+		set_increment_meals_eaten(philosopher);
 	sleeping(philosopher);
 }
