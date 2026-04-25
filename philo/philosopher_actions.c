@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher_actions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/14 14:55:01 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/25 22:18:23 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,16 @@ void	sleeping(t_philosopher *philosopher)
 
 void	thinking(t_philosopher *philosopher)
 {
+	long	think_time;
+	int		t_eat;
+	int		t_die;
+
+	t_eat = philosopher->sim->time_to_eat;
+	t_die = philosopher->sim->time_to_die;
+	think_time = (t_die
+			- (get_timestamp_ms() - get_last_meal(philosopher))
+			- t_eat) / 2;
 	log_general(philosopher, THINK);
+	if (think_time > 0)
+		usleep(think_time * 1000);
 }
