@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:51:40 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 12:58:37 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <string.h> // memset
 #include <unistd.h> // write, usleep, fork
 #include <sys/time.h> // gettimeofday
-#include <limits.h> // INT_MAX
 #include <signal.h> // kill
 #include <sys/wait.h> // waitpid
 #include <fcntl.h> // for O_CREAT
@@ -41,14 +40,6 @@ pthread_join - wait for a thread to finish
 #include "macros.h"
 #include "structs.h"
 #include "error.h"
-
-// Cleanup
-void	unlink_semaphores(void);
-void	close_semaphores(t_simulation *sim);
-void	subprocess_cleanup(t_philosopher *philosopher, pid_t *pids);
-void	free_memory(pid_t *pids);
-void	main_process_cleanup(pid_t *pids, t_simulation *simulation);
-void	terminate_children(pid_t **pids, t_simulation *simulation);
 
 // Parsing
 int		parser_args(int argc, char *argv[], t_simulation *t_simulation);
@@ -102,11 +93,3 @@ void	set_death(t_simulation *simulation, int id);
 void	set_philosopher_full(t_simulation *simulation);
 void	set_increment_meals_eaten(t_philosopher *philosopher);
 
-// Children management
-void	monitor_children(pid_t **pids, t_simulation *simulation);
-int		spawn_children(t_simulation *simulation,
-			t_philosopher *philosopher, pid_t **pids);
-void	children_execution(t_philosopher *philosopher,
-			t_simulation *simulation, int i, pid_t **pids);
-int		reap_pid_terminate_rest(pid_t **pids,
-			t_simulation *simulation, int i, int *full_philos);

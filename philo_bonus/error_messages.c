@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_messages.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 18:12:31 by advorace          #+#    #+#             */
-/*   Updated: 2026/03/03 15:27:24 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/26 12:52:25 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "error.h"
 
 int	wrong_number_format(void)
 {
