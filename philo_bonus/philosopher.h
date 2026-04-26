@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 13:02:04 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 13:05:09 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,6 @@ pthread_join - wait for a thread to finish
 #include "structs.h"
 #include "error.h"
 
-// Parsing
-int		parser_args(int argc, char *argv[], t_simulation *t_simulation);
-int		is_int(char *str);
-int		ft_isdigit(int c);
-int		ft_atoi(const char *nptr);
-int		is_more_then_int_max(char *nptr);
-
 // Logger
 void	log_general(t_philosopher *philosopher, const char *message);
 //void	log_death(t_simulation *sim);
@@ -59,7 +52,7 @@ void	*philosopher_loop(void *arg);
 void	handle_single_philosopher(t_philosopher *philosopher);
 void	think_eat_sleep(t_philosopher *philosopher);
 
-// Philosophers states
+// Philosophers actions
 void	eating(t_philosopher *philosopher);
 void	sleeping(t_philosopher *philosopher);
 void	thinking(t_philosopher *philosopher);
