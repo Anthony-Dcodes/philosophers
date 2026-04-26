@@ -1,6 +1,6 @@
 NAME = philo
 CC = cc
-CC_FLAGS = -Wall -Wextra -Werror -pthread
+CC_FLAGS = -Wall -Wextra -Werror -pthread -g
 
 SRCS = \
 	main.c \

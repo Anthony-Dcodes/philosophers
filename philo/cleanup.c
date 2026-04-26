@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/14 14:24:04 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/26 09:57:47 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	clean_up(t_philosopher *philosophers, t_fork *forks, t_simulation *sim)
 	i = 0;
 	if (philosophers)
 	{
-		while (i < sim->flags.n_meal_mutex_created)
-			pthread_mutex_destroy(&philosophers[i++].meal_mutex);
-		i = 0;
 		while (i < sim->flags.n_threads_created)
 			pthread_join(philosophers[i++].thread, NULL);
+		++i;
+		while (i < sim->flags.n_meal_mutex_created)
+			pthread_mutex_destroy(&philosophers[i++].meal_mutex);
 		free(philosophers);
 	}
 	i = 0;
