@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:58:37 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 13:00:28 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,16 +80,4 @@ int		initialize_philosopher_thread(t_philosopher *philosopher, int i);
 int		pids_malloc(pid_t **pids, t_simulation *simulation);
 int		preclean_init_malloc(t_simulation *simulation, pid_t **pids,
 			t_philosopher *philosopher);
-
-// Get helpers
-int		get_death(t_simulation *simulation);
-int		get_philosopher_full(t_simulation *simulation);
-long	get_last_meal(t_philosopher *philosopher);
-int		get_meals_eaten(t_philosopher *philosopher);
-
-// Set helpers
-void	set_last_meal_time(t_philosopher *philosopher);
-void	set_death(t_simulation *simulation, int id);
-void	set_philosopher_full(t_simulation *simulation);
-void	set_increment_meals_eaten(t_philosopher *philosopher);
 
