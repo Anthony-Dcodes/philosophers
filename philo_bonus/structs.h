@@ -6,13 +6,14 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/26 13:40:54 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 14:16:39 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <semaphore.h>
+#include <pthread.h>
 
 typedef struct s_flags
 {

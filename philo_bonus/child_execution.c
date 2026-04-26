@@ -6,10 +6,11 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:46:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:46:50 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 14:11:44 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <pthread.h>
 #include "philosopher.h"
 
 void	children_execution(t_philosopher *philosopher,
