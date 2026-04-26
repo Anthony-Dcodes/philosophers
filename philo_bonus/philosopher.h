@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 13:05:09 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 13:17:39 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void	log_all_philosophers_ate(t_simulation *sim, int full_philos);
 //void	log_end_of_simulation(t_philosopher *philosopher, int *ret);
 
 // Philosophers main loop / helpers
+int		initialize_philosopher_thread(t_philosopher *philosopher, int i);
 void	*philosopher_loop(void *arg);
 void	handle_single_philosopher(t_philosopher *philosopher);
 void	think_eat_sleep(t_philosopher *philosopher);
