@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:38:37 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 12:51:40 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ pthread_join - wait for a thread to finish
 #include "macros.h"
 #include "structs.h"
 #include "error.h"
-
-// Error functions
-int		wrong_number_format(void);
-int		not_an_int(void);
-int		wrong_number_of_args(void);
 
 // Cleanup
 void	unlink_semaphores(void);

@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:36:14 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:36:53 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 12:51:47 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,3 +24,8 @@ typedef enum e_error
 	ERR_FORK,
 	ERR_DIED
 }	t_error;
+
+// Error functions
+int		wrong_number_format(void);
+int		not_an_int(void);
+int		wrong_number_of_args(void);
