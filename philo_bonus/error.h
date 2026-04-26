@@ -6,13 +6,14 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:36:14 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:53:16 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 13:38:55 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <limits.h>
+#include <stdio.h>
 
 // ERROR CODES
 typedef enum e_error

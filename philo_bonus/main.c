@@ -6,11 +6,15 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/11 20:37:00 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 13:38:28 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+#include "parser.h"
+#include "cleanup.h"
+#include "child.h"
+#include "init.h"
 
 int	main(int argc, char *argv[])
 {

@@ -3,22 +3,29 @@ CC = cc
 CC_FLAGS = -Wall -Wextra -Werror -pthread
 
 SRCS = \
-	main.c \
+	child_execution.c \
+	child_init.c \
+	child_monitoring.c \
+	child_termination.c \
+	cleanup_mallocs.c \
+	cleanup_process.c \
+	cleanup_sem.c \
 	error_messages.c \
-	parser.c \
-	logger.c \
-	philosopher_actions.c \
-	cleanup.c \
-	utils.c \
+	helpers_get.c \
+	helpers_set.c \
 	init.c \
-	monitoring.c \
+	init_flag.c \
+	init_sem.c \
+	logger.c \
+	main.c \
+	Makefile \
+	parser.c \
+	parser_utils.c \
+	philosopher_actions.c \
 	philosopher_loop.c \
-	sem_init.c \
-	get_helpers.c \
-	set_helpers.c \
-	monitor_children.c \
-	spawn_children.c \
-	cleanup_helpers.c
+	philosopher_loop_init.c \
+	philosopher_monitoring.c \
+	time.c
 
 OBJS = $(SRCS:.c=.o)
 

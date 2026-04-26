@@ -6,11 +6,11 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:32:05 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:32:16 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 13:39:50 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include "error.h"
 
 int	is_int(char *str)
 {
