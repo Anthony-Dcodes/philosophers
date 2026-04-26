@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:55:19 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/25 22:37:54 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 09:32:37 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,11 @@ void	death_monitoring(t_philosopher *philosophers, t_simulation *sim)
 	while (i < sim->n_philosophers)
 	{
 		current_time_ms = get_timestamp_ms();
-		if (get_meals_eaten(&philosophers[i]) >= sim->n_times_must_eat)
+		if (sim->n_times_must_eat
+			&& get_meals_eaten(&philosophers[i]) >= sim->n_times_must_eat)
 		{
 			++i;
-			continue;
+			continue ;
 		}
 		if (current_time_ms - get_last_meal(&philosophers[i])
 			>= sim->time_to_die)
