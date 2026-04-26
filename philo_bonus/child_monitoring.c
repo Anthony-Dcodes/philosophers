@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   monitor_children.c                                 :+:      :+:    :+:   */
+/*   child_monitoring.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 09:09:43 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/12 12:25:13 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 12:44:50 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,3 @@ void	monitor_children(pid_t **pids, t_simulation *simulation)
 	log_all_philosophers_ate(simulation, full_philos);
 }
 
-int	reap_pid_terminate_rest(pid_t **pids, t_simulation *simulation,
-							int i, int *full_philos)
-{
-	int	status;
-
-	status = 0;
-	if (waitpid((*pids)[i], &status, WNOHANG) > 0)
-	{
-		(*pids)[i] = 0;
-		if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
-			++(*full_philos);
-		else
-		{
-			terminate_children(pids, simulation);
-			return (1);
-		}
-	}
-	return (0);
-}

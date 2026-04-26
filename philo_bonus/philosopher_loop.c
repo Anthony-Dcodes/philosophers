@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/12 13:09:38 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/26 12:34:47 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,4 @@ void	*philosopher_loop(void *arg)
 			think_eat_sleep(philosopher);
 	}
 	return (NULL);
-}
-
-void	handle_single_philosopher(t_philosopher *philosopher)
-{
-	thinking(philosopher);
-	sem_wait(philosopher->sim->fork_semaphore);
-	log_general(philosopher, FORK);
-	usleep(philosopher->sim->time_to_die * 1000);
-	sem_post(philosopher->sim->fork_semaphore);
-}
-
-void	think_eat_sleep(t_philosopher *philosopher)
-{
-	thinking(philosopher);
-	eating(philosopher);
-	sleeping(philosopher);
 }

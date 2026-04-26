@@ -1,40 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   init_thread.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/25 22:59:01 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:26:47 by advorace         ###   ########.fr       */
+/*   Created: 2026/04/26 12:25:50 by advorace          #+#    #+#             */
+/*   Updated: 2026/04/26 12:25:57 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
 
-int	pids_malloc(pid_t **pids, t_simulation *simulation)
-{
-	*pids = malloc(sizeof(pid_t) * simulation->n_philosophers);
-	if (!*pids)
-		return (ERR_MEMORY);
-	simulation->flags.pids_mallocked = 1;
-	return (ERR_OK);
-}
-
-int	preclean_init_malloc(t_simulation *simulation, pid_t **pids,
-						t_philosopher *philosopher)
+int	initialize_philosopher_thread(t_philosopher *philosopher, int i)
 {
 	int	ret;
 
 	ret = ERR_OK;
-	init_flags(&simulation->flags);
-	unlink_semaphores();
-	ret = semaphore_init(simulation);
+	philosopher->id = i + 1;
+	ret = pthread_create(&philosopher->thread, NULL,
+			philosopher_loop, philosopher);
 	if (ret != ERR_OK)
+	{
+		ret = ERR_THREAD;
 		return (ret);
-	ret = pids_malloc(pids, simulation);
-	if (ret != ERR_OK)
-		return (ret);
-	philosopher->sim = simulation;
+	}
+	philosopher->sim->flags.thread_created = 1;
 	return (ret);
 }
