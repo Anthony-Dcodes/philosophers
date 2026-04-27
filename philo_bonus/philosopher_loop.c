@@ -6,12 +6,12 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/27 13:58:58 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/27 14:15:42 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <semaphore.h>
-#include <stdlib.h>
+#include <unistd.h>
 #include "philosopher.h"
 #include "helpers.h"
 #include "macros.h"

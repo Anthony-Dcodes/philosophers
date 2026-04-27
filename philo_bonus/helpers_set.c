@@ -6,11 +6,12 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:11:47 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/27 13:47:27 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/27 14:12:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <semaphore.h>
+#include "philosopher.h"
 #include "structs.h"
 
 void	set_last_meal_time(t_philosopher *philosopher)

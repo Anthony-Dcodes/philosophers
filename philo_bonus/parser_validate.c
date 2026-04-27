@@ -6,12 +6,13 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:32:05 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/27 13:54:35 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/27 14:13:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "error.h"
 #include "limits.h"
+#include "parser.h"
 
 int	is_int(char *str)
 {

@@ -6,11 +6,12 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 17:55:13 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/27 13:55:32 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/27 14:14:23 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <string.h>
 #include "parser.h"
 #include "error.h"
 

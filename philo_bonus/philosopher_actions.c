@@ -6,14 +6,16 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/27 13:56:47 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/27 14:15:22 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <semaphore.h>
+#include <unistd.h>
 #include "philosopher.h"
 #include "macros.h"
 #include "structs.h"
+#include "helpers.h"
 
 static void	pick_up_forks(t_philosopher *philosopher)
 {

@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 20:12:51 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/27 13:45:29 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/27 14:12:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "cleanup.h"
 #include "structs.h"
+#include "child.h"
 
 void	subprocess_cleanup(t_philosopher *philosopher, pid_t *pids)
 {

@@ -6,11 +6,12 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:46:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/27 13:39:06 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/27 14:11:23 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <pthread.h>
+#include <stdlib.h>
 #include "structs.h"
 #include "error.h"
 #include "helpers.h"
