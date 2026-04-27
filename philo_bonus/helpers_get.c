@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_helpers.c                                      :+:      :+:    :+:   */
+/*   helpers_get.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 10:22:01 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/11 20:02:01 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/27 13:47:11 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include <semaphore.h>
+#include "structs.h"
 
 int	get_death(t_simulation *simulation)
 {

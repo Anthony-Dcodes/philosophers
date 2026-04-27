@@ -3,42 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 14:17:54 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/27 14:00:33 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#include <stdio.h> // printf
-#include <stdlib.h> // malloc, free, exit
-#include <string.h> // memset
-#include <unistd.h> // write, usleep, fork
-#include <sys/time.h> // gettimeofday
-#include <signal.h> // kill
-#include <sys/wait.h> // waitpid
-#include <fcntl.h> // for O_CREAT
-
-/*
-sem_open - initialize and open a named semaphore
-sem_close - close a named semaphore
-sem_post - increments semaphore by one
-sem_wait - decrements semaphore by one
-sem_unlink - removes named semaphore, removed immediately,
-			desctoryed once all other processes close it
-*/
-#include <semaphore.h>
-/*
-pthread_create - create new thread
-pthread_detach - detach a thread (alternative to pthread_join)
-pthread_join - wait for a thread to finish
-*/
-#include <pthread.h>
-
 #include "structs.h"
-#include "helpers.h"
 
 // Logger
 void	log_general(t_philosopher *philosopher, const char *message);

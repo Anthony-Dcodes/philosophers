@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   child_termination.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:44:55 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/27 13:43:03 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include <sys/wait.h>
+#include "structs.h"
+#include "signal.h"
 
 void	terminate_children(pid_t **pids, t_simulation *simulation)
 {

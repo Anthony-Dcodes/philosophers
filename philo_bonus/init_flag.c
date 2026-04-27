@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   init_flag.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:26:51 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:26:52 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/27 13:48:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include <stdlib.h>
+#include "structs.h"
 
 void	init_flags(t_flags *flags)
 {

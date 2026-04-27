@@ -1,16 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_thread.c                                      :+:      :+:    :+:   */
+/*   philosopher_loop_init.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:25:50 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:25:57 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/27 13:57:30 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+#include "structs.h"
+#include "error.h"
+#include "pthread.h"
 
 int	initialize_philosopher_thread(t_philosopher *philosopher, int i)
 {

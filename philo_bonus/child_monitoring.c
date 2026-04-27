@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   child_monitoring.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 09:09:43 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/26 12:44:50 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/27 13:41:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosopher.h"
+#include "child.h"
+#include "structs.h"
 
 void	monitor_children(pid_t **pids, t_simulation *simulation)
 {

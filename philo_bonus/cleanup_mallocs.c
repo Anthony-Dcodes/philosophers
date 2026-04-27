@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup_mallocs.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:18:51 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 12:18:53 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/27 13:44:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include <stdlib.h>
+#include <sys/wait.h>
 
 void	free_memory(pid_t *pids)
 {

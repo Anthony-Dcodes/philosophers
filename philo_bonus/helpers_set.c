@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_helpers.c                                      :+:      :+:    :+:   */
+/*   helpers_set.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/04 16:11:47 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/11 20:51:48 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/27 13:47:27 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include <semaphore.h>
+#include "structs.h"
 
 void	set_last_meal_time(t_philosopher *philosopher)
 {

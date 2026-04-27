@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher_actions.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/12 19:22:34 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/11 20:42:58 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/27 13:56:47 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <semaphore.h>
 #include "philosopher.h"
+#include "macros.h"
+#include "structs.h"
 
 static void	pick_up_forks(t_philosopher *philosopher)
 {

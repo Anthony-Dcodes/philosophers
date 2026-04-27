@@ -1,16 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sem_init.c                                         :+:      :+:    :+:   */
+/*   init_sem.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/14 13:44:49 by codespace        ###   ########.fr       */
+/*   Updated: 2026/04/27 13:49:04 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philosopher.h"
+#include <semaphore.h>
+#include <fcntl.h>
+#include "structs.h"
+#include "error.h"
+#include "macros.h"
 
 int	semaphore_init(t_simulation *simulation)
 {

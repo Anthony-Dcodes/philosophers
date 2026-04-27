@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher_loop.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/26 12:50:18 by advorace         ###   ########.fr       */
+/*   Updated: 2026/04/27 13:58:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <semaphore.h>
+#include <stdlib.h>
 #include "philosopher.h"
+#include "helpers.h"
+#include "macros.h"
+#include "structs.h"
 
 void	*philosopher_loop(void *arg)
 {
