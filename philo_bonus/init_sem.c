@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/06 07:16:31 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/06 07:46:34 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ int	semaphore_init(t_simulation *simulation)
 			simulation->n_philosophers / 2);
 	if (simulation->seats_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
-	simulation->philo_full_semaphore = sem_open(SEM_PHILO_FULL, O_CREAT, 0666, simulation->n_philosophers);
+	simulation->philo_full_semaphore = sem_open(SEM_PHILO_FULL, O_CREAT, 0666, 0);
 	if (simulation->philo_full_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
-	simulation->destroy_semaphore = sem_open(SEM_DESTROY, O_CREAT, 0666, simulation->n_philosophers);
+	simulation->destroy_semaphore = sem_open(SEM_DESTROY, O_CREAT, 0666, 0);
 	if (simulation->destroy_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
 	simulation->death_print_semaphore = sem_open(SEM_DEATH_PRINT, O_CREAT, 0666, 1);

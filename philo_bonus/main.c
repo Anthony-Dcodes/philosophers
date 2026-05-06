@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/27 13:54:01 by codespace        ###   ########.fr       */
+/*   Updated: 2026/05/06 08:44:12 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ int	main(int argc, char *argv[])
 	ret = preclean_init_malloc(&simulation, &pids, &philosopher);
 	if (ret != ERR_OK)
 	{
-		main_process_cleanup(pids, &simulation);
+		main_process_cleanup(pids, &philosopher);
 		return (ret);
 	}
 	ret = spawn_children(&simulation, &philosopher, &pids);
 	if (ret != ERR_OK)
 	{
-		main_process_cleanup(pids, &simulation);
+		main_process_cleanup(pids, &philosopher);
 		return (ret);
 	}
 	monitor_children(&pids, &simulation);
-	main_process_cleanup(pids, &simulation);
+	main_process_cleanup(pids, &philosopher);
 	return (ret);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup_process.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 20:12:51 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/27 14:12:13 by codespace        ###   ########.fr       */
+/*   Updated: 2026/05/06 08:42:38 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "cleanup.h"
 #include "structs.h"
 #include "child.h"
+#include "main_threads.h"
 
 void	subprocess_cleanup(t_philosopher *philosopher, pid_t *pids)
 {
@@ -34,13 +35,17 @@ void	subprocess_cleanup(t_philosopher *philosopher, pid_t *pids)
 	return ;
 }
 
-void	main_process_cleanup(pid_t *pids, t_simulation *simulation)
+void	main_process_cleanup(pid_t *pids, t_philosopher *philosopher)
 {
-	if (simulation->flags.pids_mallocked)
+	t_simulation *sim;
+
+	sim = philosopher->sim;
+	if (sim->flags.pids_mallocked)
 	{
-		terminate_children(&pids, simulation);
+		terminate_children(&pids, sim);
 		free_memory(pids);
 	}
-	close_semaphores(simulation);
+	terminate_philo_full_thread(philosopher);
+	close_semaphores(sim);
 	unlink_semaphores();
 }

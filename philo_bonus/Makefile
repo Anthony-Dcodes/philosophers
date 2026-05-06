@@ -24,7 +24,8 @@ SRCS = \
 	philosopher_loop.c \
 	philosopher_loop_init.c \
 	philosopher_monitoring.c \
-	time.c
+	time.c \
+	main_threads.c \
 
 OBJS = $(SRCS:.c=.o)
 

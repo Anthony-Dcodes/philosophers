@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_termination.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/27 13:43:03 by codespace        ###   ########.fr       */
+/*   Updated: 2026/05/06 07:49:29 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,16 @@ int	reap_pid_terminate_rest(pid_t **pids, t_simulation *simulation,
 		}
 	}
 	return (0);
+}
+
+void	activate_child_cleanup(t_simulation *sim)
+{
+	int	i;
+
+	i = 0;
+	while (i < sim->n_philosophers)
+	{
+		sem_post(sim->destroy_semaphore);
+		++i;
+	}
 }
