@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:55:19 by codespace         #+#    #+#             */
-/*   Updated: 2026/05/06 09:58:17 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/06 10:03:17 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ void	philosopher_full_monitoring(t_philosopher *philosopher,
 	n_times_must_eat = sim->n_times_must_eat;
 	meals_eaten = get_meals_eaten(philosopher);
 	if (meals_eaten >= n_times_must_eat && n_times_must_eat)
+	{
 		set_philosopher_full(philosopher->sim);
+		sem_post(sim->philo_full_semaphore);
+	}
 	return ;
 }
