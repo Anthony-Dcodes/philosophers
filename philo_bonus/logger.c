@@ -6,12 +6,13 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/04 22:07:41 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/06 09:57:25 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/06 10:11:08 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <semaphore.h>
 #include <stdio.h>
+#include <unistd.h>
 #include "philosopher.h"
 #include "structs.h"
 #include "helpers.h"
