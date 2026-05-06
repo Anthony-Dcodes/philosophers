@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/06 08:44:12 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/06 08:49:00 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "init.h"
 #include "error.h"
 #include "structs.h"
+#include "main_threads.h"
 
 int	main(int argc, char *argv[])
 {
@@ -31,6 +32,12 @@ int	main(int argc, char *argv[])
 	if (ret != ERR_OK)
 		return (ret);
 	ret = preclean_init_malloc(&simulation, &pids, &philosopher);
+	if (ret != ERR_OK)
+	{
+		main_process_cleanup(pids, &philosopher);
+		return (ret);
+	}
+	ret = init_philo_full_thread(&philosopher);
 	if (ret != ERR_OK)
 	{
 		main_process_cleanup(pids, &philosopher);
