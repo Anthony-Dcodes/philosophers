@@ -26,6 +26,7 @@ SRCS = \
 	philosopher_monitoring.c \
 	time.c \
 	main_threads.c \
+	child_destroy_thread.c
 
 OBJS = $(SRCS:.c=.o)
 
