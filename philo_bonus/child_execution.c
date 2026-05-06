@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_execution.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:46:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/27 14:11:23 by codespace        ###   ########.fr       */
+/*   Updated: 2026/05/06 09:40:48 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	children_execution(t_philosopher *philosopher,
 	{
 		pthread_join(philosopher->thread, NULL);
 	}
+	if (philosopher->sim->flags.destroy_thread_created)
+		pthread_detach(philosopher->destroy_thread);
 	close_semaphores(philosopher->sim);
 	free(*pids);
 	exit(ret);
