@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/05/06 07:10:55 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/06 09:55:14 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,3 +30,5 @@
 #define SEM_PHILO_FULL "/sem_philo_full"
 #define SEM_DESTROY "/sem_destroy"
 #define SEM_DEATH_PRINT "/sem_death_print"
+
+#define SLEEP_DELAY 5000

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher_monitoring.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 15:55:19 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/27 14:15:55 by codespace        ###   ########.fr       */
+/*   Updated: 2026/05/06 09:58:17 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include "macros.h"
 #include "helpers.h"
 #include "philosopher.h"
+#include "child.h"
 
 void	monitoring(t_simulation *simulation, t_philosopher *philosopher)
 {
@@ -34,9 +35,9 @@ void	death_monitoring(t_philosopher *philosopher, t_simulation *sim)
 	current_time_ms = get_timestamp_ms();
 	if (current_time_ms - get_last_meal(philosopher) >= sim->time_to_die)
 	{
-		sem_wait(sim->print_semaphore);
-		set_death(sim, philosopher->id);
-		printf("%ld %d %s\n", get_timestamp_ms(), philosopher->id, DIED);
+		activate_child_cleanup(sim);
+		sim->flags.local_philo_death = 1;
+		log_death(philosopher);
 	}
 	return ;
 }
