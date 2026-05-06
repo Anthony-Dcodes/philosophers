@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:55:53 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/26 12:36:47 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/06 07:10:55 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,6 @@
 #define SEM_PRINT "/sem_print"
 #define SEM_MEAL "/sem_meal"
 #define SEM_SEATS "/sem_seats"
+#define SEM_PHILO_FULL "/sem_philo_full"
+#define SEM_DESTROY "/sem_destroy"
+#define SEM_DEATH_PRINT "/sem_death_print"

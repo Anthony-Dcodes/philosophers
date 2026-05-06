@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 08:57:09 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/26 14:16:39 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/06 07:12:10 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ typedef struct s_simulation
 	sem_t	*fork_semaphore;
 	sem_t	*meal_semaphore;
 	sem_t	*seats_semaphore;
+	sem_t	*philo_full_semaphore;
+	sem_t	*destroy_semaphore;
+	sem_t	*death_print_semaphore;
 	t_flags	flags;
 }	t_simulation;
 
