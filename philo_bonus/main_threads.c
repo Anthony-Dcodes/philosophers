@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 07:34:37 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/06 08:30:26 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/07 13:15:53 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	*philo_full_thread(void	*arg)
 		++i;
 	}
 	activate_child_cleanup(philosopher->sim);
+	return (NULL);
 }
 
 void	terminate_philo_full_thread(t_philosopher *philosopher)
@@ -56,6 +57,6 @@ void	terminate_philo_full_thread(t_philosopher *philosopher)
 			sem_post(sim->philo_full_semaphore);
 			++i;
 		}
-		pthread_detach(philosopher->philo_full_thread);
+		pthread_join(philosopher->philo_full_thread, NULL);
 	}
 }
