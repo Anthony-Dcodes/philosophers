@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosopher_destroy_thread.c                       :+:      :+:    :+:   */
+/*   child_destroy_thread.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 08:56:57 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/06 09:29:53 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/08 13:44:27 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,5 @@ void	*child_destroy_thread(void *arg)
 	philosopher = (t_philosopher *)arg;
 	sem_wait(philosopher->sim->destroy_semaphore);
 	set_death(philosopher->sim, philosopher->id);
+	return (NULL);
 }
