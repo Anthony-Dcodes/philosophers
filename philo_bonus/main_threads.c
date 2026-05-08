@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 07:34:37 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/07 13:15:53 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/08 17:38:45 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	init_philo_full_thread(t_philosopher *philosopher)
 {
 	int	ret;
 
-	ret = pthread_create(&philosopher->philo_full_thread, NULL, philo_full_thread, philosopher);
+	ret = pthread_create(&philosopher->philo_full_thread, NULL,
+			philo_full_thread, philosopher);
 	if (ret != ERR_OK)
 		return (ERR_THREAD);
 	philosopher->sim->flags.philo_full_thread_created = 1;

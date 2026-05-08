@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 12:46:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/07 13:16:17 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/08 17:38:54 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,5 @@ void	children_execution(t_philosopher *philosopher,
 		pthread_join(philosopher->destroy_thread, NULL);
 	close_semaphores(philosopher->sim);
 	free(*pids);
-	//printf("Exiting child: %d with exit: %d\n", getpid(), ret);
 	exit(ret);
 }

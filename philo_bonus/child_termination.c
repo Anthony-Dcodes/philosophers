@@ -6,13 +6,14 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/15 23:12:58 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/06 16:04:27 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/08 17:37:30 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sys/wait.h>
 #include "structs.h"
 #include "signal.h"
+#include <stdio.h>
 
 // void	terminate_children(pid_t **pids, t_simulation *simulation)
 // {
@@ -43,11 +44,7 @@ int	reap_pid_terminate_rest(pid_t **pids, t_simulation *simulation,
 		(*pids)[i] = 0;
 		if (WIFEXITED(status) && WEXITSTATUS(status) == 0)
 			++(*full_philos);
-		// else
-		// {
-		// 	terminate_children(pids, simulation);
-		// 	return (1);
-		// }
+		return (1);
 	}
 	return (0);
 }

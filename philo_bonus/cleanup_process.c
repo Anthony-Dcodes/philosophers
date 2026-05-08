@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/11 20:12:51 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/06 16:11:05 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/08 17:39:32 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,11 @@ void	subprocess_cleanup(t_philosopher *philosopher, pid_t *pids)
 
 void	main_process_cleanup(pid_t *pids, t_philosopher *philosopher)
 {
-	t_simulation *sim;
+	t_simulation	*sim;
 
 	sim = philosopher->sim;
 	if (sim->flags.pids_mallocked)
 	{
-		//terminate_children(&pids, sim);
 		free_memory(pids);
 	}
 	terminate_philo_full_thread(philosopher);

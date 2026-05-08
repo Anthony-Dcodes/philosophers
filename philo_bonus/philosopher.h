@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:16:53 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/06 09:58:04 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/08 17:38:13 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,3 @@ void	death_monitoring(t_philosopher *philosopher, t_simulation *sim);
 void	philosopher_full_monitoring(t_philosopher *philosophers,
 			t_simulation *sim);
 void	monitoring(t_simulation *simulation, t_philosopher *philosophers);
-

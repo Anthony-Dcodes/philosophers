@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/06 08:56:57 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/08 13:44:27 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/08 17:39:06 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	*child_destroy_thread(void *arg)
 {
-	t_philosopher *philosopher;
+	t_philosopher	*philosopher;
 
 	philosopher = (t_philosopher *)arg;
 	sem_wait(philosopher->sim->destroy_semaphore);

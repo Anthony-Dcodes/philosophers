@@ -1,6 +1,6 @@
 NAME = philo_bonus
 CC = cc
-CC_FLAGS = -Wall -Wextra -Werror -pthread
+CC_FLAGS = -Wall -Wextra -Werror -pthread# -g -fsanitize=thread
 
 SRCS = \
 	child_execution.c \

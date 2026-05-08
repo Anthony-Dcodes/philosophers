@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/26 13:01:47 by advorace          #+#    #+#             */
-/*   Updated: 2026/04/26 13:17:27 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:01:02 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,3 +21,4 @@ int		semaphore_init(t_simulation *simulation);
 int		pids_malloc(pid_t **pids, t_simulation *simulation);
 int		preclean_init_malloc(t_simulation *simulation, pid_t **pids,
 			t_philosopher *philosopher);
+int		init_cross_process_synchro_sems(t_simulation *simulation);
