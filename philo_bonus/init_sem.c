@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/09 19:01:43 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/06 07:46:34 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/08 14:02:28 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include "structs.h"
 #include "error.h"
 #include "macros.h"
+#include "stdio.h"
+#include "init.h"
 
 int	semaphore_init(t_simulation *simulation)
 {
@@ -35,13 +37,21 @@ int	semaphore_init(t_simulation *simulation)
 			simulation->n_philosophers / 2);
 	if (simulation->seats_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
-	simulation->philo_full_semaphore = sem_open(SEM_PHILO_FULL, O_CREAT, 0666, 0);
+	return (init_cross_process_synchro_sems(simulation));
+}
+
+int	init_cross_process_synchro_sems(t_simulation *simulation)
+{
+	simulation->philo_full_semaphore = sem_open(SEM_PHILO_FULL,
+			O_CREAT, 0666, 0);
 	if (simulation->philo_full_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
-	simulation->destroy_semaphore = sem_open(SEM_DESTROY, O_CREAT, 0666, 0);
+	simulation->destroy_semaphore = sem_open(SEM_DESTROY,
+			O_CREAT, 0666, 0);
 	if (simulation->destroy_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
-	simulation->death_print_semaphore = sem_open(SEM_DEATH_PRINT, O_CREAT, 0666, 1);
+	simulation->death_print_semaphore = sem_open(SEM_DEATH_PRINT,
+			O_CREAT, 0666, 1);
 	if (simulation->death_print_semaphore == SEM_FAILED)
 		return (ERR_SEMAPHORE);
 	return (ERR_OK);
