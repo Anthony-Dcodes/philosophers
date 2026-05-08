@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   child_init.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/09 11:43:03 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/27 13:40:12 by codespace        ###   ########.fr       */
+/*   Updated: 2026/05/08 17:44:16 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "child.h"
 #include "error.h"
-#include "unistd.h"
+#include <unistd.h>
+#include "main_threads.h"
 
 int	spawn_children(t_simulation *simulation,
 				t_philosopher *philosopher, pid_t **pids)
@@ -35,5 +36,6 @@ int	spawn_children(t_simulation *simulation,
 			(*pids)[i] = pid;
 		++i;
 	}
+	ret = init_philo_full_thread(philosopher);
 	return (ERR_OK);
 }

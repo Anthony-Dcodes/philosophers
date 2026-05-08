@@ -6,7 +6,7 @@
 /*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/03 22:23:55 by advorace          #+#    #+#             */
-/*   Updated: 2026/05/08 13:30:22 by advorace         ###   ########.fr       */
+/*   Updated: 2026/05/08 17:44:34 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,6 @@ int	main(int argc, char *argv[])
 		return (ret);
 	}
 	ret = spawn_children(&simulation, &philosopher, &pids);
-	if (ret != ERR_OK)
-	{
-		main_process_cleanup(pids, &philosopher);
-		return (ret);
-	}
-	ret = init_philo_full_thread(&philosopher);
 	if (ret != ERR_OK)
 	{
 		main_process_cleanup(pids, &philosopher);
