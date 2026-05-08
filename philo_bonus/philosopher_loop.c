@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosopher_loop.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: advorace <advorace@student.42prague.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 16:37:00 by codespace         #+#    #+#             */
-/*   Updated: 2026/04/27 14:15:42 by codespace        ###   ########.fr       */
+/*   Updated: 2026/05/08 17:53:12 by advorace         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	*philosopher_loop(void *arg)
 	t_philosopher	*philosopher;
 
 	philosopher = (t_philosopher *)arg;
+	if (philosopher->id % 2)
+		usleep(1000);
 	if (philosopher->sim->n_philosophers == 1)
 		handle_single_philosopher(philosopher);
 	else if (philosopher->sim->n_times_must_eat)
